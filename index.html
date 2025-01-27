@@ -4,863 +4,520 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Gustavo Mendes e Silva - Currículo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-   <style>
-      /* --- Cores --- */
-:root {
-    --primary-color: #2c3e50; /* Azul escuro */
-    --secondary-color: #34495e; /* Azul mais claro */
-    --accent-color: #d35400; /* Laranja queimado */
-    --background-color: #f8f8f8; /* Cinza claro para o fundo */
-    --text-color: #333333; /* Cinza escuro para texto principal */
-    --title-color: #2c3e50; /* Azul escuro para títulos */
-    --light-gray: #d3d3d3; /* Cinza claro para linhas e fundos sutis */
-    --white: #fff;
-   --font-montserrat: 'Montserrat', sans-serif; /* Títulos */
-    --font-lato: 'Josefin Sans', sans-serif; /* Subtítulos */
-    --font-roboto: 'Open Sans', sans-serif; /* Corpo do texto */
-}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Mulish:wght@400&display=swap" rel="stylesheet">
+    <style>
+        /* --- Cores --- */
+        :root {
+            --primary-color: #19376D; /* Azul Ultramar */
+            --secondary-color: #1D5379; /* Azul Petróleo */
+            --tertiary-color: #708DA1; /* Azul Acinzentado */
+            --accent-color: #D2921C; /* Dourado Envelhecido */
+            --alt-accent-color: #D27904; /* Laranja Queimado (pouco uso) */
+            --background-color: #F8F8F8; /* Cinza claro para o fundo */
+            --text-color: #333; /* Cinza escuro para texto principal */
+            --title-color: #19376D; /* Igual à cor principal */
+            --light-gray: #E0E0E0; /* Cinza claro para linhas sutis */
+            --white: #FFF;
+            --font-montserrat: 'Montserrat', sans-serif; /* Títulos */
+            --font-mulish: 'Mulish', sans-serif; /* Subtítulos */
+            --font-josefin: 'Josefin Sans', sans-serif; /* Títulos de Seção */
+            --font-open-sans: 'Open Sans', sans-serif; /* Corpo do texto */
+        }
 
-/* --- Estilos Gerais --- */
-body {
-    font-family: var(--font-roboto);
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--text-color);
-    background-color: var(--background-color);
-    font-size: 10pt;
-    -webkit-print-color-adjust: exact; /* Importante para manter as cores na impressão */
-    print-color-adjust: exact; /* Importante para manter as cores na impressão */
-}
+        /* --- Estilos Gerais --- */
+        body {
+            font-family: var(--font-open-sans);
+            font-size: 10pt;
+            line-height: 1.5;
+            color: var(--text-color);
+            background-color: var(--white);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
 
-.container {
-    max-width: 1100px;
-    margin: 30px auto;
-    padding: 30px;
-    background-color: var(--white);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    display: grid;
-    grid-template-columns: 30% 70%; /* Coluna esquerda: 30%, direita: 70% */
-    gap: 30px;
-}
+        .container {
+            width: 210mm; /* Largura A4 */
+            min-height: 297mm; /* Altura A4 */
+            margin: 0 auto;
+            padding: 15mm;
+            background-color: var(--white);
+        }
 
-.section {
-    margin-bottom: 30px;
-}
+        @page {
+            size: A4;
+            margin: 0;
+        }
 
-/* --- Sidebar (Coluna Esquerda) --- */
-.sidebar {
-    padding-right: 30px;
-}
+        .section {
+            margin-bottom: 10mm;
+            page-break-inside: avoid;
+            background-color: var(--background-color);
+            padding: 5mm;
+            border-radius: 5px;
+        }
+        .section:nth-child(odd) {
+            background-color: var(--white);
+        }
 
-.photo-frame {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid var(--accent-color);
-    margin: 0 auto 20px auto;
-}
+        /* --- Cabeçalho --- */
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10mm;
+            padding-bottom: 5mm;
+        }
 
-.photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+        .photo-frame {
+            width: 60mm;
+            height: 60mm;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent-color);
+            flex-shrink: 0;
+            margin-right: 10mm;
+        }
 
-.contact-info {
-    margin-bottom: 30px;
-}
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-.contact-info ul {
-    list-style: none;
-    padding: 0;
-}
+        .header-content {
+            flex-grow: 1;
+        }
 
-.contact-info li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-}
+        .header h1 {
+            font-family: var(--font-montserrat);
+            font-size: 22pt;
+            font-weight: 700;
+            color: var(--title-color);
+            margin-bottom: 2mm;
+        }
 
-.contact-info a {
-    color: var(--secondary-color);
-    text-decoration: none;
-}
+        .headline {
+            font-family: var(--font-mulish);
+            font-size: 11pt;
+            font-weight: 400;
+            color: var(--secondary-color);
+            margin-bottom: 3mm;
+        }
 
-.contact-info a:hover {
-    text-decoration: underline;
-}
+        .contact-info {
+            display: flex;
+            justify-content: flex-start;
+            gap: 7mm;
+            flex-wrap: wrap;
+        }
 
-.contact-info i {
-    color: var(--accent-color);
-    width: 20px; /* Largura fixa para alinhar os ícones */
-    text-align: center;
-}
+        .contact-info div {
+            display: flex;
+            align-items: center;
+            gap: 3mm;
+            font-size: 9pt;
+        }
 
-.skills-section h2,
-.certifications h2,
-.languages h2 {
-    font-family: var(--font-montserrat);
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--title-color);
-    margin-bottom: 15px;
-    border-bottom: 2px solid var(--light-gray);
-    padding-bottom: 10px;
-}
+        .contact-info i {
+            color: var(--primary-color);
+            font-size: 10pt;
+        }
 
-.skills-category h3 {
-    font-family: var(--font-lato);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--secondary-color);
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
+        .contact-info a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
 
-.skills-list {
-    list-style: none;
-    padding: 0;
-}
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
 
-.skills-list li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-}
+        /* --- Conteúdo Principal --- */
+        h2 {
+            font-family: var(--font-josefin);
+            font-size: 14pt;
+            font-weight: 700;
+            color: var(--title-color);
+            margin-bottom: 3mm;
+            padding-bottom: 2mm;
+        }
 
-.skill-name {
-    font-family: var(--font-roboto);
-    font-weight: 500;
-    flex-basis: 40%; /* Largura fixa para o nome da habilidade */
-}
+        h3 {
+            font-family: var(--font-mulish);
+            font-size: 11pt;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 3mm;
+        }
 
-.progress-bar {
-    width: 60%; /* Largura da barra de progresso */
-    background-color: var(--light-gray);
-    border-radius: 5px;
-    overflow: hidden;
-    height: 10px;
-}
+        .summary, .objective, .experience-item p, .education-item p, .section p {
+            font-family: var(--font-open-sans);
+            font-size: 9pt;
+            color: var(--text-color);
+            margin-bottom: 5mm;
+            text-align: justify;
+        }
 
-.progress {
-    height: 100%;
-    background-color: var(--accent-color);
-}
+        .section ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 5mm;
+        }
 
-.certifications ul {
-    list-style: none;
-    padding: 0;
-}
+        .section ul li {
+            font-size: 9pt;
+            margin-bottom: 3mm;
+            display: flex;
+            align-items: baseline;
+        }
 
-.certifications li {
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.certifications i {
-    color: var(--accent-color);
-    font-size: 1.2rem;
-}
+        .section ul li i {
+            color: var(--primary-color);
+            font-size: 5pt;
+            margin-right: 4px;
+            flex-shrink: 0;
+        }
 
-.languages {
-    margin-bottom: 30px;
-}
+        .section ul li b {
+            font-weight: bold;
+        }
 
-.languages ul {
-    list-style: none;
-    padding: 0;
-}
+        /* --- Tabelas --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10mm;
+        }
 
-.languages li {
-    margin-bottom: 10px;
-}
+        th, td {
+            padding: 5px;
+            text-align: left;
+            font-size: 9pt;
+            border-bottom: 1px solid var(--light-gray);
+        }
 
-.language-name {
-    font-weight: 600;
-}
+        th {
+            font-family: var(--font-mulish);
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
 
-.language-level {
-    font-style: italic;
-    color: var(--secondary-color);
-}
+        td ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-/* --- Main Content (Coluna Direita) --- */
+        td ul li {
+            padding-left: 10px;
+            position: relative;
+            margin-bottom: 3px;
+            font-size: 9pt;
+        }
 
-.main-content h1 {
-    font-family: var(--font-montserrat);
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--title-color);
-    margin-bottom: 10px;
-}
+        td ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-size: 9pt;
+        }
 
-.headline {
-    font-family: var(--font-lato);
-    font-size: 1.1rem;
-    color: var(--accent-color);
-    margin-bottom: 20px;
-    font-weight: 500;
-}
-
-.main-content h2 {
-    font-family: var(--font-montserrat);
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--title-color);
-    margin-bottom: 15px;
-    border-bottom: 2px solid var(--light-gray);
-    padding-bottom: 10px;
-}
-
-.main-content h3 {
-    font-family: var(--font-lato);
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--secondary-color);
-    margin-bottom: 10px;
-}
-
-.summary,
-.objective,
-.experience-item p,
-.education-item p,
-.international-experience p {
-    font-family: var(--font-roboto);
-    font-size: 1rem;
-    color: var(--text-color);
-    margin-bottom: 15px;
-}
-
-.experience-table,
-.education-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.experience-table th,
-.experience-table td,
-.education-table th,
-.education-table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid var(--light-gray);
-    font-size: 0.9rem;
-}
-
-.experience-table th,
-.education-table th {
-    font-family: var(--font-lato);
-    color: var(--secondary-color);
-    font-weight: 600;
-}
-
-.experience-table td ul,
-.education-table td ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.experience-table td ul li,
-.education-table td ul li {
-    margin-bottom: 5px;
-    position: relative;
-    padding-left: 15px;
-}
-
-.experience-table td ul li::before,
-.education-table td ul li::before {
-    content: '-';
-    position: absolute;
-    left: 0;
-}
-
-.international-experience ul {
-    list-style: none;
-    padding: 0;
-}
-
-.international-experience li {
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.international-experience li i {
-    color: var(--accent-color);
-    font-size: 1.2rem;
-}
-
-/* --- Media Queries --- */
-
-/* Para tablets e telas menores */
-@media (max-width: 768px) {
-    .container {
-        grid-template-columns: 1fr; /* Uma coluna */
-    }
-
-    .sidebar {
-        padding-right: 0;
-    }
-
-    .photo-frame {
-        margin: 0 auto 20px auto;
-    }
-
-    .skills-list li {
-        flex-direction: column; /* Itens da lista um abaixo do outro */
-        align-items: flex-start;
-    }
-
-    .skill-name {
-        flex-basis: auto; /* Ocupa a largura necessária */
-        margin-bottom: 5px;
-    }
-
-    .progress-bar {
-        width: 100%; /* Ocupa a largura total */
-    }
-}
-
-/* Para impressão */
-@media print {
-    body {
-        font-size: 10pt;
-        background-color: white;
-    }
-
-    .container {
-        max-width: 100%;
-        margin: 0;
-        padding: 0;
-        box-shadow: none;
-        grid-template-columns: 1fr; /* Uma coluna na impressão */
-    }
-
-    .sidebar {
-        padding: 0;
-        page-break-inside: avoid; /* Evita quebra de página na sidebar */
-    }
-
-    .main-content {
-        page-break-inside: avoid; /* Evita quebra de página no conteúdo principal */
-    }
-
-    .section {
-        margin-bottom: 20px;
-    }
-
-    .photo-frame {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 10px;
-    }
-
-    .contact-info {
-        margin-bottom: 10px;
-    }
-
-    .skills-section,
-    .certifications,
-    .languages {
-        margin-bottom: 10px;
-    }
-
-    .skills-list li {
-        flex-direction: row; /* Itens da lista um ao lado do outro na impressão */
-        align-items: center;
-    }
-
-    .skill-name {
-        flex-basis: 30%; /* Ajuste para a largura do nome da skill na impressão */
-    }
-
-    .progress-bar {
-        width: 70%; /* Ajuste para a largura da barra de progresso na impressão */
-    }
-}</style>
+        .section.certifications ul li::before, .section.international-experience ul li::before {
+            content: "";
+        }
+        .section.certifications ul li i, .section.international-experience ul li i{
+             color: var(--alt-accent-color);
+        }
+    </style>
 </head>
 <body>
     <div class="container">
- <aside class="sidebar">
+        <div class="header">
             <div class="photo-frame">
-                <img src="foto.jpg" alt="Foto do Dr. Gustavo Mendes e Silva">
+                <img src="https://media.licdn.com/dms/image/D4D03AQHn55_uXQs-RA/profile-displayphoto-shrink_400_400/0/1679602359756?e=1717027200&v=beta&t=E_7s569IqI_xkW1eAoL-f8eC-Mvn1J6B1b-4S_yYf5w" alt="Foto do Dr. Gustavo Mendes e Silva">
             </div>
-
-            <div class="contact-info">
-                <h2>Contato</h2>
-                <ul>
-                    <li><i class="fas fa-phone-alt"></i> (11) 96546-1146</li>
-                    <li><i class="fas fa-envelope"></i> <a href="mailto:dr@orcann.com">dr@orcann.com</a></li>
-                    <li><i class="fas fa-map-marker-alt"></i> Vila Olímpia, São Paulo - SP</li>
-                    <li><i class="fab fa-linkedin"></i> <a href="linkedin.com/in/drgustavomendes">linkedin.com/in/drgustavomendes</a></li>
-                    <li><i class="fas fa-id-card"></i> CRM-SP 218133</li>
-                </ul>
+            <div class="header-content">
+                <h1>Dr. Gustavo Mendes e Silva</h1>
+                <div class="headline">Médico Gestor | Coordenador de Saúde | Especialista em Relacionamento Médico e Inovação</div>
+                <div class="contact-info">
+                    <div><i class="fas fa-phone-alt"></i> (11) 96546-1146</div>
+                    <div><i class="fas fa-envelope"></i> <a href="mailto:dr@orcann.com">dr@orcann.com</a></div>
+                    <div><i class="fas fa-map-marker-alt"></i> Vila Olímpia, São Paulo - SP</div>
+                    <div><i class="fab fa-linkedin"></i> <a href="linkedin.com/in/drgustavomendes">linkedin.com/in/drgustavomendes</a></div>
+                    <div><i class="fas fa-id-card"></i> CRM-SP 218133</div>
+                </div>
             </div>
+        </div>
 
-            <div class="section skills-section">
-                <h2>Competências</h2>
+        <div class="section">
+            <h2>Síntese Profissional</h2>
+            <p class="summary">Médico com sólida experiência em Psiquiatria, Cannabis Medicinal e Cuidados Paliativos, com expertise em Gestão de Saúde e Relacionamento Médico. Histórico comprovado na liderança de equipes multidisciplinares, otimização de processos assistenciais e implementação de protocolos clínicos. Habilidade na condução de projetos de inovação em saúde, integrando tecnologia e análise de dados para aprimorar a qualidade e eficiência do atendimento. Comprometido com a excelência, governança clínica e sustentabilidade no setor de saúde.</p>
+        </div>
 
-                <h3>Gestão em Saúde</h3>
-                <ul class="skills-list">
-                    <li>
-                        <span class="skill-name">Governança Clínica</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Gestão de Qualidade</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Auditoria em Saúde</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Gestão de Custos Assistenciais</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Regulação em Saúde Suplementar</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 70%;"></div>
-                        </div>
-                    </li>
-                </ul>
+        <div class="section">
+            <h2>Objetivo</h2>
+            <p class="objective">Assumir posição de liderança em <b>Gestão Médica</b>, <b>Coordenação de Equipes</b> ou <b>Gerência de Relacionamento Médico</b>, utilizando expertise clínica e visão estratégica para impulsionar a excelência assistencial, a inovação em saúde e a sustentabilidade organizacional, contribuindo com a implementação de protocolos baseados em evidências, a otimização de recursos e a promoção de ambientes colaborativos e orientados a resultados.</p>
+        </div>
 
-                <h3>Liderança e Coordenação</h3>
-                <ul class="skills-list">
-                    <li>
-                        <span class="skill-name">Gestão de Equipes Multidisciplinares</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 95%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Desenvolvimento de Pessoas</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Mentoria</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Tomada de Decisão Estratégica</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Gestão de Conflitos</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 70%;"></div>
-                        </div>
-                    </li>
-                </ul>
+        <div class="section">
+            <h2>Competências-Chave</h2>
+            <ul>
+                <li><i class="fas fa-check"></i> <b>Gestão em Saúde:</b> Governança Clínica, Gestão de Qualidade, Auditoria em Saúde, Gestão de Custos Assistenciais, Regulação em Saúde Suplementar.</li>
+                <li><i class="fas fa-check"></i> <b>Liderança e Coordenação:</b> Gestão de Equipes Multidisciplinares, Desenvolvimento de Pessoas, Mentoria, Tomada de Decisão Estratégica, Gestão de Conflitos.</li>
+                <li><i class="fas fa-check"></i> <b>Relacionamento Médico:</b> Negociação com Prestadores, Gestão de Rede Credenciada, Interface com Órgãos Reguladores, Comunicação Efetiva, Parcerias Estratégicas.</li>
+                <li><i class="fas fa-check"></i> <b>Inovação em Saúde:</b> Telemedicina, Saúde Digital, Análise de Dados em Saúde, Implementação de Tecnologias Assistenciais, Protocolos Digitais.</li>
+                <li><i class="fas fa-check"></i> <b>Expertise Clínica:</b> Psiquiatria, Cannabis Medicinal, Cuidados Paliativos, Medicina Endocanabinoide, Psicofarmacologia, Emergências Psiquiátricas.</li>
+            </ul>
+        </div>
 
-                <h3>Relacionamento Médico</h3>
-                <ul class="skills-list">
-                    <li>
-                        <span class="skill-name">Negociação com Prestadores</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Gestão de Rede Credenciada</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Interface com Órgãos Reguladores</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Comunicação Efetiva</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Parcerias Estratégicas</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%;"></div>
-                        </div>
-                    </li>
-                </ul>
+        <div class="section">
+            <h2>Experiência Profissional</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Empresa/Instituição</th>
+                        <th>Cargo</th>
+                        <th>Período</th>
+                        <th>Principais Atribuições</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Associação Saúde da Família</td>
+                        <td>Médico Interlocutor de Rede e Responsável Técnico</td>
+                        <td>2022 - 2023</td>
+                        <td>
+                            <ul>
+                                <li>Implementação de <b>protocolos assistenciais</b> com foco em otimização de recursos e melhoria da qualidade do atendimento.</li>
+                                <li><b>Coordenação de comitês técnicos</b> para avaliação de casos e desenvolvimento de diretrizes, promovendo a integração entre as equipes e a adoção de melhores práticas.</li>
+                                <li><b>Gestão da rede credenciada</b>, negociação com prestadores e controle de custos assistenciais.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CAPS II Jaçanã Tremembé</td>
+                        <td>Médico Psiquiatra</td>
+                        <td>Outubro 2024 - Atual</td>
+                        <td>
+                            <ul>
+                                <li><b>Condução de casos psiquiátricos complexos</b>, com análise técnica e elaboração de pareceres especializados.</li>
+                                <li><b>Coordenação de planos terapêuticos</b> individualizados em conjunto com equipe multidisciplinar.</li>
+                                <li>Participação em <b>comitês de análise de casos complexos</b>, contribuindo para a construção de soluções inovadoras e centradas no paciente.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Hospital Psiquiátrico Cantareira - SPDM</td>
+                        <td>Médico Diarista</td>
+                        <td>2021 - 2022</td>
+                        <td>
+                            <ul>
+                                <li>Desenvolvimento e implementação de <b>protocolos e fluxos assistenciais</b>, contribuindo para a padronização e a eficiência do atendimento.</li>
+                                <li>Participação em <b>comissões técnicas</b> e análise de casos complexos, demonstrando capacidade de avaliação crítica e tomada de decisão embasada em evidências.</li>
+                                <li>Interface com <b>equipes multidisciplinares</b>, aprimorando a capacidade de trabalho em equipe e a coordenação de cuidados.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CAPS IJ, CAPS AD Diadema, UPA Jaçanã</td>
+                        <td>Médico Psiquiatra (Coberturas)</td>
+                        <td>2024</td>
+                        <td>
+                            <ul>
+                                <li>Atendimento em <b>emergências psiquiátricas</b> 24h, com manejo de crises e estabilização de pacientes agudos.</li>
+                                <li>Experiência em <b>tratamento especializado em dependência química</b>, reabilitação psicossocial e prevenção de recaídas.</li>
+                                <li>Atendimento <b>psiquiátrico infantojuvenil</b> especializado e intervenções familiares sistemáticas.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-                <h3>Inovação em Saúde</h3>
-                <ul class="skills-list">
-                    <li>
-                        <span class="skill-name">Telemedicina</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Saúde Digital</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Análise de Dados em Saúde</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Implementação de Tecnologias Assistenciais</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Protocolos Digitais</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 70%;"></div>
-                        </div>
-                    </li>
-                </ul>
+        <div class="section">
+            <h2>Formação Acadêmica</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Instituição</th>
+                        <th>Curso</th>
+                        <th>Período</th>
+                        <th>Detalhes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>MIT</b></td>
+                        <td>MicroMasters in Digital Transformation</td>
+                        <td>Em Andamento</td>
+                        <td>
+                            <ul>
+                                <li>Digital Transformation Strategy</li>
+                                <li>Healthcare Process Innovation</li>
+                                <li>Leadership in Healthcare Organizations</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>PUC-RS</b></td>
+                        <td><b>MBA em Gestão, Inovação e Serviços em Saúde</b></td>
+                        <td>2024</td>
+                        <td>
+                            <ul>
+                                <li>Foco em <b>regulação em saúde suplementar</b>, gestão da qualidade assistencial e auditoria em saúde.</li>
+                                <li>Desenvolvimento de competências em <b>gestão de operadoras de planos de saúde</b>, análise de custos e otimização de processos.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>FIAP</b></td>
+                        <td><b>MBA em Health Tech</b></td>
+                        <td>Em Andamento</td>
+                        <td>
+                            <ul>
+                                <li>Gest<tr>
+                        <td><b>FIAP</b></td>
+                        <td><b>MBA em Health Tech</b></td>
+                        <td>Em Andamento</td>
+                        <td>
+                            <ul>
+                                <li>Gestão de Processos Assistenciais</li>
+                                <li>Inovação em Saúde</li>
+                                <li>Análise de Dados em Saúde</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>PUC-PR</b></td>
+                        <td>Especialização em Tecnologia e Dados em Saúde</td>
+                        <td>2024</td>
+                        <td>
+                            <ul>
+                                <li>Gestão de Processos em Saúde</li>
+                                <li>Análise de Indicadores Assistenciais</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>FG-MED</b></td>
+                        <td><b>Especialização em Psiquiatria</b></td>
+                        <td>2024</td>
+                        <td>
+                            <ul>
+                                <li>492 horas</li>
+                                <li>Análise Crítica de Evidências</li>
+                                <li>Elaboração de Documentação Técnica</li>
+                                <li>Psicofarmacologia Avançada</li>
+                                <li>Psicopatologia</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Sanar/Cetrus</b></td>
+                        <td><b>Especialização em Psiquiatria</b></td>
+                        <td>2024</td>
+                        <td>
+                            <ul>
+                                <li>432 horas</li>
+                                <li>Semiologia Psiquiátrica</li>
+                                <li>Raciocínio Clínico em Saúde Mental</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>MJHS Institute for Innovation in Palliative Care</b></td>
+                        <td><b>Programa Avançado em Cuidados Paliativos</b></td>
+                        <td>2024-2025</td>
+                        <td>
+                            <ul>
+                                <li>Inovação em Cuidados de Fim de Vida</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>University of Colorado</b></td>
+                        <td><b>Palliative Care Program</b></td>
+                        <td>2024</td>
+                        <td>
+                            <ul>
+                                <li>Supporting Patients Living with Serious Illness</li>
+                                <li>Providing Psychosocial and Spiritual Support</li>
+                                <li>Pain Management for Your Patients</li>
+                                <li>Easing Non-Pain Physical Symptoms</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Society of Cannabis Clinicians</b></td>
+                        <td><b>Clinical Cannabinoid Medicine Specialist</b></td>
+                        <td>2024</td>
+                        <td>
+                            <ul>
+                                <li>Certificação Internacional em Medicina Canabinoide</li>
+                                <li>Manejo Avançado de Terapias com Canabinoides</li>
+                                <li>Aplicações em Saúde Mental e Cuidados Paliativos</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>The Medical Cannabis Institute</b></td>
+                        <td><b>Certificação em Medicina Canabinoide</b></td>
+                        <td>2024</td>
+                        <td>
+                            <ul>
+                                <li>Clinical Applications of Medical Cannabis</li>
+                                <li>Endocannabinoid System in Clinical Practice</li>
+                                <li>Psychiatric Applications of Cannabinoids</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>FAMEMA</b></td>
+                        <td><b>Graduação em Medicina</b></td>
+                        <td>2020</td>
+                        <td>
+                            <ul>
+                                <li>Nota 5 ENADE</li>
+                                <li>Metodologia PBL (Problem-Based Learning)</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-                <h3>Expertise Clínica</h3>
-                <ul class="skills-list">
-                    <li>
-                        <span class="skill-name">Psiquiatria</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 95%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Cannabis Medicinal</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Cuidados Paliativos</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Medicina Endocanabinoide</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 80%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Psicofarmacologia</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Emergências Psiquiátricas</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%;"></div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+        <div class="section">
+            <h2>Experiência Internacional</h2>
+            <ul>
+                <li><i class="fas fa-globe-americas"></i> <b>Representante Brasileiro</b> - 56ª Assembleia Geral OMS/OPAS (Washington, D.C. - 2018)</li>
+                <li><i class="fas fa-university"></i> <b>Estágio</b> - Embaixada da ONU - UNFPA (Brasília, DF - 2018)</li>
+                <li><i class="fas fa-users"></i> <b>Membro</b> - International AIDS Society (2020-2023)</li>
+            </ul>
+        </div>
 
-            <div class="section certifications">
-                <h2>Certificações e Cursos Relevantes</h2>
-                <ul>
-                    <li><i class="fas fa-brain"></i> AI in Healthcare - Stanford University (2024)</li>
-                    <li><i class="fas fa-brain"></i> Medical Neuroscience - Duke University (2024)</li>
-                    <li><i class="fas fa-hospital"></i> Gestão de Processos em Saúde - EEPHCFMUSP</li>
-                    <li><i class="fas fa-cannabis"></i> Medicina Canabinoide - EEPHCFMUSP</li>
-                    <li><i class="fas fa-moon"></i> Transtornos do Sono - CENBRAP</li>
-                    <li><i class="fas fa-handshake"></i> Terapia ACT - IBAC</li>
-                    <li><i class="fas fa-pills"></i> Dependência Química - Artmed360 (180h)</li>
-                </ul>
-            </div>
+        <div class="section">
+            <h2>Certificações e Cursos Relevantes</h2>
+            <ul>
+                <li><i class="fas fa-brain"></i> AI in Healthcare - Stanford University (2024)</li>
+                <li><i class="fas fa-brain"></i> Medical Neuroscience - Duke University (2024)</li>
+                <li><i class="fas fa-hospital"></i> Gestão de Processos em Saúde - EEPHCFMUSP</li>
+                <li><i class="fas fa-cannabis"></i> Medicina Canabinoide - EEPHCFMUSP</li>
+                <li><i class="fas fa-moon"></i> Transtornos do Sono - CENBRAP</li>
+                <li><i class="fas fa-handshake"></i> Terapia ACT - IBAC</li>
+                <li><i class="fas fa-pills"></i> Dependência Química - Artmed360 (180h)</li>
+            </ul>
+        </div>
 
-            <div class="section languages">
-                <h2>Idiomas</h2>
-                <ul>
-                    <li>
-                        <span class="language-name">Português</span> - <span class="language-level">Nativo</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 100%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="language-name">Inglês</span> - <span class="language-level">Fluente (TOEFL iBT 108/120)</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 95%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="language-name">Espanhol</span> - <span class="language-level">Intermediário</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 70%;"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <span class="language-name">Francês</span> - <span class="language-level">Instrumental</span>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 40%;"></div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </aside>
-
-        <main class="main-content">
-            <h1 class="name">Dr. Gustavo Mendes e Silva</h1>
-            <h2 class="headline">Médico Gestor | Coordenador de Saúde | Especialista em Relacionamento Médico e Inovação</h2>
-
-            <div class="section">
-                <h2>Resumo Profissional</h2>
-                <p class="summary">Médico com sólida experiência em Psiquiatria, Cannabis Medicinal e Cuidados Paliativos, e forte atuação em Gestão de Saúde e Relacionamento Médico. Carreira desenvolvida em posições estratégicas e de liderança, com foco em otimização de processos, implementação de protocolos assistenciais e gestão de equipes multidisciplinares. Expertise na condução de projetos de inovação em saúde, integrando tecnologias digitais e análise de dados para aprimorar a qualidade do atendimento e a eficiência operacional. Comprometido com a melhoria contínua, governança clínica e sustentabilidade organizacional. Membro da Society of Cannabis Clinicians (SCC).</p>
-            </div>
-
-            <div class="section">
-                <h2>Objetivo Profissional</h2>
-                <p class="objective">Assumir posição de liderança em <b>Gestão Médica</b>, <b>Coordenação de Equipes</b> ou <b>Gerência de Relacionamento Médico</b>, aplicando expertise clínica e visão estratégica para impulsionar a excelência assistencial, a inovação em saúde e a sustentabilidade organizacional. Contribuir com a implementação de protocolos baseados em evidências, a otimização de recursos e a promoção de ambientes colaborativos e orientados a resultados.</p>
-            </div>
-
-            <div class="section">
-                <h2>Experiência Profissional</h2>
-                <table class="experience-table">
-                    <thead>
-                        <tr>
-                            <th>Empresa/Instituição</th>
-                            <th>Cargo</th>
-                            <th>Período</th>
-                            <th>Destaques</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Associação Saúde da Família</td>
-                            <td>Médico Interlocutor de Rede e Responsável Técnico</td>
-                            <td>2022 - 2023</td>
-                            <td>
-                                <ul>
-                                    <li>Implementação de <b>protocolos assistenciais</b> que otimizaram recursos e melhoraram a qualidade do atendimento.</li>
-                                    <li><b>Coordenação de comitês técnicos</b>, promovendo a integração entre equipes.</li>
-                                    <li><b>Gestão da rede credenciada</b>, negociação com prestadores e controle de custos assistenciais.</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>CAPS II Jaçanã Tremembé</td>
-                            <td>Médico Psiquiatra</td>
-                            <td>Outubro 2024 - Atual</td>
-                            <td>
-                                <ul>
-                                    <li><b>Condução de casos psiquiátricos complexos</b>, análise técnica e elaboração de pareceres especializados.</li>
-                                    <li><b>Coordenação de planos terapêuticos</b> com equipe multidisciplinar, otimizando o cuidado ao paciente.</li>
-                                    <li>Participação em <b>comitês de análise de casos complexos</b>.</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Hospital Psiquiátrico Cantareira - SPDM</td>
-                            <td>Médico Diarista</td>
-                            <td>2021 - 2022</td>
-                            <td>
-                                <ul>
-                                    <li>Desenvolvimento de <b>protocolos e fluxos assistenciais</b> que contribuíram para a padronização e eficiência do atendimento.</li>
-                                    <li>Participação em <b>comissões técnicas</b> e análise de casos complexos.</li>
-                                    <li>Interface com <b>equipes multidisciplinares e gestão assistencial</b>.</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>CAPS IJ, CAPS AD Diadema, UPA Jaçanã (Cobertura/Plantões)</td>
-                            <td>Médico Psiquiatra</td>
-                            <td>2024</td>
-                            <td>
-                                <ul>
-                                    <li>Atendimento em <b>emergências psiquiátricas</b>, manejo de crises e intervenções em tentativas de suicídio.</li>
-                                    <li>Tratamento especializado em <b>dependência química</b>, reabilitação psicossocial e prevenção de recaídas.</li>
-                                    <li>Atendimento <b>psiquiátrico infantojuvenil</b> e intervenções familiares.</li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="section">
-                <h2>Formação Acadêmica</h2>
-                <table class="education-table">
-                    <thead>
-                        <tr>
-                            <th>Instituição</th>
-                            <th>Curso</th>
-                            <th>Período</th>
-                            <th>Detalhes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><b>MIT</b></td>
-                            <td>MicroMasters in Digital Transformation</td>
-                            <td>Em Andamento</td>
-                            <td>
-                                <ul>
-                                    <li>Digital Transformation Strategy</li>
-                                    <li>Healthcare Process Innovation</li>
-                                    <li>Leadership in Healthcare Organizations</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>PUC-RS</b></td>
-                            <td><b>MBA em Gestão, Inovação e Serviços em Saúde</b></td>
-                            <td>2024</td>
-                            <td>
-                                <ul>
-                                    <li>Foco em <b>regulação em saúde suplementar</b>, gestão da qualidade assistencial e auditoria em saúde.</li>
-                                    <li>Desenvolvimento de competências em <b>gestão de operadoras de planos de saúde</b>, análise de custos.</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>FIAP</b></td>
-                            <td><b>MBA em Health Tech</b></td>
-                            <td>Em Andamento</td>
-                            <td>
-                                <ul>
-                                    <li>Gestão de Processos Assistenciais</li>
-                                    <li>Inovação em Saúde</li>
-                                    <li>Análise de Dados em Saúde</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>PUC-PR</b></td>
-                            <td>Especialização em Tecnologia e Dados em Saúde</td>
-                            <td>2024</td>
-                            <td>
-                                <ul>
-                                    <li>Gestão de Processos em Saúde</li>
-                                    <li>Análise de Indicadores Assistenciais</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>FG-MED</b></td>
-                            <td><b>Especialização em Psiquiatria</b></td>
-                            <td>2024</td>
-                            <td>
-                                <ul>
-                                    <li>492 horas</li>
-                                    <li>Análise Crítica de Evidências</li>
-                                    <li>Elaboração de Documentação Técnica</li>
-                                    <li>Psicofarmacologia avançada</li>
-                                    <li>Psicopatologia</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Sanar/Cetrus</b></td>
-                            <td><b>Especialização em Psiquiatria</b></td>
-                            <td>2024</td>
-                            <td>
-                                <ul>
-                                    <li>432 horas</li>
-                                    <li>Semiologia psiquiátrica</li>
-                                    <li>Raciocínio clínico em saúde mental</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>MJHS Institute for Innovation in Palliative Care</b></td>
-                            <td><b>Programa Avançado em Cuidados Paliativos</b></td>
-                            <td>2024-2025</td>
-                            <td>
-                                <ul>
-                                    <li>Inovação em Cuidados de Fim de Vida</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>University of Colorado</b></td>
-                            <td><b>Palliative Care Program</b></td>
-                            <td>2024</td>
-                            <td>
-                                <ul>
-                                    <li>Supporting patients living with serious illness</li>
-                                    <li>Providing psychosocial and spiritual support</li>
-                                    <li>Pain management for your patients</li>
-                                    <li>Easing non-pain physical symptoms</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Society of Cannabis Clinicians</b></td>
-                            <td><b>Clinical Cannabinoid Medicine Specialist</b></td>
-                            <td>2024</td>
-                            <td>
-                                <ul>
-                                    <li>Certificação internacional em medicina canabinoide</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>The Medical Cannabis Institute</b></td>
-                            <td><b>Certificação em Medicina Canabinoide</b></td>
-                            <td>2024</td>
-                            <td>
-                                <ul>
-                                    <li>Clinical Applications of Medical Cannabis</li>
-                                    <li>Endocannabinoid System in Clinical Practice</li>
-                                    <li>Psychiatric Applications of Cannabinoids</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>FAMEMA</b></td>
-                            <td><b>Graduação em Medicina</b></td>
-                            <td>2020</td>
-                            <td>
-                                <ul>
-                                    <li>Nota 5 ENADE</li>
-                                    <li>Metodologia PBL (Problem-Based Learning)</li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="section international-experience">
-                <h2>Experiência Internacional</h2>
-                <ul>
-                    <li><i class="fas fa-globe-americas"></i> <b>Representante Brasileiro</b> - 56ª Assembleia Geral OMS/OPAS (Washington, D.C. - 2018)</li>
-                    <li><i class="fas fa-university"></i> <b>Estágio</b> - Embaixada da ONU - UNFPA (Brasília, DF - 2018)</li>
-                    <li><i class="fas fa-users"></i> <b>Membro</b> - International AIDS Society (2020-2023)</li>
-                </ul>
-            </div>
-        </main>
+        <div class="section">
+            <h2>Idiomas</h2>
+            <ul>
+                <li><i class="fas fa-check"></i> <b>Português</b> - Nativo</li>
+                <li><i class="fas fa-check"></i> <b>Inglês</b> - Fluente (TOEFL iBT 108/120)</li>
+                <li><i class="fas fa-check"></i> <b>Espanhol</b> - Intermediário</li>
+                <li><i class="fas fa-check"></i> <b>Francês</b> - Instrumental</li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
