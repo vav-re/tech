@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Gustavo Mendes e Silva - Currículo</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Montserrat:wght@400;600&family=Open+Sans:wght@400;600&display=swap');
 
@@ -56,9 +56,9 @@
         }
 
         /* --- Cores de Fundo das Seções --- */
-        /* Todas as seções ímpares terão fundo verde-claro */
+        /* Todas as seções ímpares terão fundo bege-dourado claro */
         .section:nth-child(odd) {
-            background-color: rgba(145, 180, 147, 0.3); /* Verde-claro com transparência */
+            background-color: rgba(200, 183, 143, 0.2); /* Bege-dourado claro com transparência */
         }
         /* Todas as seções pares terão fundo branco */
         .section:nth-child(even) {
@@ -74,7 +74,8 @@
             display: flex;
             align-items: center;
             padding: 15mm;
-            background: linear-gradient(to right, var(--primary-green), var(--secondary-green));
+            /* Gradiente do verde escuro para o bege-dourado */
+            background: linear-gradient(to right, var(--primary-green), var(--gold-beige));
             color: var(--white);
         }
 
@@ -83,6 +84,7 @@
             height: 60mm;
             border-radius: 50%;
             overflow: hidden;
+            /* Borda bege-dourado */
             border: 3px solid var(--gold-beige);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
             flex-shrink: 0;
@@ -104,6 +106,8 @@
             font-size: 24pt;
             font-weight: 700;
             margin-bottom: 3mm;
+            /* Nome em branco para contraste */
+            color: var(--white);
         }
 
         .headline {
@@ -111,6 +115,8 @@
             font-size: 11pt;
             font-weight: 600;
             margin-bottom: 5mm;
+            /* Headline em branco para contraste */
+            color: var(--white);
         }
 
         .contact-info {
@@ -127,11 +133,11 @@
         }
 
         .contact-info i {
-            /* Ícones no header em dourado */
+            /* Ícones no header em branco */
             font-size: 11pt;
             width: 14px;
             text-align: center;
-            color: var(--gold-beige);
+            color: var(--white);
         }
 
         .contact-info a {
@@ -151,15 +157,16 @@
             font-family: var(--font-montserrat);
             font-size: 14pt;
             font-weight: 700;
+            /* Títulos de seção em verde escuro */
             color: var(--primary-green);
             margin-bottom: 5mm;
             text-transform: uppercase;
         }
 
         .section-title i {
-            /* Ícones nos títulos das seções em verde petróleo e com display block */
+            /* Ícones nos títulos das seções em bege-dourado */
             font-size: 18pt;
-            color: var(--secondary-green);
+            color: var(--gold-beige);
             display: block;
         }
 
@@ -167,13 +174,14 @@
             font-family: var(--font-montserrat);
             font-size: 11pt;
             font-weight: 600;
-            color: var(--secondary-green);
+            /* Subtítulos em verde escuro */
+            color: var(--primary-green);
             margin-bottom: 3mm;
         }
 
         .summary, .objective, .experience-item p, .education-item p, .section p {
             font-size: 9pt;
-            color: var(--text-color);
+            color: var(--dark-gray);
             margin-bottom: 5mm;
             text-align: justify;
         }
@@ -192,8 +200,8 @@
         }
 
         .section ul li i {
-            /* Ponto antes dos itens da lista */
-            color: var(--primary-green);
+            /* Ponto antes dos itens da lista em bege-dourado */
+            color: var(--gold-beige);
             font-size: 5pt;
             margin-right: 5px;
             margin-top: 5px;
@@ -231,7 +239,8 @@
 
         .experience-item ul li::before {
             content: "•";
-            color: var(--primary-green);
+            /* Bullet points em bege-dourado */
+            color: var(--gold-beige);
             font-weight: bold;
             display: inline-block;
             width: 1em;
@@ -276,7 +285,8 @@
 
         .card ul li::before {
             content: "•";
-            color: var(--primary-green);
+            /* Bullet points em bege-dourado */
+            color: var(--gold-beige);
             font-weight: bold;
             display: inline-block;
             width: 1em;
@@ -296,17 +306,19 @@
             padding: 5mm;
             border-radius: 5px;
             box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra nos grid-items */
-            background-color: rgba(145, 180, 147, 0.2); /* Verde-claro com transparência */
+            background-color: rgba(200, 183, 143, 0.2); /* Bege-dourado claro com transparência */
         }
 
         .grid-item h4 {
             font-family: var(--font-montserrat);
             font-size: 10pt;
             font-weight: 600;
-            color: var(--secondary-green);
+            /* Títulos do grid em verde escuro */
+            color: var(--primary-green);
             margin-bottom: 3mm;
         }
-        .grid-item ul li{
+
+        .grid-item ul li {
             font-size: 8pt;
         }
 
@@ -324,22 +336,23 @@
         }
 
         .section.international-experience ul li i {
-            /* Ícones em "Experiência Internacional" */
-            color: var(--primary-green);
+            /* Ícones em "Experiência Internacional" em bege-dourado */
+            color: var(--gold-beige);
             margin-right: 7px;
             font-size: 9pt;
             margin-top: 0;
         }
 
-        .grid-item .fa-check {
-            /* Ícones "check" em "Experiência Internacional" e "Idiomas" */
-            color: var(--secondary-green);
+        .grid-item .bi-check-lg {
+            /* Ícones "check" em "Experiência Internacional" e "Idiomas" em verde escuro */
+            color: var(--primary-green);
             font-size: 9pt;
         }
 
         /* Ícones em "Certificações e Cursos Relevantes" */
-        .fa-brain, .fa-hospital, .fa-cannabis, .fa-moon, .fa-handshake, .fa-pills, .fa-check{
-            color: var(--primary-green);
+        .bi-person-vcard, .bi-hospital, .bi-flower1, .bi-moon, .bi-people, .bi-capsule-pill, .bi-check-lg {
+            /* Cor bege-dourado */
+            color: var(--gold-beige);
             font-size: 10pt;
         }
     </style>
@@ -354,27 +367,27 @@
                 <h1>Dr. Gustavo Mendes e Silva</h1>
                 <div class="headline">Médico Gestor | Coordenador de Saúde | Especialista em Relacionamento Médico e Inovação</div>
                 <div class="contact-info">
-                    <div><i class="fas fa-phone-alt"></i> (11) 96546-1146</div>
-                    <div><i class="fas fa-envelope"></i> <a href="mailto:dr@orcann.com">dr@orcann.com</a></div>
-                    <div><i class="fas fa-map-marker-alt"></i> Vila Olímpia, São Paulo - SP</div>
-                    <div><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/drgustavomendes">linkedin.com/in/drgustavomendes</a></div>
-                    <div><i class="fas fa-id-card"></i> CRM-SP 218133</div>
+                    <div><i class="bi bi-telephone"></i> (11) 96546-1146</div>
+                    <div><i class="bi bi-envelope"></i> <a href="mailto:dr@orcann.com">dr@orcann.com</a></div>
+                    <div><i class="bi bi-geo-alt"></i> Vila Olímpia, São Paulo - SP</div>
+                    <div><i class="bi bi-linkedin"></i> <a href="https://linkedin.com/in/drgustavomendes">linkedin.com/in/drgustavomendes</a></div>
+                    <div><i class="bi bi-person-vcard"></i> CRM-SP 218133</div>
                 </div>
             </div>
         </div>
 
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-file-alt"></i> Síntese Profissional</h2>
+            <h2 class="section-title"><i class="bi bi-file-earmark-text"></i> Síntese Profissional</h2>
             <p class="summary">Médico com sólida experiência em Psiquiatria, Cannabis Medicinal e Cuidados Paliativos, com expertise em Gestão de Saúde e Relacionamento Médico. Histórico comprovado na liderança de equipes multidisciplinares, otimização de processos assistenciais e implementação de protocolos clínicos. Habilidade na condução de projetos de inovação em saúde, integrando tecnologia e análise de dados para aprimorar a qualidade e eficiência do atendimento. Comprometido com a excelência, governança clínica e sustentabilidade no setor de saúde.</p>
         </div>
 
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-bullseye"></i> Objetivo</h2>
+            <h2 class="section-title"><i class="bi bi-bullseye"></i> Objetivo</h2>
             <p class="objective">Assumir posição de liderança em Gestão Médica, Coordenação de Equipes ou Gerência de Relacionamento Médico, utilizando expertise clínica e visão estratégica para impulsionar a excelência assistencial, a inovação em saúde e a sustentabilidade organizacional, contribuindo com a implementação de protocolos baseados em evidências, a otimização de recursos e a promoção de ambientes colaborativos e orientados a resultados.</p>
         </div>
 
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-check-circle"></i> Competências-Chave</h2>
+            <h2 class="section-title"><i class="bi bi-check-square"></i> Competências-Chave</h2>
             <ul>
                 <li><b>Gestão em Saúde:</b> Governança Clínica, Gestão de Qualidade, Auditoria em Saúde, Gestão de Custos Assistenciais, Regulação em Saúde Suplementar.</li>
                 <li><b>Liderança e Coordenação:</b> Gestão de Equipes Multidisciplinares, Desenvolvimento de Pessoas, Mentoria, Tomada de Decisão Estratégica, Gestão de Conflitos.</li>
@@ -385,14 +398,14 @@
         </div>
 
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-briefcase"></i> Experiência Profissional</h2>
-            <div class="experience-item">
+            <h2 class="section-title"><i class="bi bi-briefcase"></i> Experiência Profissional</h2>
+    <div class="experience-item">
                 <h4>Associação Saúde da Família</h4>
                 <h5>Médico Interlocutor de Rede e Responsável Técnico | 2022 - 2023</h5>
                 <ul>
                     <li>Implementação de protocolos assistenciais com foco em otimização de recursos e melhoria da qualidade do atendimento.</li>
                     <li>Coordenação de comitês técnicos para avaliação de casos e desenvolvimento de diretrizes, promovendo a integração entre as equipes e a adoção de melhores práticas.</li>
-<li>Gestão da rede credenciada, negociação com prestadores e controle de custos assistenciais.</li>
+                    <li>Gestão da rede credenciada, negociação com prestadores e controle de custos assistenciais.</li>
                 </ul>
             </div>
             <div class="experience-item">
@@ -425,7 +438,7 @@
         </div>
 
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Formação Acadêmica</h2>
+            <h2 class="section-title"><i class="bi bi-mortarboard"></i> Formação Acadêmica</h2>
             <div class="card-container">
                 <div class="card">
                     <h4>MIT</h4>
@@ -539,55 +552,55 @@
         </div>
 
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-globe-americas"></i> Experiência Internacional</h2>
+            <h2 class="section-title"><i class="bi bi-globe2"></i> Experiência Internacional</h2>
             <ul>
-                <li><i class="fas fa-check"></i> <b>Representante Brasileiro</b> - 56ª Assembleia Geral OMS/OPAS (Washington, D.C. - 2018)</li>
-                <li><i class="fas fa-check"></i> <b>Estágio</b> - Embaixada da ONU - UNFPA (Brasília, DF - 2018)</li>
-                <li><i class="fas fa-check"></i> <b>Membro</b> - International AIDS Society (2020-2023)</li>
+                <li><i class="bi bi-check-lg"></i> <b>Representante Brasileiro</b> - 56ª Assembleia Geral OMS/OPAS (Washington, D.C. - 2018)</li>
+                <li><i class="bi bi-check-lg"></i> <b>Estágio</b> - Embaixada da ONU - UNFPA (Brasília, DF - 2018)</li>
+                <li><i class="bi bi-check-lg"></i> <b>Membro</b> - International AIDS Society (2020-2023)</li>
             </ul>
         </div>
 
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-certificate"></i> Certificações e Cursos Relevantes</h2>
+            <h2 class="section-title"><i class="bi bi-patch-check"></i> Certificações e Cursos Relevantes</h2>
             <div class="grid-container">
                 <div class="grid-item">
-                    <h4><i class="fas fa-brain"></i> Neurologia e Psiquiatria</h4>
+                    <h4><i class="bi bi-person-vcard"></i> Neurologia e Psiquiatria</h4>
                     <ul>
-                        <li><i class="fas fa-brain"></i> AI in Healthcare - Stanford University (2024)</li>
-                        <li><i class="fas fa-brain"></i> Medical Neuroscience - Duke University (2024)</li>
-                        <li><i class="fas fa-moon"></i> Transtornos do Sono - CENBRAP</li>
+                        <li><i class="bi bi-person-vcard"></i> AI in Healthcare - Stanford University (2024)</li>
+                        <li><i class="bi bi-person-vcard"></i> Medical Neuroscience - Duke University (2024)</li>
+                        <li><i class="bi bi-moon"></i> Transtornos do Sono - CENBRAP</li>
                     </ul>
                 </div>
                 <div class="grid-item">
-                    <h4><i class="fas fa-hospital"></i> Gestão e Inovação</h4>
+                    <h4><i class="bi bi-hospital"></i> Gestão e Inovação</h4>
                     <ul>
-                        <li><i class="fas fa-hospital"></i> Gestão de Processos em Saúde - EEPHCFMUSP</li>
-                        <li><i class="fas fa-handshake"></i> Terapia ACT - IBAC</li>
+                        <li><i class="bi bi-hospital"></i> Gestão de Processos em Saúde - EEPHCFMUSP</li>
+                        <li><i class="bi bi-people"></i> Terapia ACT - IBAC</li>
                     </ul>
                 </div>
                 <div class="grid-item">
-                    <h4><i class="fas fa-cannabis"></i> Cannabis Medicinal</h4>
+                    <h4><i class="bi bi-flower1"></i> Cannabis Medicinal</h4>
                     <ul>
-                        <li><i class="fas fa-cannabis"></i> Medicina Canabinoide - EEPHCFMUSP</li>
-                        <li><i class="fas fa-pills"></i> Dependência Química - Artmed360 (180h)</li>
+                        <li><i class="bi bi-flower1"></i> Medicina Canabinoide - EEPHCFMUSP</li>
+                        <li><i class="bi bi-capsule-pill"></i> Dependência Química - Artmed360 (180h)</li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-language"></i> Idiomas</h2>
+            <h2 class="section-title"><i class="bi bi-translate"></i> Idiomas</h2>
             <div class="grid-container">
                 <div class="grid-item">
                     <ul>
-                        <li><i class="fas fa-check"></i> <b>Português</b> - Nativo</li>
-                        <li><i class="fas fa-check"></i> <b>Inglês</b> - Fluente (TOEFL iBT 108/120)</li>
+                        <li><i class="bi bi-check-lg"></i> <b>Português</b> - Nativo</li>
+                        <li><i class="bi bi-check-lg"></i> <b>Inglês</b> - Fluente (TOEFL iBT 108/120)</li>
                     </ul>
                 </div>
                 <div class="grid-item">
                     <ul>
-                        <li><i class="fas fa-check"></i> <b>Espanhol</b> - Intermediário</li>
-                        <li><i class="fas fa-check"></i> <b>Francês</b> - Instrumental</li>
+                        <li><i class="bi bi-check-lg"></i> <b>Espanhol</b> - Intermediário</li>
+                        <li><i class="bi bi-check-lg"></i> <b>Francês</b> - Instrumental</li>
                     </ul>
                 </div>
             </div>
