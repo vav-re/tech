@@ -58,6 +58,20 @@
             border-top: 1px solid var(--light-gray);
         }
 
+        /* --- Cores de Fundo das Seções --- */
+        /* Todas as seções ímpares terão fundo cinza claro */
+        .section:nth-child(odd) {
+            background-color: var(--background-color);
+        }
+        /* Todas as seções pares terão fundo branco */
+        .section:nth-child(even) {
+            background-color: var(--white);
+        }
+        /* Exceções: As seções "Experiência Profissional" e "Formação Acadêmica" não terão fundo colorido */
+        .section:nth-child(4), .section:nth-child(6) {
+            background-color: transparent;
+        }
+
         /* --- Cabeçalho --- */
         .header {
             display: flex;
@@ -116,7 +130,7 @@
         }
 
         .contact-info i {
-            /* Ícones no header */
+            /* Ícones no header em dourado */
             font-size: 11pt;
             width: 14px;
             text-align: center;
@@ -146,9 +160,10 @@
         }
 
         .section-title i {
-            /* Ícones nos títulos das seções */
+            /* Ícones nos títulos das seções em azul petróleo e com display block */
             font-size: 18pt;
             color: var(--secondary-color);
+            display: block;
         }
 
         h3 {
@@ -180,6 +195,7 @@
         }
 
         .section ul li i {
+            /* Ponto antes dos itens da lista, dentro do icones */
             color: var(--secondary-color);
             font-size: 5pt;
             margin-right: 5px;
@@ -281,7 +297,7 @@
             padding: 5mm;
             border-radius: 5px;
             box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra nos grid-items */
-            background-color: var(--background-color);
+            /* background-color: var(--background-color); REMOVIDO */
         }
 
         .grid-item h4 {
@@ -317,26 +333,15 @@
         }
 
         .grid-item .fa-check {
+            /* Ícones "check" em "Experiência Internacional" e "Idiomas" */
             color: var(--secondary-color);
             font-size: 9pt;
         }
-        .fa-brain, .fa-hospital, .fa-cannabis, .fa-moon, .fa-handshake, .fa-pills, .fa-check{
+
+        /* Ícones em "Certificações e Cursos Relevantes" */
+        .fa-brain, .fa-hospital, .fa-cannabis, .fa-moon, .fa-handshake, .fa-pills, .fa-check {
             color: var(--accent-color);
             font-size: 10pt;
-        }
-
-        /* --- Cores de Fundo das Seções --- */
-        .section:nth-child(odd) {
-            background-color: var(--background-color); /* Fundo cinza claro para seções ímpares */
-        }
-        .section:nth-child(4) {
-            background-color: var(--background-color); /* Experiência Profissional */
-        }
-        .section:nth-child(6) {
-            background-color: var(--background-color); /* Experiência Internacional */
-        }
-        .section:nth-child(8) {
-            background-color: var(--background-color); /* Idiomas */
         }
     </style>
 </head>
@@ -361,7 +366,7 @@
 
         <div class="section">
             <h2 class="section-title"><i class="fas fa-file-alt"></i> Síntese Profissional</h2>
-<p class="summary">Médico com sólida experiência em Psiquiatria, Cannabis Medicinal e Cuidados Paliativos, com expertise em Gestão de Saúde e Relacionamento Médico. Histórico comprovado na liderança de equipes multidisciplinares, otimização de processos assistenciais e implementação de protocolos clínicos. Habilidade na condução de projetos de inovação em saúde, integrando tecnologia e análise de dados para aprimorar a qualidade e eficiência do atendimento. Comprometido com a excelência, governança clínica e sustentabilidade no setor de saúde.</p>
+            <p class="summary">Médico com sólida experiência em Psiquiatria, Cannabis Medicinal e Cuidados Paliativos, com expertise em Gestão de Saúde e Relacionamento Médico. Histórico comprovado na liderança de equipes multidisciplinares, otimização de processos assistenciais e implementação de protocolos clínicos. Habilidade na condução de projetos de inovação em saúde, integrando tecnologia e análise de dados para aprimorar a qualidade e eficiência do atendimento. Comprometido com a excelência, governança clínica e sustentabilidade no setor de saúde.</p>
         </div>
 
         <div class="section">
@@ -384,8 +389,7 @@
             <h2 class="section-title"><i class="fas fa-briefcase"></i> Experiência Profissional</h2>
             <div class="experience-item">
                 <h4>Associação Saúde da Família</h4>
-                <h5>Médico Interlocutor de Rede e Responsável Técnico | 2022 - 2023</h5>
-                <ul>
+              <h5>Médico Interlocutor de Rede e Responsável Técnico | 2022 - 2023</h5><ul>
                     <li>Implementação de protocolos assistenciais com foco em otimização de recursos e melhoria da qualidade do atendimento.</li>
                     <li>Coordenação de comitês técnicos para avaliação de casos e desenvolvimento de diretrizes, promovendo a integração entre as equipes e a adoção de melhores práticas.</li>
                     <li>Gestão da rede credenciada, negociação com prestadores e controle de custos assistenciais.</li>
