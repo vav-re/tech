@@ -116,9 +116,11 @@
         }
 
         .contact-info i {
+            /* Ícones no header */
             font-size: 11pt;
             width: 14px;
             text-align: center;
+            color: var(--accent-color);
         }
 
         .contact-info a {
@@ -144,6 +146,7 @@
         }
 
         .section-title i {
+            /* Ícones nos títulos das seções */
             font-size: 18pt;
             color: var(--secondary-color);
         }
@@ -177,7 +180,7 @@
         }
 
         .section ul li i {
-            color: var(--accent-color);
+            color: var(--secondary-color);
             font-size: 5pt;
             margin-right: 5px;
             margin-top: 5px;
@@ -207,17 +210,20 @@
             color: var(--text-color);
             margin-bottom: 2mm;
         }
-        .experience-item ul{
-          margin-bottom: 0;
+
+        .experience-item ul {
+            margin-bottom: 0;
         }
-        .experience-item ul li::before{
-          content: "•";
-          color: var(--accent-color);
-          font-weight: bold;
-          display: inline-block;
-          width: 1em;
-          margin-left: -1em;
+
+        .experience-item ul li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
         }
+
         /* --- Formação Acadêmica --- */
         .card-container {
             display: grid;
@@ -230,6 +236,8 @@
             border: 1px solid var(--light-gray);
             border-radius: 5px;
             padding: 5mm;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra nos cards */
+            background-color: var(--white);
         }
 
         .card h4 {
@@ -250,13 +258,14 @@
         .card ul {
             margin-bottom: 0;
         }
-        .card ul li::before{
-          content: "•";
-          color: var(--accent-color);
-          font-weight: bold;
-          display: inline-block;
-          width: 1em;
-          margin-left: -1em;
+
+        .card ul li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
         }
 
         /* --- Grid --- */
@@ -268,10 +277,11 @@
         }
 
         .grid-item {
-            background-color: var(--background-color);
             border: 1px solid var(--light-gray);
             padding: 5mm;
             border-radius: 5px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra nos grid-items */
+            background-color: var(--background-color);
         }
 
         .grid-item h4 {
@@ -281,20 +291,26 @@
             color: var(--secondary-color);
             margin-bottom: 3mm;
         }
+        .grid-item ul li{
+          font-size: 8pt;
+        }
 
         .grid-item ul {
             margin-bottom: 0;
         }
-        .section.certifications ul li, .section.international-experience ul li{
+
+        .section.certifications ul li, .section.international-experience ul li {
             padding-left: 0;
             position: relative;
-        }
+        }
+
         .section.certifications ul li::before, .section.international-experience ul li::before {
             content: "";
         }
 
         .section.certifications ul li i, .section.international-experience ul li i {
-            color: var(--accent-color);
+            /* Ícones em "Experiência Internacional" */
+            color: var(--white);
             margin-right: 7px;
             font-size: 9pt;
             margin-top: 0;
@@ -303,6 +319,24 @@
         .grid-item .fa-check {
             color: var(--secondary-color);
             font-size: 9pt;
+        }
+        .fa-brain, .fa-hospital, .fa-cannabis, .fa-moon, .fa-handshake, .fa-pills, .fa-check{
+            color: var(--accent-color);
+            font-size: 10pt;
+        }
+
+        /* --- Cores de Fundo das Seções --- */
+        .section:nth-child(odd) {
+            background-color: var(--background-color); /* Fundo cinza claro para seções ímpares */
+        }
+        .section:nth-child(4) {
+            background-color: var(--background-color); /* Experiência Profissional */
+        }
+        .section:nth-child(6) {
+            background-color: var(--background-color); /* Experiência Internacional */
+        }
+        .section:nth-child(8) {
+            background-color: var(--background-color); /* Idiomas */
         }
     </style>
 </head>
@@ -354,7 +388,7 @@
                 <ul>
                     <li>Implementação de protocolos assistenciais com foco em otimização de recursos e melhoria da qualidade do atendimento.</li>
                     <li>Coordenação de comitês técnicos para avaliação de casos e desenvolvimento de diretrizes, promovendo a integração entre as equipes e a adoção de melhores práticas.</li>
-                    <li>Gestão da rede credenciada, negociação com prestadores e controle de custos assistenciais.</li>
+                    <li>Gestão da rede credenciada<li>Gestão da rede credenciada, negociação com prestadores e controle de custos assistenciais.</li>
                 </ul>
             </div>
             <div class="experience-item">
@@ -377,7 +411,7 @@
             </div>
             <div class="experience-item">
                 <h4>CAPS IJ, CAPS AD Diadema, UPA Jaçanã</h4>
-                <h5>Médico Ps<h5>Médico Psiquiatra (Coberturas) | 2024</h5>
+                <h5>Médico Psiquiatra (Coberturas) | 2024</h5>
                 <ul>
                     <li>Atendimento em emergências psiquiátricas 24h, com manejo de crises e estabilização de pacientes agudos.</li>
                     <li>Experiência em tratamento especializado em dependência química, reabilitação psicossocial e prevenção de recaídas.</li>
@@ -513,21 +547,24 @@
             <h2 class="section-title"><i class="fas fa-certificate"></i> Certificações e Cursos Relevantes</h2>
             <div class="grid-container">
                 <div class="grid-item">
+                    <h4><i class="fas fa-brain"></i> Neurologia e Psiquiatria</h4>
                     <ul>
                         <li><i class="fas fa-brain"></i> AI in Healthcare - Stanford University (2024)</li>
                         <li><i class="fas fa-brain"></i> Medical Neuroscience - Duke University (2024)</li>
-                        <li><i class="fas fa-hospital"></i> Gestão de Processos em Saúde - EEPHCFMUSP</li>
+                        <li><i class="fas fa-moon"></i> Transtornos do Sono - CENBRAP</li>
                     </ul>
                 </div>
                 <div class="grid-item">
+                    <h4><i class="fas fa-hospital"></i> Gestão e Inovação</h4>
                     <ul>
-                        <li><i class="fas fa-cannabis"></i> Medicina Canabinoide - EEPHCFMUSP</li>
-                        <li><i class="fas fa-moon"></i> Transtornos do Sono - CENBRAP</li>
+                        <li><i class="fas fa-hospital"></i> Gestão de Processos em Saúde - EEPHCFMUSP</li>
                         <li><i class="fas fa-handshake"></i> Terapia ACT - IBAC</li>
                     </ul>
                 </div>
                 <div class="grid-item">
+                    <h4><i class="fas fa-cannabis"></i> Cannabis Medicinal</h4>
                     <ul>
+                        <li><i class="fas fa-cannabis"></i> Medicina Canabinoide - EEPHCFMUSP</li>
                         <li><i class="fas fa-pills"></i> Dependência Química - Artmed360 (180h)</li>
                     </ul>
                 </div>
