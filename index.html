@@ -47,6 +47,27 @@
             margin: 0;
         }
 
+        @media print {
+            @page {
+              margin-top: 20mm;
+              margin-bottom: 15mm;
+              margin-left: 0;
+              margin-right: 0;
+            }
+
+            body {
+              width: 100%;
+              min-height: calc(297mm - 35mm);
+              margin: 0;
+              padding: 0;
+            }
+
+            .container {
+                width: 100%;
+                box-shadow: none;
+            }
+        }
+
         .section {
             padding: 5mm 15mm;
         }
@@ -56,15 +77,14 @@
         }
 
         /* --- Cores de Fundo das Seções --- */
-        /* Todas as seções ímpares terão fundo bege-dourado claro */
         .section:nth-child(odd) {
             background-color: rgba(200, 183, 143, 0.2); /* Bege-dourado claro com transparência */
         }
-        /* Todas as seções pares terão fundo branco */
+
         .section:nth-child(even) {
             background-color: var(--white);
         }
-        /* Exceções: As seções "Experiência Profissional" e "Formação Acadêmica" não terão fundo colorido */
+
         .section:nth-child(4), .section:nth-child(6) {
             background-color: transparent;
         }
@@ -73,22 +93,20 @@
         .header {
             display: flex;
             align-items: center;
-            padding: 15mm;
-            /* Gradiente do verde escuro para o bege-dourado */
+            padding: 10mm 15mm;
             background: linear-gradient(to right, var(--primary-green), var(--gold-beige));
             color: var(--white);
         }
 
         .photo-frame {
-            width: 60mm;
-            height: 60mm;
+            width: 45mm; /* Diminuir tamanho da foto */
+            height: 45mm; /* Diminuir tamanho da foto */
             border-radius: 50%;
             overflow: hidden;
-            /* Borda bege-dourado */
-            border: 3px solid var(--gold-beige);
+            border: 2px solid var(--gold-beige); /* Borda bege-dourado */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
             flex-shrink: 0;
-            margin-right: 15mm;
+            margin-right: 10mm;
         }
 
         .photo-frame img {
@@ -103,19 +121,17 @@
 
         .header h1 {
             font-family: var(--font-josefin);
-            font-size: 24pt;
+            font-size: 20pt; /* Diminuir tamanho do nome */
             font-weight: 700;
-            margin-bottom: 3mm;
-            /* Nome em branco para contraste */
+            margin-bottom: 2mm;
             color: var(--white);
         }
 
         .headline {
             font-family: var(--font-montserrat);
-            font-size: 11pt;
-            font-weight: 600;
-            margin-bottom: 5mm;
-            /* Headline em branco para contraste */
+            font-size: 9pt; /* Diminuir tamanho da headline */
+            font-weight: bold;
+            margin-bottom: 3mm;
             color: var(--white);
         }
 
@@ -129,13 +145,12 @@
             display: flex;
             align-items: center;
             gap: 4mm;
-            font-size: 9pt;
+            font-size: 8pt; /* Diminuir tamanho das informações de contato */
         }
 
         .contact-info i {
-            /* Ícones no header em branco */
-            font-size: 11pt;
-            width: 14px;
+            font-size: 10pt; /* Diminuir tamanho dos ícones */
+            width: 12px; /* Diminuir largura dos ícones */
             text-align: center;
             color: var(--white);
         }
@@ -155,26 +170,24 @@
             align-items: center;
             gap: 7mm;
             font-family: var(--font-montserrat);
-            font-size: 14pt;
+            font-size: 12pt; /* Diminuir tamanho do título da seção */
             font-weight: 700;
-            /* Títulos de seção em verde escuro */
             color: var(--primary-green);
-            margin-bottom: 5mm;
+            margin-bottom: 3mm;
             text-transform: uppercase;
+            line-height: 1.2; /* Diminuir a altura da linha para títulos de seção */
         }
 
         .section-title i {
-            /* Ícones nos títulos das seções em bege-dourado */
-            font-size: 18pt;
+            font-size: 16pt;
             color: var(--gold-beige);
             display: block;
         }
 
         h3 {
             font-family: var(--font-montserrat);
-            font-size: 11pt;
+            font-size: 10pt;
             font-weight: 600;
-            /* Subtítulos em verde escuro */
             color: var(--primary-green);
             margin-bottom: 3mm;
         }
@@ -200,7 +213,6 @@
         }
 
         .section ul li i {
-            /* Ponto antes dos itens da lista em bege-dourado */
             color: var(--gold-beige);
             font-size: 5pt;
             margin-right: 5px;
@@ -218,7 +230,6 @@
         }
 
         .experience-item h4 {
-            /* Títulos da experiência profissional em verde escuro */
             font-family: var(--font-montserrat);
             font-size: 10pt;
             font-weight: 600;
@@ -239,7 +250,6 @@
 
         .experience-item ul li::before {
             content: "•";
-            /* Bullet points em bege-dourado */
             color: var(--gold-beige);
             font-weight: bold;
             display: inline-block;
@@ -259,12 +269,11 @@
             border: 1px solid var(--light-gray);
             border-radius: 5px;
             padding: 5mm;
-            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra nos cards */
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             background-color: var(--white);
         }
 
         .card h4 {
-            /* Títulos da formação acadêmica em verde escuro */
             font-family: var(--font-montserrat);
             font-size: 10pt;
             font-weight: 600;
@@ -285,7 +294,6 @@
 
         .card ul li::before {
             content: "•";
-            /* Bullet points em bege-dourado */
             color: var(--gold-beige);
             font-weight: bold;
             display: inline-block;
@@ -305,15 +313,14 @@
             border: 1px solid var(--light-gray);
             padding: 5mm;
             border-radius: 5px;
-            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra nos grid-items */
-            background-color: rgba(200, 183, 143, 0.2); /* Bege-dourado claro com transparência */
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: rgba(200, 183, 143, 0.2);
         }
 
         .grid-item h4 {
             font-family: var(--font-montserrat);
             font-size: 10pt;
             font-weight: 600;
-            /* Títulos do grid em verde escuro */
             color: var(--primary-green);
             margin-bottom: 3mm;
         }
@@ -336,24 +343,107 @@
         }
 
         .section.international-experience ul li i {
-            /* Ícones em "Experiência Internacional" em bege-dourado */
             color: var(--gold-beige);
-            margin-right: 7px;
-            font-size: 9pt;
+            margin-right: 8px; /* Aumentar espaçamento */
+            font-size: 10pt; /* Aumentar tamanho */
             margin-top: 0;
         }
 
         .grid-item .bi-check-lg {
-            /* Ícones "check" em "Experiência Internacional" e "Idiomas" em verde escuro */
             color: var(--primary-green);
-            font-size: 9pt;
+            font-size: 10pt;
         }
 
-        /* Ícones em "Certificações e Cursos Relevantes" */
         .bi-person-vcard, .bi-hospital, .bi-flower1, .bi-moon, .bi-people, .bi-capsule-pill, .bi-check-lg {
-            /* Cor bege-dourado */
             color: var(--gold-beige);
             font-size: 10pt;
+        }
+
+        /* --- Responsividade --- */
+
+        @media (max-width: 768px) {
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 5mm 10mm; /* Margem superior e inferior menor */
+            }
+
+            .photo-frame {
+                width: 40mm; /* Diminuir tamanho da foto */
+                height: 40mm; /* Diminuir tamanho da foto */
+                margin-right: 0;
+                margin-bottom: 5mm;
+            }
+
+            .header h1 {
+                font-size: 18pt;
+                margin-bottom: 2mm;
+            }
+
+            .headline {
+                font-size: 8pt;
+                margin-bottom: 3mm;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 2mm;
+            }
+
+            .contact-info div {
+                gap: 2mm;
+            }
+
+            .section {
+                padding: 5mm 10mm;
+            }
+
+            .section-title {
+                font-size: 11pt;
+                margin-bottom: 3mm;
+            }
+
+            .section-title i {
+                font-size: 14pt;
+            }
+
+            .card-container, .grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            /* Espaçamento superior entre o cabeçalho e a primeira seção */
+            .section:first-of-type {
+                margin-top: 5mm;
+            }
+
+            /* Espaçamento entre seções */
+            .section + .section {
+                margin-top: 5mm;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            body {
+                font-size: 9pt;
+            }
+
+            .header h1 {
+                font-size: 16pt;
+            }
+
+            .headline {
+                font-size: 7pt;
+            }
+
+            .section-title {
+                font-size: 10pt;
+            }
+
+            .section-title i {
+                font-size: 13pt;
+            }
         }
     </style>
 </head>
@@ -377,8 +467,8 @@
         </div>
 
         <div class="section">
-            <h2 class="section-title"><i class="bi bi-file-earmark-text"></i> Síntese Profissional</h2>
-            <p class="summary">Médico com sólida experiência em Psiquiatria, Cannabis Medicinal e Cuidados Paliativos, com expertise em Gestão de Saúde e Relacionamento Médico. Histórico comprovado na liderança de equipes multidisciplinares, otimização de processos assistenciais e implementação de protocolos clínicos. Habilidade na condução de projetos de inovação em saúde, integrando tecnologia e análise de dados para aprimorar a qualidade e eficiência do atendimento. Comprometido com a excelência, governança clínica e sustentabilidade no setor de saúde.</p>
+            <h2 class="section-title"><i class="bi bi-file-earmark-text"></i> Síntese <br> Profissional</h2>
+            <p class="summary">Médico com sólida experiência em Psiquiatria, Cannabis Medicinal e Cuidados Paliativos, com expertise em Gestão de Saúde e Relacionamento Médico. Histórico comprovado na liderança de equipes multidisciplinares, otimização de processos assistenciais e implementação de protocolos clínicos. Habilidade na condução de projetos de inovação em saúde, integrando tecnologia e análise de dados para aprimorar a qualidade e eficiência do atendimento. Comprometido com a excelência, governança clínica e sustentabilidade no setor desaúde.</p>
         </div>
 
         <div class="section">
@@ -398,8 +488,8 @@
         </div>
 
         <div class="section">
-            <h2 class="section-title"><i class="bi bi-briefcase"></i> Experiência Profissional</h2>
-    <div class="experience-item">
+            <h2 class="section-title"><i class="bi bi-briefcase"></i> Experiência <br> Profissional</h2>
+            <div class="experience-item">
                 <h4>Associação Saúde da Família</h4>
                 <h5>Médico Interlocutor de Rede e Responsável Técnico | 2022 - 2023</h5>
                 <ul>
@@ -438,7 +528,7 @@
         </div>
 
         <div class="section">
-            <h2 class="section-title"><i class="bi bi-mortarboard"></i> Formação Acadêmica</h2>
+            <h2 class="section-title"><i class="bi bi-mortarboard"></i> Formação <br> Acadêmica</h2>
             <div class="card-container">
                 <div class="card">
                     <h4>MIT</h4>
@@ -552,7 +642,7 @@
         </div>
 
         <div class="section">
-            <h2 class="section-title"><i class="bi bi-globe2"></i> Experiência Internacional</h2>
+            <h2 class="section-title"><i class="bi bi-globe2"></i> Experiência <br> Internacional</h2>
             <ul>
                 <li><i class="bi bi-check-lg"></i> <b>Representante Brasileiro</b> - 56ª Assembleia Geral OMS/OPAS (Washington, D.C. - 2018)</li>
                 <li><i class="bi bi-check-lg"></i> <b>Estágio</b> - Embaixada da ONU - UNFPA (Brasília, DF - 2018)</li>
@@ -561,7 +651,7 @@
         </div>
 
         <div class="section">
-            <h2 class="section-title"><i class="bi bi-patch-check"></i> Certificações e Cursos Relevantes</h2>
+            <h2 class="section-title"><i class="bi bi-patch-check"></i> Certificações e <br> Cursos Relevantes</h2>
             <div class="grid-container">
                 <div class="grid-item">
                     <h4><i class="bi bi-person-vcard"></i> Neurologia e Psiquiatria</h4>
