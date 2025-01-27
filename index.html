@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Gustavo Mendes e Silva - Currículo</title>
-      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto:wght@400;500;700&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto:wght@400;500;700&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-      :root {
+        /* --- Cores --- */
+        :root {
             --primary-color: #222; /* Cinza bem escuro, quase preto */
             --secondary-color: #444; /* Cinza escuro, para detalhes */
             --background-color: #f8f8f8; /* Cinza claro para o fundo */
@@ -21,102 +22,81 @@
             --body-font: 'Open Sans', sans-serif; /* Corpo do texto */
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* --- Estilos Gerais --- */
         body {
-            font-family: var(--font-times);
+            font-family: var(--body-font);
+            font-weight: 400;
             line-height: 1.5;
             color: var(--text-color);
-            background-color: #fff;
-            -webkit-print-color-adjust: exact; /* Importante para manter as cores na impressão */
-            print-color-adjust: exact; /* Importante para manter as cores na impressão */
+            background-color: var(--background-color);
+            font-size: 10pt;
         }
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
-            padding: calc(var(--spacing-unit) * 2);
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--spacing-unit);
-        }
-        
-        .section{
-             border-bottom: 1px solid var(--light-gray);
-              padding-bottom: var(--spacing-unit);
-              margin-bottom: var(--spacing-unit);
+            margin: 30px auto;
+            padding: 30px;
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
         }
 
+        /* --- Cabeçalho --- */
         .header {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: var(--spacing-unit);
+            display: flex;
             align-items: center;
-            margin-bottom: var(--spacing-unit);
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 20px;
         }
 
-        .photo-frame {
-            width: 150px;
-            height: 150px;
+        .profile-pic {
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid var(--accent-color);
+            object-fit: cover;
+            border: 3px solid var(--secondary-color);
         }
 
-        .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .header-content {
+            text-align: left;
+            margin-left: 30px;
+        }
+
+        .header h1 {
+            font-family: var(--title-font);
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .header h2 {
+            font-family: var(--subtitle-font);
+            font-size: 1.1em;
+            font-weight: 400;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
         }
 
         .contact-info {
             display: flex;
-            flex-direction: column;
-            gap: calc(var(--spacing-unit) / 2);
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .contact-info a {
+        .contact-info div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+
+        .contact-info i {
             color: var(--secondary-color);
-            text-decoration: none;
+            font-size: 1em;
         }
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-
-        h1 {
-            font-family: var(--font-arial);
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: calc(var(--spacing-unit) / 2);
-        }
-
-        h2 {
-            font-family: var(--font-arial);
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: var(--spacing-unit);
-        }
-
-        h3 {
-            font-family: var(--font-calibri);
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--secondary-color);
-            margin-bottom: calc(var(--spacing-unit) / 2);
-        }
-        
-        .headline {
-            font-family: var(--font-arial);
-            font-size: 1.1rem;
-            color: var(--accent-color);
-            margin-bottom: var(--spacing-unit);
-            font-weight: 500;
         }
 
         .summary, .experience-item p, .education-item p {
