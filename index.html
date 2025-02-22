@@ -394,6 +394,65 @@
         max-width: 100%;
     }
 }
+
+/* Atualizações no grid de especialidades */
+.specialties-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.specialty-card {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s var(--easing);
+}
+
+.specialty-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+.feature-card {
+    grid-column: 1 / -1;
+    height: auto;
+    background: linear-gradient(to right, #f8f8f8, #ffffff);
+    border: 1px solid #eee;
+}
+
+.card-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-content h3 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+
+.card-content p {
+    font-size: 1rem;
+    color: #666;
+    font-weight: 300;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .specialties-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .specialty-card {
+        height: auto;
+        padding: 1.5rem;
+    }
+}
+        
     </style>
 </head>
 <body>
@@ -460,39 +519,96 @@
         </div>
     </section>
 
-    <!-- Especialidades Section -->
-    <section class="section" id="especialidades">
-        <div class="container">
-            <span class="section-label">Especialidades</span>
+<!-- Substitua a seção de especialidades atual por esta -->
+<section class="section" id="especialidades">
+    <div class="container">
+        <span class="section-label">Especialidades</span>
+        
+        <div class="specialties-grid">
+            <!-- Transtornos Principais -->
+            <div class="specialty-card" data-modal="modalTDAH">
+                <div class="card-content">
+                    <h3>TDAH</h3>
+                    <p>Análise comportamental e tratamento personalizado</p>
+                    <span class="card-arrow">→</span>
+                </div>
+            </div>
             
-            <div class="specialties-grid">
-                <div class="specialty-card">
-                    <div class="card-content">
-                        <h3>TDAH</h3>
-                        <p>Diagnóstico preciso e tratamento personalizado</p>
-                        <span class="card-arrow">→</span>
-                    </div>
+            <div class="specialty-card" data-modal="modalAutismo">
+                <div class="card-content">
+                    <h3>Autismo (TEA)</h3>
+                    <p>Abordagem especializada e acolhedora</p>
+                    <span class="card-arrow">→</span>
                 </div>
-                
-                <div class="specialty-card">
-                    <div class="card-content">
-                        <h3>Autismo</h3>
-                        <p>Abordagem especializada e acolhedora</p>
-                        <span class="card-arrow">→</span>
-                    </div>
+            </div>
+            
+            <div class="specialty-card" data-modal="modalAnsiedade">
+                <div class="card-content">
+                    <h3>Ansiedade</h3>
+                    <p>Tratamento integrado com análise comportamental</p>
+                    <span class="card-arrow">→</span>
                 </div>
-                
-                <div class="specialty-card">
-                    <div class="card-content">
-                        <h3>Ansiedade</h3>
-                        <p>Tratamento integrado com análise comportamental</p>
-                        <span class="card-arrow">→</span>
-                    </div>
+            </div>
+
+            <div class="specialty-card" data-modal="modalDepressao">
+                <div class="card-content">
+                    <h3>Depressão</h3>
+                    <p>Suporte terapêutico e acompanhamento contínuo</p>
+                    <span class="card-arrow">→</span>
+                </div>
+            </div>
+
+            <div class="specialty-card" data-modal="modalBurnout">
+                <div class="card-content">
+                    <h3>Burnout</h3>
+                    <p>Recuperação do equilíbrio profissional e pessoal</p>
+                    <span class="card-arrow">→</span>
+                </div>
+            </div>
+
+            <div class="specialty-card" data-modal="modalCompulsao">
+                <div class="card-content">
+                    <h3>Compulsão Alimentar</h3>
+                    <p>Tratamento integrado e multidisciplinar</p>
+                    <span class="card-arrow">→</span>
+                </div>
+            </div>
+
+            <div class="specialty-card" data-modal="modalTraumas">
+                <div class="card-content">
+                    <h3>Traumas</h3>
+                    <p>Acolhimento e processamento de experiências</p>
+                    <span class="card-arrow">→</span>
+                </div>
+            </div>
+
+            <div class="specialty-card" data-modal="modalLuto">
+                <div class="card-content">
+                    <h3>Luto</h3>
+                    <p>Suporte no processo de elaboração da perda</p>
+                    <span class="card-arrow">→</span>
+                </div>
+            </div>
+
+            <div class="specialty-card" data-modal="modalInsonia">
+                <div class="card-content">
+                    <h3>Insônia</h3>
+                    <p>Recuperação da qualidade do sono</p>
+                    <span class="card-arrow">→</span>
+                </div>
+            </div>
+
+            <!-- Card especial sobre IA -->
+            <div class="specialty-card feature-card" data-modal="modalIA">
+                <div class="card-content">
+                    <h3>Tecnologia a seu favor</h3>
+                    <p>IA para análise e documentação, priorizando seu tempo de consulta</p>
+                    <span class="card-arrow">→</span>
                 </div>
             </div>
         </div>
-    </section>
-
+    </div>
+</section>
     <!-- Método Section -->
     <section class="section" id="metodo">
         <div class="container">
