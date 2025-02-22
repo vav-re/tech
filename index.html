@@ -252,6 +252,148 @@
                 grid-template-columns: 1fr;
             }
         }
+        <!-- Adicione estes estilos dentro da tag style no head -->
+<style>
+/* Modal System */
+.modal-container {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+}
+
+.modal-container.active {
+    display: block;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.3s var(--easing);
+}
+
+.modal-container.active .modal-backdrop {
+    opacity: 1;
+}
+
+.modal-content {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    background: #fff;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.5s var(--easing);
+    overflow-y: auto;
+}
+
+.modal-container.active .modal-content {
+    transform: translateX(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 300;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.modal {
+    display: none;
+    padding: 4rem 2rem 2rem;
+}
+
+.modal.active {
+    display: block;
+}
+
+.modal-header {
+    margin-bottom: 3rem;
+}
+
+.modal-label {
+    font-size: 0.875rem;
+    color: #666;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+.modal-header h2 {
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.modal-section {
+    margin-bottom: 3rem;
+}
+
+.modal-section h3 {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.approach-cards {
+    display: grid;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.approach-card {
+    padding: 1.5rem;
+    border: 1px solid #eee;
+    border-radius: 0.75rem;
+}
+
+.approach-number {
+    font-size: 0.875rem;
+    color: #666;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.approach-card h4 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
+.approach-card p {
+    font-size: 0.875rem;
+    color: #666;
+    font-weight: 300;
+}
+
+.modal-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.modal-button {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 100%;
+    }
+}
     </style>
 </head>
 <body>
@@ -455,6 +597,139 @@
             </div>
         </div>
     </section>
+    <!-- Modal System -->
+<div class="modal-container" id="modalContainer">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+        <button class="modal-close">
+            Close
+        </button>
+        
+        <!-- Modal TDAH -->
+        <div class="modal" id="modalTDAH">
+            <div class="modal-header">
+                <span class="modal-label">Especialidade</span>
+                <h2>TDAH</h2>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>Sobre o Transtorno</h3>
+                    <p>O TDAH (Transtorno do Déficit de Atenção com Hiperatividade) é uma condição neurobiológica que afeta a atenção, comportamento e desenvolvimento cognitivo.</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Abordagem</h3>
+                    <div class="approach-cards">
+                        <div class="approach-card">
+                            <span class="approach-number">01</span>
+                            <h4>Avaliação Comportamental</h4>
+                            <p>Análise detalhada usando IA para identificar padrões comportamentais</p>
+                        </div>
+                        <div class="approach-card">
+                            <span class="approach-number">02</span>
+                            <h4>Diagnóstico Preciso</h4>
+                            <p>Combinação de avaliação clínica com análise tecnológica</p>
+                        </div>
+                        <div class="approach-card">
+                            <span class="approach-number">03</span>
+                            <h4>Tratamento Personalizado</h4>
+                            <p>Plano individualizado considerando seu contexto de vida</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-cta">
+                    <a href="#contato" class="button button-primary modal-button">Agendar Consulta</a>
+                    <a href="/blog/tdah" class="button button-secondary modal-button">Ler mais sobre TDAH</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Autismo -->
+        <div class="modal" id="modalAutismo">
+            <div class="modal-header">
+                <span class="modal-label">Especialidade</span>
+                <h2>Autismo (TEA)</h2>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>Sobre o Transtorno</h3>
+                    <p>O Transtorno do Espectro Autista (TEA) é uma condição neurodesenvolvimental que afeta a comunicação, interação social e comportamento.</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Abordagem</h3>
+                    <div class="approach-cards">
+                        <div class="approach-card">
+                            <span class="approach-number">01</span>
+                            <h4>Avaliação Multidimensional</h4>
+                            <p>Análise comportamental completa com suporte de IA</p>
+                        </div>
+                        <div class="approach-card">
+                            <span class="approach-number">02</span>
+                            <h4>Intervenção Precoce</h4>
+                            <p>Identificação e suporte desde os primeiros sinais</p>
+                        </div>
+                        <div class="approach-card">
+                            <span class="approach-number">03</span>
+                            <h4>Suporte Familiar</h4>
+                            <p>Orientação e acompanhamento para toda a família</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-cta">
+                    <a href="#contato" class="button button-primary modal-button">Agendar Consulta</a>
+                    <a href="/blog/autismo" class="button button-secondary modal-button">Ler mais sobre Autismo</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Ansiedade -->
+        <div class="modal" id="modalAnsiedade">
+            <div class="modal-header">
+                <span class="modal-label">Especialidade</span>
+                <h2>Ansiedade</h2>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>Sobre o Transtorno</h3>
+                    <p>A ansiedade é uma resposta natural do organismo, mas quando se torna excessiva pode impactar significativamente a qualidade de vida.</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Abordagem</h3>
+                    <div class="approach-cards">
+                        <div class="approach-card">
+                            <span class="approach-number">01</span>
+                            <h4>Análise de Padrões</h4>
+                            <p>Identificação de gatilhos e padrões comportamentais</p>
+                        </div>
+                        <div class="approach-card">
+                            <span class="approach-number">02</span>
+                            <h4>Estratégias Práticas</h4>
+                            <p>Ferramentas e técnicas para gestão da ansiedade</p>
+                        </div>
+                        <div class="approach-card">
+                            <span class="approach-number">03</span>
+                            <h4>Acompanhamento Contínuo</h4>
+                            <p>Suporte regular e ajustes no tratamento</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-cta">
+                    <a href="#contato" class="button button-primary modal-button">Agendar Consulta</a>
+                    <a href="/blog/ansiedade" class="button button-secondary modal-button">Ler mais sobre Ansiedade</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
     <!-- Scripts -->
 <script>
@@ -519,6 +794,50 @@
             section.style.transition = 'all 0.6s var(--easing)';
             observer.observe(section);
         });
-    </script>
+<!-- Adicione este JavaScript no final do arquivo, dentro da tag script existente -->
+// Modal System
+const modalContainer = document.getElementById('modalContainer');
+const modals = document.querySelectorAll('.modal');
+const modalClose = document.querySelector('.modal-close');
+
+// Função para abrir modal específico
+function openModal(modalId) {
+    modalContainer.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    modals.forEach(modal => {
+        modal.classList.remove('active');
+    });
+    
+    document.getElementById(modalId).classList.add('active');
+}
+
+// Função para fechar modal
+function closeModal() {
+    modalContainer.classList.remove('active');
+    document.body.style.overflow = '';
+    
+    modals.forEach(modal => {
+        modal.classList.remove('active');
+    });
+}
+
+// Event Listeners
+modalClose.addEventListener('click', closeModal);
+modalContainer.querySelector('.modal-backdrop').addEventListener('click', closeModal);
+
+// Adicionar listeners aos cards de especialidades
+document.querySelectorAll('.specialty-card').forEach((card, index) => {
+    card.addEventListener('click', () => {
+        const modalIds = ['modalTDAH', 'modalAutismo', 'modalAnsiedade'];
+        openModal(modalIds[index]);
+    });
+});
+
+// Fechar com tecla ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+});
+</script>
 </body>
 </html>
