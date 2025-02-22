@@ -3,695 +3,522 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Gustavo Mendes e Silva - Currículo</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Dr. Gustavo Mendes | Psiquiatra</title>
+    
+    <!-- Fontes e ícones aqui se necessário -->
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Montserrat:wght@400;600&family=Open+Sans:wght@400;600&display=swap');
-
-        /* OrCann Color Palette from the Logo */
+        /* =========================================
+           Variáveis e Reset
+           ========================================= */
         :root {
-            --primary-green: #1A472A; /* Deep Green from leaf */
-            --secondary-green: #356B49; /* Lighter Green transition */
-            --gold-beige: #C8B78F; /* Light Beige/Gold from leaf */
-            --light-green: #91B493;
-            --light-gray: #EEEEEE; /* Background */
-            --dark-gray: #333333; /* Text */
-            --white: #FFFFFF;
-            --font-josefin: 'Josefin Sans', sans-serif; /* Títulos */
-            --font-montserrat: 'Montserrat', sans-serif; /* Subtítulos de seção */
-            --font-open-sans: 'Open Sans', sans-serif; /* Corpo do texto */
+            --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --spacing-base: clamp(4rem, 8vw, 8rem);
+            --easing: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: var(--font-open-sans);
-            font-size: 10pt;
-            line-height: 1.4;
-            color: var(--dark-gray);
-            background-color: var(--light-gray);
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-            margin: 0;
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            background: #fff;
+            color: #000;
+            overflow-x: hidden;
         }
 
-        .container {
-            width: 100%;
-            max-width: ; /* Largura A4 */
-            min-height: ; /* Altura A4 */
-            margin: 0 auto;
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        @page {
-            size: A4;
-            margin: ;
-        }
-
-        .section {
-            padding: 5mm 15mm;
-            page-break-inside: avoid; /* Evita quebra de página dentro da seção */
-        }
-
-        .section + .section {
-            border-top: 1px solid var(--light-gray);
-        }
-
-        /* --- Cores de Fundo das Seções --- */
-        .section:nth-child(odd) {
-            background-color: rgba(200, 183, 143, 0.2); /* Bege-dourado claro com transparência */
-        }
-
-        .section:nth-child(even) {
-            background-color: var(--white);
-        }
-
-        .section:nth-child(4), .section:nth-child(6) {
-            background-color: transparent;
-        }
-
-        /* --- Cabeçalho --- */
+        /* =========================================
+           Header e Menu
+           ========================================= */
         .header {
-            display: flex;
-            align-items: center;
-            padding: 10mm 15mm;
-            background: linear-gradient(to right, var(--primary-green), var(--gold-beige));
-            color: var(--white);
-        }
-
-        .photo-frame {
-            width: 30mm; /* Diminuir tamanho da foto */
-            height: 30mm; /* Diminuir tamanho da foto */
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid var(--gold-beige); /* Borda bege-dourado */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-            flex-shrink: 0;
-            margin-right: 10mm;
-        }
-
-              .photo-frame img {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .header-content {
-            flex-grow: 1;
-        }
-
-        .header h1 {
-            font-family: var(--font-josefin);
-            font-size: 20pt; /* Diminuir tamanho do nome */
-            font-weight: 700;
-            margin-bottom: 2mm;
-            color: var(--white);
-        }
-
-        .headline {
-            font-family: var(--font-montserrat);
-            font-size: 9pt; /* Diminuir tamanho da headline */
-            font-weight: bold;
-            margin-bottom: 3mm;
-            color: var(--white);
-        }
-
-        .contact-info {
+            padding: 2rem;
             display: flex;
-            flex-wrap: wrap;
-            gap: 8mm;
-        }
-
-        .contact-info div {
-            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 4mm;
-            font-size: 8pt; /* Diminuir tamanho das informações de contato */
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
         }
 
-        .contact-info i {
-            font-size: 10pt; /* Diminuir tamanho dos ícones */
-            width: 12px; /* Diminuir largura dos ícones */
-            text-align: center;
-            color: var(--white);
-        }
-
-        .contact-info a {
-            color: var(--white);
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 300;
             text-decoration: none;
+            color: inherit;
         }
 
-        .contact-info a:hover {
-            text-decoration: underline;
+        .menu-toggle {
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            font-weight: 300;
+            font-size: 1rem;
         }
 
-        /* --- Conteúdo Principal --- */
-        .section-title {
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: #fff;
+            transform: translateX(100%);
+            transition: transform 0.6s var(--easing);
+            z-index: 99;
+            padding: 8rem 2rem 2rem;
+        }
+
+        .menu-overlay.active {
+            transform: translateX(0);
+        }
+
+        .menu-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .menu-nav a {
+            font-size: 2rem;
+            font-weight: 300;
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .menu-nav a:hover {
+            color: #666;
+        }
+
+        /* =========================================
+           Estrutura Base
+           ========================================= */
+        .section {
+            padding: var(--spacing-base);
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            gap: 7mm;
-            font-family: var(--font-montserrat);
-            font-size: 12pt; /* Diminuir tamanho do título da seção */
-            font-weight: 700;
-            color: var(--primary-green);
-            margin-bottom: 3mm;
-            text-transform: uppercase;
-            line-height: 1.2; /* Diminuir a altura da linha para títulos de seção */
-        }
-
-        .section-title i {
-            font-size: 16pt;
-            color: var(--gold-beige);
-            display: block;
-        }
-
-        h3 {
-            font-family: var(--font-montserrat);
-            font-size: 10pt;
-            font-weight: 600;
-            color: var(--primary-green);
-            margin-bottom: 3mm;
-        }
-
-        .summary, .objective, .experience-item p, .education-item p, .section p {
-            font-size: 9pt;
-            color: var(--dark-gray);
-            margin-bottom: 5mm;
-            text-align: justify;
-        }
-
-        .section ul {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 5mm;
-        }
-
-        .section ul li {
-            font-size: 9pt;
-            margin-bottom: 4mm;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .section ul li i {
-            color: var(--gold-beige);
-            font-size: 5pt;
-            margin-right: 5px;
-            margin-top: 5px;
-            flex-shrink: 0;
-        }
-
-        .section ul li b {
-            font-weight: 600;
-        }
-
-        /* --- Experiência Profissional --- */
-        .experience-item {
-            margin-bottom: 7mm;
-        }
-
-        .experience-item h4 {
-            font-family: var(--font-montserrat);
-            font-size: 10pt;
-            font-weight: 600;
-            color: var(--primary-green);
-            margin-bottom: 2mm;
-        }
-
-        .experience-item h5 {
-            font-size: 9pt;
-            font-weight: 400;
-            color: var(--text-color);
-            margin-bottom: 2mm;
-        }
-
-        .experience-item ul {
-            margin-bottom: 0;
-        }
-
-        .experience-item ul li::before {
-            content: "•";
-            color: var(--gold-beige);
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
-        }
-
-/* --- Formação Acadêmica --- */
-        .education-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 7mm;
-            margin-bottom: 7mm;
-        }
-
-        .education-group {
-            border: 1px solid var(--light-gray);
-            border-radius: 5px;
-            padding: 5mm;
-            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            background-color: var(--white);
-        }
-
-        .education-group-title {
-            font-family: var(--font-montserrat);
-            font-size: 11pt;
-            font-weight: 600;
-            color: var(--primary-green);
-            margin-bottom: 3mm;
-        }
-
-        .education-item {
-            margin-bottom: 5mm;
-        }
-
-        .institution {
-            font-family: var(--font-montserrat);
-            font-size: 10pt;
-            font-weight: 600;
-            color: var(--primary-green);
-            margin-bottom: 2mm;
-        }
-
-        .degree {
-            font-size: 9pt;
-            font-weight: 400;
-            color: var(--text-color);
-            margin-bottom: 2mm;
-        }
-
-        .date {
-            font-size: 9pt;
-            font-style: italic;
-            color: var(--dark-gray);
-            margin-bottom: 2mm;
-        }
-
-        .details {
-            margin-bottom: 0;
-            padding-left: 15px;
-            list-style-type: disc;
-        }
-
-        .details li {
-            font-size: 8pt;
-            margin-bottom: 2mm;
-        }
-
-        /* --- Responsividade para Formação Acadêmica --- */
-        @media (max-width: 768px) {
-            .education-section {
-                grid-template-columns: 1fr; /* Em telas menores, uma coluna */
-            }
-        }
-        .section.certifications ul li, .section.international-experience ul li {
-            padding-left: 0;
             position: relative;
         }
 
-        .section.certifications ul li::before, .section.international-experience ul li::before {
-            content: "";
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
         }
 
-        .section.international-experience ul li i {
-            color: var(--gold-beige);
-            margin-right: 8px; /* Aumentar espaçamento */
-            font-size: 10pt; /* Aumentar tamanho */
-            margin-top: 0;
+        .section-label {
+            font-size: 1rem;
+            font-weight: 300;
+            color: #666;
+            display: block;
+            margin-bottom: 3rem;
         }
 
-        .grid-item .bi-check-lg {
-            color: var(--primary-green);
-            font-size: 10pt;
+        /* =========================================
+           Tipografia
+           ========================================= */
+        .headline {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 2rem;
         }
 
-        .bi-person-vcard, .bi-hospital, .bi-flower1, .bi-moon, .bi-people, .bi-capsule-pill, .bi-check-lg {
-            color: var(--gold-beige);
-            font-size: 10pt;
+        .subheadline {
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            color: #666;
+            font-weight: 300;
+            margin-bottom: 3rem;
         }
 
-        /* --- Responsividade --- */
+        /* =========================================
+           Botões e Links
+           ========================================= */
+        .button {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
 
+        .button-primary {
+            background: #000;
+            color: #fff;
+        }
+
+        .button-primary:hover {
+            background: #333;
+        }
+
+        .button-secondary {
+            border: 1px solid #eee;
+            color: #000;
+        }
+
+        .button-secondary:hover {
+            border-color: #ddd;
+            background: #fafafa;
+        }
+
+        /* =========================================
+           Grids e Cards
+           ========================================= */
+        .features-grid,
+        .specialties-grid,
+        .steps-grid,
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .specialty-card,
+        .step,
+        .article-card {
+            border: 1px solid #eee;
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s var(--easing);
+            cursor: pointer;
+        }
+
+        .specialty-card:hover,
+        .step:hover,
+        .article-card:hover {
+            border-color: #ddd;
+            background: #fafafa;
+        }
+
+        /* =========================================
+           Elementos Específicos
+           ========================================= */
+        .card-arrow {
+            position: absolute;
+            right: 2rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s var(--easing);
+        }
+
+        .specialty-card:hover .card-arrow,
+        .article-card:hover .card-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .step-number {
+            font-size: 0.875rem;
+            color: #666;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .article-date {
+            font-size: 0.875rem;
+            color: #666;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* =========================================
+           Responsividade
+           ========================================= */
         @media (max-width: 768px) {
-
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 5mm 10mm; /* Margem superior e inferior menor */
-            }
-
-            .photo-frame {
-                width: 40mm; /* Diminuir tamanho da foto */
-                height: 40mm; /* Diminuir tamanho da foto */
-                margin-right: 0;
-                margin-bottom: 5mm;
-            }
-
-            .header h1 {
-                font-size: 18pt;
-                margin-bottom: 2mm;
-            }
-
-            .headline {
-                font-size: 8pt;
-                margin-bottom: 3mm;
-            }
-
-            .contact-info {
-                flex-direction: column;
-                gap: 2mm;
-            }
-
-            .contact-info div {
-                gap: 2mm;
-            }
-
             .section {
-                padding: 5mm 10mm;
+                padding: var(--spacing-base) 1rem;
             }
-
-            .section-title {
-                font-size: 11pt;
-                margin-bottom: 3mm;
+            
+            .headline {
+                font-size: 2rem;
             }
-
-            .section-title i {
-                font-size: 14pt;
-            }
-
-            .card-container, .grid-container {
+            
+            .features-grid,
+            .specialties-grid,
+            .steps-grid,
+            .articles-grid {
                 grid-template-columns: 1fr;
             }
-
-            /* Espaçamento superior entre o cabeçalho e a primeira seção */
-            .section:first-of-type {
-                margin-top: 5mm;
-            }
-
-            /* Espaçamento entre seções */
-            .section + .section {
-                margin-top: 5mm;
-            }
-        }
-
-        @media (max-width: 480px) {
-
-            body {
-                font-size: 8pt;
-            }
-
-            .header h1 {
-                font-size: 12pt;
-            }
-
-            .headline {
-                font-size: 5pt;
-            }
-
-            .section-title {
-                font-size: 9pt;
-            }
-
-            .section-title i {
-                font-size: 10pt;
-            }
-    .photo-frame {
-        /* Estilos para dispositivos móveis */
-        width: 20mm;
-        height: 20mm;
-        margin-right: 5mm; /* Ajuste a margem se necessário */
-    }
-}
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="photo-frame">
-                <img src="https://raw.githubusercontent.com/healthhealth/tech/main/foto.jpg" alt="Foto do Dr. Gustavo Mendes e Silva">
-            </div>
-            <div class="header-content">
-                <h1>Dr. Gustavo Mendes e Silva</h1>
-                <div class="headline">Médico Gestor | Coordenador de Saúde | Especialista em Relacionamento Médico e Inovação</div>
-                <div class="contact-info">
-                    <div><i class="bi bi-telephone"></i> (11) 96546-1146</div>
-                    <div><i class="bi bi-envelope"></i> <a href="mailto:dr@orcann.com">dr@orcann.com</a></div>
-                    <div><i class="bi bi-geo-alt"></i> Vila Olímpia, São Paulo - SP</div>
-                    <div><i class="bi bi-linkedin"></i> <a href="https://linkedin.com/in/drgustavomendes">linkedin.com/in/drgustavomendes</a></div>
-                    <div><i class="bi bi-person-vcard"></i> CRM-SP 218133</div>
-                </div>
-            </div>
-        </div>
+    <!-- Header -->
+    <header class="header">
+        <a href="#" class="logo">Dr. Gustavo Mendes</a>
+        <button class="menu-toggle">Menu</button>
+    </header>
 
-        <div class="section">
-            <h2 class="section-title"><i class="bi bi-file-earmark-text"></i> Síntese <br> Profissional</h2>
-            <p class="summary">Médico com sólida experiência em Psiquiatria, Cannabis Medicinal e Cuidados Paliativos, com expertise em Gestão de Saúde e Relacionamento Médico. Histórico comprovado na liderança de equipes multidisciplinares, otimização de processos assistenciais e implementação de protocolos clínicos. Habilidade na condução de projetos de inovação em saúde, integrando tecnologia e análise de dados para aprimorar a qualidade e eficiência do atendimento. Comprometido com a excelência, governança clínica e sustentabilidade no setor desaúde.</p>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title"><i class="bi bi-bullseye"></i> Objetivo</h2>
-            <p class="objective">Assumir posição de liderança em Gestão Médica, Coordenação de Equipes ou Gerência de Relacionamento Médico, utilizando expertise clínica e visão estratégica para impulsionar a excelência assistencial, a inovação em saúde e a sustentabilidade organizacional, contribuindo com a implementação de protocolos baseados em evidências, a otimização de recursos e a promoção de ambientes colaborativos e orientados a resultados.</p>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title"><i class="bi bi-check-square"></i> Competências-Chave</h2>
-            <ul>
-                <li><b>Gestão em Saúde:</b> Governança Clínica, Gestão de Qualidade, Auditoria em Saúde, Gestão de Custos Assistenciais, Regulação em Saúde Suplementar.</li>
-                <li><b>Liderança e Coordenação:</b> Gestão de Equipes Multidisciplinares, Desenvolvimento de Pessoas, Mentoria, Tomada de Decisão Estratégica, Gestão de Conflitos.</li>
-                <li><b>Relacionamento Médico:</b> Negociação com Prestadores, Gestão de Rede Credenciada, Interface com Órgãos Reguladores, Comunicação Efetiva, Parcerias Estratégicas.</li>
-                <li><b>Inovação em Saúde:</b> Telemedicina, Saúde Digital, Análise de Dados em Saúde, Implementação de Tecnologias Assistenciais, Protocolos Digitais.</li>
-                <li><b>Expertise Clínica:</b> Psiquiatria, Cannabis Medicinal, Cuidados Paliativos, Medicina Endocanabinoide, Psicofarmacologia, Emergências Psiquiátricas.</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title"><i class="bi bi-briefcase"></i> Experiência <br> Profissional</h2>
-            <div class="experience-item">
-                <h4>Associação Saúde da Família</h4>
-                <h5>Médico Interlocutor de Rede e Responsável Técnico | 2022 - 2023</h5>
-                <ul>
-                    <li>Implementação de protocolos assistenciais com foco em otimização de recursos e melhoria da qualidade do atendimento.</li>
-                    <li>Coordenação de comitês técnicos para avaliação de casos e desenvolvimento de diretrizes, promovendo a integração entre as equipes e a adoção de melhores práticas.</li>
-                    <li>Gestão da rede credenciada, negociação com prestadores e controle de custos assistenciais.</li>
-                </ul>
-            </div>
-            <div class="experience-item">
-                <h4>CAPS II Jaçanã Tremembé</h4>
-                <h5>Médico Psiquiatra | Outubro 2024 - Atual</h5>
-                <ul>
-                    <li>Condução de casos psiquiátricos complexos, com análise técnica e elaboração de pareceres especializados.</li>
-                    <li>Coordenação de planos terapêuticos individualizados em conjunto com equipe multidisciplinar.</li>
-                    <li>Participação em comitês de análise de casos complexos, contribuindo para a construção de soluções inovadoras e centradas no paciente.</li>
-                </ul>
-            </div>
-            <div class="experience-item">
-                <h4>Hospital Psiquiátrico Cantareira - SPDM</h4>
-                <h5>Médico Diarista | 2021 - 2022</h5>
-                <ul>
-                    <li>Desenvolvimento e implementação de protocolos e fluxos assistenciais, contribuindo para a padronização e a eficiência do atendimento.</li>
-                    <li>Participação em comissões técnicas e análise de casos complexos, demonstrando capacidade de avaliação crítica e tomada de decisão embasada em evidências.</li>
-                    <li>Interface com equipes multidisciplinares, aprimorando a capacidade de trabalho em equipe e a coordenação de cuidados.</li>
-                </ul>
-            </div>
-            <div class="experience-item">
-                <h4>CAPS IJ, CAPS AD Diadema, UPA Jaçanã</h4>
-                <h5>Médico Psiquiatra (Coberturas) | 2024</h5>
-                <ul>
-                    <li>Atendimento em emergências psiquiátricas 24h, com manejo de crises e estabilização de pacientes agudos.</li>
-                    <li>Experiência em tratamento especializado em dependência química, reabilitação psicossocial e prevenção de recaídas.</li>
-                    <li>Atendimento psiquiátrico infantojuvenil especializado e intervenções familiares sistemáticas.</li>
-                </ul>
-            </div>
-        </div>
-
-     <div class="section">
-    <h2 class="section-title"><i class="bi bi-mortarboard"></i> Formação <br> Acadêmica</h2>
-    <div class="education-section">
-        <div class="education-group">
-            <h3 class="education-group-title">MBA, Gestão e HealthTech</h3>
-            <div class="education-item">
-                <h4 class="institution">MIT - Massachusetts Institute of Technology</h4>
-                <p class="degree">MicroMasters in Digital Transformation</p>
-                <p class="date">Em Andamento</p>
-                <ul class="details">
-                    <li>Digital Transformation Strategy</li>
-                    <li>Healthcare Process Innovation</li>
-                    <li>Leadership in Healthcare Organizations</li>
-                </ul>
-            </div>
-             <div class="education-item">
-                <h4 class="institution">FIAP</h4>
-                <p class="degree">MBA em Health Tech</p>
-                <p class="date">Em Andamento</p>
-                <ul class="details">
-                    <li>Gestão de Processos Assistenciais</li>
-                    <li>Inovação em Saúde</li>
-                    <li>Análise de Dados em Saúde</li>
-                </ul>
-            </div>
-            <div class="education-item">
-                <h4 class="institution">PUC-RS</h4>
-                <p class="degree">MBA em Gestão, Inovação e Serviços em Saúde</p>
-                <p class="date">2024</p>
-                <ul class="details">
-                    <li>Foco em regulação em saúde suplementar, gestão da qualidade assistencial e auditoria em saúde.</li>
-                    <li>Desenvolvimento de competências em gestão de operadoras de planos de saúde, análise de custos e otimização de processos.</li>
-                </ul>
-            </div>
-            <div class="education-item">
-                <h4 class="institution">PUC-PR</h4>
-                <p class="degree">Especialização em Tecnologia e Dados em Saúde</p>
-                <p class="date">2024</p>
-                <ul class="details">
-                    <li>Gestão de Processos em Saúde</li>
-                </ul>
-            </div>
-        </div>
-        <div class="education-group">
-            <h3 class="education-group-title">Especializações em Psiquiatria</h3>
-            <div class="education-item">
-                <h4 class="institution">FG-MED</h4>
-                <p class="degree">Especialização em Psiquiatria</p>
-                <p class="date">2024</p>
-                <ul class="details">
-                    <li>492 horas</li>
-                    <li>Análise Crítica de Evidências</li>
-                    <li>Elaboração de Documentação Técnica</li>
-                    <li>Psicofarmacologia Avançada</li>
-                    <li>Psicopatologia</li>
-                </ul>
-            </div>
-            <div class="education-item">
-                <h4 class="institution">Sanar/Cetrus</h4>
-                <p class="degree">Especialização em Psiquiatria</p>
-                <p class="date">2024</p>
-                <ul class="details">
-                    <li>432 horas</li>
-                    <li>Semiologia Psiquiátrica</li>
-                    <li>Raciocínio Clínico em Saúde Mental</li>
-                </ul>
-            </div>
-        </div>
-        <div class="education-group">
-            <h3 class="education-group-title">Cuidados Paliativos</h3>
-            <div class="education-item">
-                <h4 class="institution">MJHS Institute for Innovation in Palliative Care</h4>
-                <p class="degree">Programa Avançado em Cuidados Paliativos</p>
-                <p class="date">2024-2025</p>
-                <ul class="details">
-                    <li>Inovação em Cuidados de Fim de Vida</li>
-                </ul>
-            </div>
-            <div class="education-item">
-                <h4 class="institution">University of Colorado</h4>
-                <p class="degree">Palliative Care Program</p>
-                <p class="date">2024</p>
-                <ul class="details">
-                    <li>Supporting Patients Living with Serious Illness</li>
-                    <li>Providing Psychosocial and Spiritual Support</li>
-                    <li>Pain Management for Your Patients</li>
-                    <li>Easing Non-Pain Physical Symptoms</li>
-                </ul>
-            </div>
-        </div>
-        <div class="education-group">
-            <h3 class="education-group-title">Medicina Canabinoide</h3>
-            <div class="education-item">
-                <h4 class="institution">Society of Cannabis Clinicians</h4>
-                <p class="degree">Clinical Cannabinoid Medicine Specialist</p>
-                <p class="date">2024</p>
-                <ul class="details">
-                    <li>Certificação Internacional em Medicina Canabinoide</li>
-                    <li>Manejo Avançado de Terapias com Canabinoides</li>
-                    <li>Aplicações em Saúde Mental e Cuidados Paliativos</li>
-                </ul>
-            </div>
-            <div class="education-item">
-                <h4 class="institution">The Medical Cannabis Institute</h4>
-                <p class="degree">Certificação em Medicina Canabinoide</p>
-                <p class="date">2024</p>
-                <ul class="details">
-                    <li>Clinical Applications of Medical Cannabis</li>
-                    <li>Endocannabinoid System in Clinical Practice</li>
-                    <li>Psychiatric Applications of Cannabinoids</li>
-                </ul>
-            </div>
-        </div>
-        <div class="education-group">
-            <h3 class="education-group-title">Graduação</h3>
-            <div class="education-item">
-                <h4 class="institution">FAMEMA</h4>
-                <p class="degree">Graduação em Medicina</p>
-                <p class="date">2015-2020</p>
-                <ul class="details">
-                    <li>Nota 5 ENADE</li>
-                    <li>Metodologia PBL (Problem-Based Learning)</li>
-                </ul>
-            </div>
-            <div class="education-item">
-                <h4 class="institution">UNESP Araraquara</h4>
-                <p class="degree">Bacharelado em Administração Pública</p>
-                <p class="date">2009-2011</p>
-            </div>
-        </div>
+    <!-- Menu Overlay -->
+    <div class="menu-overlay">
+        <nav class="menu-nav">
+            <a href="#sobre">Sobre</a>
+            <a href="#especialidades">Especialidades</a>
+            <a href="#metodo">Método</a>
+            <a href="#blog">Blog</a>
+            <a href="#contato">Contato</a>
+        </nav>
     </div>
-</div>
 
-        <div class="section">
-            <h2 class="section-title"><i class="bi bi-globe2"></i> Experiência <br> Internacional</h2>
-            <ul>
-                <li><i class="bi bi-check-lg"></i> <b>Representante Brasileiro</b> - 56ª Assembleia Geral OMS/OPAS (Washington, D.C. - 2018)</li>
-                <li><i class="bi bi-check-lg"></i> <b>Estágio</b> - Embaixada da ONU - UNFPA (Brasília, DF - 2018)</li>
-                <li><i class="bi bi-check-lg"></i> <b>Membro</b> - International AIDS Society (2020-2023)</li>
-            </ul>
+    <!-- Hero Section -->
+    <section class="section" id="hero">
+        <div class="container">
+            <h1 class="headline">
+                Psiquiatra com análise<br>
+                potencializada por IA
+            </h1>
+            <p class="subheadline">
+                Atendimento em São Paulo. R$ 350
+            </p>
+            <div class="button-group">
+                <a href="#contato" class="button button-primary">Agendar Consulta</a>
+                <a href="#metodo" class="button button-secondary">Conhecer o Método</a>
+            </div>
         </div>
+    </section>
 
-        <div class="section">
-            <h2 class="section-title"><i class="bi bi-patch-check"></i> Certificações e <br> Cursos Relevantes</h2>
-            <div class="grid-container">
-                <div class="grid-item">
-                    <h4><i class="bi bi-person-vcard"></i> Neurologia e Psiquiatria</h4>
-                    <ul>
-                        <li><i class="bi bi-person-vcard"></i> AI in Healthcare - Stanford University (2024)</li>
-                        <li><i class="bi bi-person-vcard"></i> Medical Neuroscience - Duke University (2024)</li>
-                        <li><i class="bi bi-moon"></i> Transtornos do Sono - CENBRAP</li>
-                    </ul>
-                </div>
-                <div class="grid-item">
-                    <h4><i class="bi bi-hospital"></i> Gestão e Inovação</h4>
-                    <ul>
-                        <li><i class="bi bi-hospital"></i> Gestão de Processos em Saúde - EEPHCFMUSP</li>
-                        <li><i class="bi bi-people"></i> Terapia ACT - IBAC</li>
-                    </ul>
-                </div>
-                <div class="grid-item">
-                    <h4><i class="bi bi-flower1"></i> Cannabis Medicinal</h4>
-                    <ul>
-                        <li><i class="bi bi-flower1"></i> Medicina Canabinoide - EEPHCFMUSP</li>
-                        <li><i class="bi bi-capsule-pill"></i> Dependência Química - Artmed360 (180h)</li>
-                    </ul>
+    <!-- Sobre Section -->
+    <section class="section" id="sobre">
+        <div class="container">
+            <span class="section-label">Sobre</span>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="headline">Análise comportamental potencializada por IA</h2>
+                    <p class="subheadline">Psiquiatra especializado em análise comportamental e tratamento personalizado.</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature">
+                            <h3>Análise por IA</h3>
+                            <p>Uso de inteligência artificial para análise comportamental mais precisa</p>
+                        </div>
+                        <div class="feature">
+                            <h3>Atendimento Presencial</h3>
+                            <p>Consultas em São Paulo, no Itaim Bibi</p>
+                        </div>
+                        <div class="feature">
+                            <h3>Metodologia</h3>
+                            <p>Abordagem baseada em evidências e tecnologia</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="section">
-            <h2 class="section-title"><i class="bi bi-translate"></i> Idiomas</h2>
-            <div class="grid-container">
-                <div class="grid-item">
-                    <ul>
-                        <li><i class="bi bi-check-lg"></i> <b>Português</b> - Nativo</li>
-                        <li><i class="bi bi-check-lg"></i> <b>Inglês</b> - Fluente (TOEFL iBT 108/120)</li>
-                    </ul>
+    <!-- Especialidades Section -->
+    <section class="section" id="especialidades">
+        <div class="container">
+            <span class="section-label">Especialidades</span>
+            
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <div class="card-content">
+                        <h3>TDAH</h3>
+                        <p>Diagnóstico preciso e tratamento personalizado</p>
+                        <span class="card-arrow">→</span>
+                    </div>
                 </div>
-                <div class="grid-item">
-                    <ul>
-                        <li><i class="bi bi-check-lg"></i> <b>Espanhol</b> - Intermediário</li>
-                        <li><i class="bi bi-check-lg"></i> <b>Francês</b> - Instrumental</li>
-                    </ul>
+                
+                <div class="specialty-card">
+                    <div class="card-content">
+                        <h3>Autismo</h3>
+                        <p>Abordagem especializada e acolhedora</p>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+                
+                <div class="specialty-card">
+                    <div class="card-content">
+                        <h3>Ansiedade</h3>
+                        <p>Tratamento integrado com análise comportamental</p>
+                        <span class="card-arrow">→</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Método Section -->
+    <section class="section" id="metodo">
+        <div class="container">
+            <span class="section-label">Método</span>
+            
+            <div class="method-content">
+                <h2 class="headline">Como funciona o atendimento</h2>
+                
+                <div class="steps-grid">
+                    <div class="step">
+                        <span class="step-number">01</span>
+                        <h3>Agendamento</h3>
+                        <p>Primeira consulta por R$ 350</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">02</span>
+                        <h3>Avaliação</h3>
+                        <p>Análise comportamental completa</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">03</span>
+                        <h3>Diagnóstico</h3>
+                        <p>Utilizando IA para maior precisão</p>
+                    </div>
+                    
+                    <div class="step">
+                        <span class="step-number">04</span>
+                        <h3>Tratamento</h3>
+                        <p>Plano personalizado e acompanhamento</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section" id="blog">
+        <div class="container">
+            <span class="section-label">Blog</span>
+            
+            <div class="blog-preview">
+                <h2 class="headline">Artigos Recentes</h2>
+                
+                <div class="articles-grid">
+                    <article class="article-card">
+                        <span class="article-date">22 Fev 2024</span>
+                        <h3>Uso de IA na Psiquiatria</h3>
+                        <span class="card-arrow">→</span>
+                    </article>
+                    
+                    <article class="article-card">
+                        <span class="article-date">20 Fev 2024</span>
+                        <h3>Canabidiol: Usos e Evidências</h3>
+                        <span class="card-arrow">→</span>
+                    </article>
+                    
+                    <article class="article-card">
+                        <span class="article-date">18 Fev 2024</span>
+                        <h3>Autismo: Novos Tratamentos</h3>
+                        <span class="card-arrow">→</span>
+                    </article>
+                </div>
+                
+                <a href="/blog" class="button button-secondary">Ver todos os artigos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section class="section" id="contato">
+        <div class="container">
+            <span class="section-label">Contato</span>
+            
+            <div class="contact-content">
+                <h2 class="headline">Agende sua consulta</h2>
+                
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <h3>Localização</h3>
+                            <p>Itaim Bibi, São Paulo</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <h3>Valor</h3>
+                            <p>R$ 350 (primeira consulta)</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <h3>Horários</h3>
+                            <p>Segunda a Sexta, 8h às 18h</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-actions">
+                        <a href="https://wa.me/SEUNUMERO" class="button button-primary">WhatsApp</a>
+                        <a href="#" class="button button-secondary">Ver Localização</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+<script>
+        // Menu Toggle Functionality
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menuOverlay = document.querySelector('.menu-overlay');
+        const menuLinks = document.querySelectorAll('.menu-nav a');
+
+        menuToggle.addEventListener('click', () => {
+            menuOverlay.classList.toggle('active');
+            menuToggle.textContent = menuOverlay.classList.contains('active') ? 'Close' : 'Menu';
+        });
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuOverlay.classList.remove('active');
+                menuToggle.textContent = 'Menu';
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Card Interactions
+        document.querySelectorAll('.specialty-card, .article-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.querySelector('.card-arrow').style.opacity = '1';
+                card.querySelector('.card-arrow').style.transform = 'translateX(0)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('.card-arrow').style.opacity = '0';
+                card.querySelector('.card-arrow').style.transform = 'translateX(-10px)';
+            });
+        });
+
+        // Intersection Observer for Fade-in Effects
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s var(--easing)';
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
