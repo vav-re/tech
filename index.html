@@ -364,39 +364,53 @@
             margin-top: 3rem;
         }
 
-        .specialty-card,
-        .step,
-        .article-card {
-            border: 1px solid #eee;
-            border-radius: 1rem;
-            padding: 2rem;
-            transition: all 0.3s var(--easing);
-            cursor: pointer;
-        }
+        .specialty-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #eee;
+    border-radius: 16px;
+    padding: 32px;
+    cursor: pointer;
+    transition: all 0.3s var(--easing);
+}
 
-        .specialty-card:hover,
-        .step:hover,
-        .article-card:hover {
-            border-color: #ddd;
-            background: #fafafa;
-        }
+.specialty-card:hover {
+    background: #fafafa;
+    border-color: #ddd;
+    transform: translateY(-2px);
+}
 
-        /* =========================================
-           Elementos Específicos
-           ========================================= */
-        .card-arrow {
-            position: absolute;
-            right: 2rem;
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: all 0.3s var(--easing);
-        }
+.card-content {
+    position: relative;
+}
 
-        .specialty-card:hover .card-arrow,
-        .article-card:hover .card-arrow {
-            opacity: 1;
-            transform: translateX(0);
-        }
+.card-content h3 {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.card-content p {
+    color: #666;
+    font-weight: 300;
+    margin-bottom: 24px;
+}
+
+.card-arrow {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 20px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s var(--easing);
+}
+
+.specialty-card:hover .card-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 
         .step-number {
             font-size: 0.875rem;
@@ -1409,6 +1423,37 @@ document.querySelectorAll('.specialty-card').forEach((card, index) => {
         openModal(modalIds[index]);
     });
 });
+// Corrija o JavaScript para os cards de especialidades
+document.addEventListener('DOMContentLoaded', () => {
+    // Certifique-se de que todos os cards tenham a seta
+    document.querySelectorAll('.specialty-card').forEach(card => {
+        const cardContent = card.querySelector('.card-content');
+        if (cardContent && !cardContent.querySelector('.card-arrow')) {
+            const arrow = document.createElement('span');
+            arrow.className = 'card-arrow';
+            arrow.textContent = '→';
+            cardContent.appendChild(arrow);
+        }
+    });
+
+    // Adicione ou atualize o mapeamento dos cards para os modais
+    const specialtyCards = document.querySelectorAll('.specialty-card');
+    
+    specialtyCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const modalId = card.getAttribute('data-modal');
+            if (modalId) {
+                // Abra o modal específico
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+        });
+    });
+});
+
 
 // Fechar com tecla ESC
 document.addEventListener('keydown', (e) => {
