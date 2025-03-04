@@ -54,7 +54,7 @@
         "@context": "https://schema.org",
         "@type": "Physician",
         "name": "Dr. Gustavo Mendes",
-        "image": "https://drgustavo.med.br/dr-gustavo-mendes.jpg",
+        "image": "https://drgustavo.med.br/foto.jpg",
         "description": "Psiquiatra especializado em TDAH, Autismo (TEA), Ansiedade e Depressão em São Paulo.",
         "@id": "https://drgustavo.med.br/#physician",
         "url": "https://drgustavo.med.br",
@@ -211,6 +211,9 @@
             --z-menu: 90;
             --z-modal: 100;
             --z-whatsapp: 95;
+            
+            /* Altura do header para padding */
+            --header-height: 80px;
         }
 
         * {
@@ -254,6 +257,7 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            height: var(--header-height);
         }
 
         .header-container {
@@ -323,6 +327,13 @@
         /* =========================================
            Estrutura Base com Scroll Snap
            ========================================= */
+        main {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            position: relative;
+        }
+
         .section {
             min-height: 100vh;
             display: flex;
@@ -332,9 +343,12 @@
             scroll-snap-align: start;
             scroll-snap-stop: always;
         }
-.section:first-of-type {
-    padding-top: calc(var(--header-height) + var(--spacing-base));
-}
+
+        /* Espaçamento para o header fixo */
+        .section:first-of-type {
+            padding-top: calc(var(--header-height) + var(--spacing-base));
+        }
+
         .section-label {
             font-size: 1rem;
             font-weight: 300;
@@ -416,8 +430,7 @@
            Hero Section - Mobile First
            ========================================= */
         .hero-section {
-            min-height: 200vh;
-            padding-top: 200px;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -430,7 +443,7 @@
             width: 100%;
             max-width: 600px;
             margin: 0 auto;
-            z-index: 200;
+            z-index: 2;
         }
 
         .hero-headline {
@@ -622,7 +635,7 @@
         }
 
         /* =========================================
-           Carrossel Comparativo - Mobile First
+           Carrossel Comparativo - Mobile First (Melhorado)
            ========================================= */
         .comparison-carousel {
             position: relative;
@@ -675,11 +688,13 @@
             font-weight: 500;
             font-size: 1.25rem;
             background: rgba(0, 0, 0, 0.05);
+            padding: 1rem;
         }
 
         .traditional-service {
             font-size: 0.9rem;
             color: var(--color-text-light);
+            padding: 0.5rem;
         }
 
         .carousel-controls {
@@ -1008,7 +1023,7 @@
         }
 
         /* =========================================
-           Sistema Modal - Mobile First
+           Sistema Modal - Mobile First (com swipe)
            ========================================= */
         .modal-system {
             position: fixed;
@@ -1044,7 +1059,7 @@
             padding: var(--spacing-md) var(--spacing-sm);
             overflow-y: auto;
             transform: translateX(100%);
-            transition: transform var(--transition-medium);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
         }
 
@@ -1320,6 +1335,130 @@
         }
 
         /* =========================================
+           Especialidades Mobile - Versão Compacta
+           ========================================= */
+        .specialties-mobile {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .specialties-grid {
+                display: none;
+            }
+            
+            .specialties-mobile {
+                display: block;
+            }
+            
+            .specialty-category {
+                margin-bottom: 2rem;
+            }
+            
+            .specialty-category h3 {
+                font-size: 1.25rem;
+                margin-bottom: 1rem;
+                font-weight: 500;
+            }
+            
+            .specialty-items {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .specialty-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background: var(--color-secondary);
+                border-radius: 12px;
+                padding: 1rem;
+                width: calc(50% - 0.5rem);
+                cursor: pointer;
+                transition: transform 0.3s ease, background 0.3s ease;
+                text-align: center;
+            }
+            
+            .specialty-item:hover {
+                background: var(--color-border);
+                transform: translateY(-2px);
+            }
+            
+            .specialty-icon {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        /* =========================================
+           Foto do Médico e Seção da Clínica
+           ========================================= */
+        .about-photo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .doctor-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .photo-caption {
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        /* Seção da Clínica */
+        .clinic-section {
+            padding: var(--spacing-base) 0;
+        }
+
+        .clinic-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .clinic-photo {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            height: 200px;
+        }
+
+        .clinic-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .clinic-photo:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Google Maps */
+        .google-map {
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .map-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--color-secondary);
+        }
+
+        /* =========================================
            Media Queries - Tablet e Desktop
            ========================================= */
         @media (min-width: 768px) {
@@ -1345,11 +1484,11 @@
             .hero-section {
                 text-align: left;
                 align-items: flex-start;
-                padding-top: 100px;
-                }
+                padding: var(--spacing-lg) var(--spacing-md);
+            }
             
             .hero-content {
-                margin: 100px;
+                margin: 0;
             }
             
             .hero-cta {
@@ -1378,6 +1517,7 @@
             
             .specialties-grid {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                display: grid;
             }
             
             .specialty-card {
@@ -1448,20 +1588,35 @@
             .contact-buttons {
                 flex-direction: row;
             }
-        }
-
-        @media (min-width: 1024px) {
-            .section {
-                padding: var(--spacing-base) 0;
-            }
             
+            /* Modais */
             .modal-content {
                 width: 50%;
                 max-width: 600px;
             }
             
-            .modal-system.active .modal-content {
-                transform: translateX(0);
+            /* Mapa */
+            .map-actions {
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            /* Sobre */
+            .about-content {
+                display: flex;
+                align-items: center;
+                gap: var(--spacing-lg);
+            }
+            
+            .about-photo {
+                flex-shrink: 0;
+                margin-bottom: 0;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .section {
+                padding: var(--spacing-base) 0;
             }
             
             .floating-info {
@@ -1488,6 +1643,27 @@
                 font-size: 18px;
             }
         }
+
+        /* =========================================
+           Desativar scroll snap no mobile
+           ========================================= */
+        @media (max-width: 768px) {
+            main {
+                scroll-snap-type: none;
+            }
+            
+            .section {
+                scroll-snap-align: none;
+                scroll-snap-stop: normal;
+                min-height: auto;
+                padding: 60px 0;
+            }
+            
+            /* Adicionar espaço adequado ao topo da primeira seção */
+            .section:first-of-type {
+                padding-top: 120px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1510,6 +1686,7 @@
             <a href="#especialidades">Especialidades</a>
             <a href="#metodo">Método</a>
             <a href="#depoimentos">Depoimentos</a>
+            <a href="#clinica">Consultório</a>
             <a href="#faq">Perguntas Frequentes</a>
             <a href="#blog">Blog</a>
             <a href="#contato">Contato</a>
@@ -1559,6 +1736,11 @@
                 <span class="section-label">Sobre</span>
                 
                 <div class="about-content">
+                    <div class="about-photo">
+                        <img src="foto.jpg" alt="Dr. Gustavo Mendes" class="doctor-photo">
+                        <div class="photo-caption">Dr. Gustavo Mendes</div>
+                    </div>
+                    
                     <div class="about-text">
                         <h2 class="headline">Psiquiatra com abordagem inovadora e humanizada</h2>
                         <p class="subheadline">Especialista em neurodiversidade, canabidiol e análise comportamental avançada.</p>
@@ -1589,9 +1771,10 @@
         <section class="section" id="especialidades">
             <div class="container">
                 <span class="section-label">Especialidades</span>
+                <h2 class="headline">Áreas de Atendimento</h2>
                 
+                <!-- Versão desktop das especialidades com cards -->
                 <div class="specialties-grid">
-                    <!-- Transtornos Principais -->
                     <div class="specialty-card" data-modal="modalTDAH">
                         <div class="card-content">
                             <h3>TDAH</h3>
@@ -1655,13 +1838,57 @@
                             <span class="card-arrow">→</span>
                         </div>
                     </div>
+                </div>
+                
+                <!-- Versão mobile das especialidades com ícones e categorias -->
+                <div class="specialties-mobile">
+                    <div class="specialty-category">
+                        <h3>Neurodiversidade</h3>
+                        <div class="specialty-items">
+                            <div class="specialty-item" data-modal="modalTDAH">
+                                <div class="specialty-icon">🧠</div>
+                                <span>TDAH</span>
+                            </div>
+                            <div class="specialty-item" data-modal="modalAutismo">
+                                <div class="specialty-icon">🔄</div>
+                                <span>Autismo</span>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <!-- Card especial sobre IA -->
-                    <div class="specialty-card feature-card" data-modal="modalIA">
-                        <div class="card-content">
-                            <h3>Tecnologia a seu favor</h3>
-                            <p>IA para análise e documentação, priorizando seu tempo de consulta</p>
-                            <span class="card-arrow">→</span>
+                    <div class="specialty-category">
+                        <h3>Saúde Mental</h3>
+                        <div class="specialty-items">
+                            <div class="specialty-item" data-modal="modalAnsiedade">
+                                <div class="specialty-icon">😓</div>
+                                <span>Ansiedade</span>
+                            </div>
+                            <div class="specialty-item" data-modal="modalDepressao">
+                                <div class="specialty-icon">😔</div>
+                                <span>Depressão</span>
+                            </div>
+                            <div class="specialty-item" data-modal="modalTraumas">
+                                <div class="specialty-icon">💔</div>
+                                <span>Traumas / Luto</span>
+                            </div>
+                            <div class="specialty-item" data-modal="modalInsonia">
+                                <div class="specialty-icon">😴</div>
+                                <span>Insônia</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="specialty-category">
+                        <h3>Tratamentos Avançados</h3>
+                        <div class="specialty-items">
+                            <div class="specialty-item" data-modal="modalCanabidiol">
+                                <div class="specialty-icon">🌿</div>
+                                <span>Canabidiol</span>
+                            </div>
+                            <div class="specialty-item" data-modal="modalCuidadosPaliativos">
+                                <div class="specialty-icon">🤲</div>
+                                <span>Cuidados Paliativos</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1867,6 +2094,40 @@
             </div>
         </section>
         
+        <!-- Clínica e Localização Section -->
+        <section class="section clinic-section" id="clinica">
+            <div class="container">
+                <span class="section-label">Consultório</span>
+                <h2 class="headline">Ambiente Acolhedor e Discreto</h2>
+                <p class="subheadline">Localização privilegiada no Itaim Bibi, próximo a transporte público e estacionamentos.</p>
+                
+                <!-- Mapa do Google -->
+                <div class="google-map">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14628.472082478024!2d-46.6806809!3d-23.5847376!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce57702e1da5c7%3A0x7ced5a701b2e5de6!2sDr.%20Gustavo%20Mendes%20e%20Silva%20-%20Psiquiatra!5e0!3m2!1spt-BR!2sbr!4v1710247646654!5m2!1spt-BR!2sbr" 
+                        width="100%" 
+                        height="300" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    
+                    <div class="map-actions">
+                        <a href="https://maps.app.goo.gl/Ra5Z3GTQyxgQsfAi9?g_st=ic" class="button button-secondary" target="_blank">
+                            <span>Como Chegar</span>
+                        </a>
+                        <a href="https://maps.app.goo.gl/Ra5Z3GTQyxgQsfAi9?g_st=ic" class="button button-secondary" target="_blank">
+                            <span>Ver Avaliações</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+        
         <!-- Garantia Section -->
         <div class="guarantee-section">
             <div class="container">
@@ -2012,7 +2273,7 @@
                         
                         <div class="contact-actions">
                             <a href="https://wa.me/11965461146" class="button button-primary">WhatsApp</a>
-                            <a href="#" class="button button-secondary">Ver Localização</a>
+                            <a href="https://maps.app.goo.gl/Ra5Z3GTQyxgQsfAi9?g_st=ic" class="button button-secondary" target="_blank">Ver Localização</a>
                         </div>
                     </div>
                 </div>
@@ -2165,7 +2426,7 @@
                             </div>
                             <div class="approach-card">
                                 <span class="approach-number">02</span>
-                                <h4>Manejo de Comorbidades</h4>
+                        <h4>Manejo de Comorbidades</h4>
                                 <p>Tratamento integrado das condições frequentemente associadas ao TEA, como ansiedade, depressão e sensibilidade sensorial</p>
                             </div>
                             <div class="approach-card">
@@ -2439,47 +2700,6 @@
                 </div>
             </div>
             
-            <!-- Modal Tecnologia/IA -->
-            <div class="modal" id="modalIA">
-                <div class="modal-header">
-                    <span class="modal-label">Diferencial</span>
-                    <h2>Tecnologia a seu favor</h2>
-                </div>
-                
-                <div class="modal-body">
-                    <div class="modal-section">
-                        <h3>Como a IA transforma a consulta</h3>
-                        <p>Ao integrar inteligência artificial na prática psiquiátrica, consigo potencializar a capacidade diagnóstica e terapêutica sem substituir o contato humano. A tecnologia funciona como uma ferramenta complementar, liberando tempo para o que realmente importa: a escuta atenta e a conexão terapêutica.</p>
-                    </div>
-
-                    <div class="modal-section">
-                        <h3>Benefícios da Abordagem</h3>
-                        <div class="approach-cards">
-                            <div class="approach-card">
-                                <span class="approach-number">01</span>
-                                <h4>Análise Comportamental Avançada</h4>
-                                <p>Identificação de padrões sutis de comportamento, linguagem e expressão que poderiam passar despercebidos</p>
-                            </div>
-                            <div class="approach-card">
-                                <span class="approach-number">02</span>
-                                <h4>Documentação Narrativa</h4>
-                                <p>Geração de relatórios personalizados que transformam dados clínicos em histórias significativas para o paciente</p>
-                            </div>
-                            <div class="approach-card">
-                                <span class="approach-number">03</span>
-                                <h4>Mais Tempo para o Essencial</h4>
-                                <p>Automatização de processos administrativos permite dedicar a consulta integralmente à escuta e ao diálogo terapêutico</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-cta">
-                        <a href="#contato" class="button button-primary modal-button">Experimentar na Prática</a>
-                        <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20como%20a%20IA%20é%20utilizada%20nas%20consultas" class="button button-secondary modal-button">Saber Mais</a>
-                    </div>
-                </div>
-            </div>
-            
             <!-- Modal Informações -->
             <div class="modal" id="infoModal">
                 <div class="info-container">
@@ -2629,11 +2849,12 @@
                 });
             });
 
-            // Sistema Modal Unificado
+            // Sistema Modal Unificado (com swipe)
             const modalSystem = document.getElementById('modalContainer');
             const modals = modalSystem.querySelectorAll('.modal');
             const modalClose = modalSystem.querySelector('.modal-close');
             const modalBackdrop = modalSystem.querySelector('.modal-backdrop');
+            const modalContent = modalSystem.querySelector('.modal-content');
 
             function openModal(modalId) {
                 const targetModal = document.getElementById(modalId);
@@ -2682,15 +2903,40 @@
                 }
             });
 
+            // Adicionar funcionalidade de swipe para o modal
+            function initModalSwipe() {
+                let startX, moveX;
+                
+                modalContent.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                });
+                
+                modalContent.addEventListener('touchmove', (e) => {
+                    moveX = e.touches[0].clientX;
+                });
+                
+                modalContent.addEventListener('touchend', () => {
+                    if (startX < moveX && moveX - startX > 100) {
+                        // Swipe da esquerda para direita (fechar)
+                        closeModal();
+                    }
+                });
+            }
+
+            // Inicializar swipe do modal
+            initModalSwipe();
+
             // Interação dos cards
-            document.querySelectorAll('.specialty-card, .article-card').forEach(card => {
-                // Certificar que todos os cards têm uma seta
-                const cardContent = card.querySelector('.card-content');
-                if (cardContent && !cardContent.querySelector('.card-arrow')) {
-                    const arrow = document.createElement('span');
-                    arrow.className = 'card-arrow';
-                    arrow.textContent = '→';
-                    cardContent.appendChild(arrow);
+            document.querySelectorAll('.specialty-card, .article-card, .specialty-item').forEach(card => {
+                // Certificar que todos os cards têm uma seta (exceto os specialty-item do mobile)
+                if (!card.classList.contains('specialty-item')) {
+                    const cardContent = card.querySelector('.card-content');
+                    if (cardContent && !cardContent.querySelector('.card-arrow')) {
+                        const arrow = document.createElement('span');
+                        arrow.className = 'card-arrow';
+                        arrow.textContent = '→';
+                        cardContent.appendChild(arrow);
+                    }
                 }
             });
 
@@ -3001,6 +3247,7 @@
                 '.testimonial-card', 
                 '.approach-card',
                 '.specialty-card',
+                '.specialty-item',
                 '.pricing-card',
                 '.feature',
                 '.step',
