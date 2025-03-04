@@ -226,36 +226,66 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: var(--font-primary);
             line-height: 1.6;
             background: var(--color-background);
             color: var(--color-text);
-            overflow-x: hidden;
+        }
+
+        /* Scroll Snap Container Principal */
+        main {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            position: relative;
         }
 
         /* =========================================
-           Header e Menu
+           Header e Logo
            ========================================= */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: var(--spacing-sm) var(--spacing-md);
+            padding: 1rem 0;
+            z-index: var(--z-header);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 var(--spacing-md);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: var(--z-header);
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
         }
 
         .logo {
-            font-size: 1.25rem;
-            font-weight: 300;
+            display: block;
             text-decoration: none;
-            color: inherit;
+        }
+
+        .logo-image {
+            height: 42px;
+            width: auto;
+            display: block;
+            transition: opacity var(--transition-fast);
+        }
+
+        .logo-image:hover {
+            opacity: 0.9;
         }
 
         .menu-toggle {
@@ -267,6 +297,7 @@
             font-size: 1rem;
         }
 
+        /* Menu Overlay */
         .menu-overlay {
             position: fixed;
             inset: 0;
@@ -300,20 +331,23 @@
         }
 
         /* =========================================
-           Estrutura Base
+           Estrutura Base com Scroll Snap
            ========================================= */
         .section {
-            padding: var(--spacing-base);
             min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
+            padding: var(--spacing-base) 0;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
             width: 100%;
+            padding: 0 var(--spacing-md);
         }
 
         .section-label {
@@ -788,6 +822,47 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
+        /* Indicador de Rolagem */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.7;
+            transition: opacity var(--transition-fast);
+            z-index: 5;
+        }
+
+        .scroll-indicator:hover {
+            opacity: 1;
+        }
+
+        .scroll-arrow {
+            width: 24px;
+            height: 24px;
+            border-right: 2px solid var(--color-text);
+            border-bottom: 2px solid var(--color-text);
+            transform: rotate(45deg);
+            animation: scrollIndicator 2s infinite;
+        }
+
+        @keyframes scrollIndicator {
+            0% {
+                transform: rotate(45deg) translate(0, 0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: rotate(45deg) translate(10px, 10px);
+                opacity: 0;
+            }
+        }
+
         /* =========================================
            Responsividade
            ========================================= */
@@ -836,19 +911,32 @@
             .button-group {
                 flex-direction: column;
             }
+            
+            .header-container {
+                padding: 0 var(--spacing-sm);
+            }
+            
+            .logo-image {
+                height: 36px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header com Logo -->
     <header class="header">
-        <a href="#" class="logo">Dr. Gustavo Mendes</a>
-        <button class="menu-toggle" aria-label="Abrir menu">Menu</button>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <img src="images/dr-gustavo-mendes-logo.png" alt="Dr. Gustavo Mendes - Psiquiatria" class="logo-image">
+            </a>
+            <button class="menu-toggle" aria-label="Abrir menu">Menu</button>
+        </div>
     </header>
 
     <!-- Menu Overlay -->
     <div class="menu-overlay">
         <nav class="menu-nav">
+            <a href="#hero">Início</a>
             <a href="#sobre">Sobre</a>
             <a href="#especialidades">Especialidades</a>
             <a href="#metodo">Método</a>
@@ -858,239 +946,257 @@
         </nav>
     </div>
 
-    <!-- Hero Section -->
-    <section class="section" id="hero">
-        <div class="container">
-            <h1 class="headline">
-                Psiquiatra com análise<br>
-                potencializada por IA
-            </h1>
-            <p class="subheadline">
-                Atendimento em São Paulo. R$ 350
-            </p>
-            <div class="button-group">
-                <a href="#contato" class="button button-primary">Agendar Consulta</a>
-                <a href="#metodo" class="button button-secondary">Conhecer o Método</a>
+    <!-- Container Principal com Scroll Snap -->
+    <main id="main-container">
+        <!-- Hero Section -->
+        <section class="section" id="hero">
+            <div class="container">
+                <h1 class="headline">
+                    Psiquiatra com análise<br>
+                    potencializada por IA
+                </h1>
+                <p class="subheadline">
+                    Atendimento em São Paulo. R$ 350
+                </p>
+                <div class="button-group">
+                    <a href="#contato" class="button button-primary">Agendar Consulta</a>
+                    <a href="#metodo" class="button button-secondary">Conhecer o Método</a>
+                </div>
             </div>
-        </div>
-    </section>
+            <div class="scroll-indicator">
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
 
-    <!-- Sobre Section -->
-    <section class="section" id="sobre">
-        <div class="container">
-            <span class="section-label">Sobre</span>
-            
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 class="headline">Análise comportamental potencializada por IA</h2>
-                    <p class="subheadline">Psiquiatra especializado em análise comportamental e tratamento personalizado.</p>
-                    
-                    <div class="features-grid">
-                        <div class="feature">
-                            <h3>Análise por IA</h3>
-                            <p>Uso de inteligência artificial para análise comportamental mais precisa</p>
+        <!-- Sobre Section -->
+        <section class="section" id="sobre">
+            <div class="container">
+                <span class="section-label">Sobre</span>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2 class="headline">Análise comportamental potencializada por IA</h2>
+                        <p class="subheadline">Psiquiatra especializado em análise comportamental e tratamento personalizado.</p>
+                        
+                        <div class="features-grid">
+                            <div class="feature">
+                                <h3>Análise por IA</h3>
+                                <p>Uso de inteligência artificial para análise comportamental mais precisa</p>
+                            </div>
+                            <div class="feature">
+                                <h3>Atendimento Presencial</h3>
+                                <p>Consultas em São Paulo, no Itaim Bibi</p>
+                            </div>
+                            <div class="feature">
+                                <h3>Metodologia</h3>
+                                <p>Abordagem baseada em evidências e tecnologia</p>
+                            </div>
                         </div>
-                        <div class="feature">
-                            <h3>Atendimento Presencial</h3>
-                            <p>Consultas em São Paulo, no Itaim Bibi</p>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- Especialidades Section -->
+        <section class="section" id="especialidades">
+            <div class="container">
+                <span class="section-label">Especialidades</span>
+                
+                <div class="specialties-grid">
+                    <!-- Transtornos Principais -->
+                    <div class="specialty-card" data-modal="modalTDAH">
+                        <div class="card-content">
+                            <h3>TDAH</h3>
+                            <p>Análise comportamental e tratamento personalizado</p>
+                            <span class="card-arrow">→</span>
                         </div>
-                        <div class="feature">
-                            <h3>Metodologia</h3>
-                            <p>Abordagem baseada em evidências e tecnologia</p>
+                    </div>
+                    
+                    <div class="specialty-card" data-modal="modalAutismo">
+                        <div class="card-content">
+                            <h3>Autismo (TEA)</h3>
+                            <p>Abordagem especializada e acolhedora</p>
+                            <span class="card-arrow">→</span>
+                        </div>
+                    </div>
+                    
+                    <div class="specialty-card" data-modal="modalAnsiedade">
+                        <div class="card-content">
+                            <h3>Ansiedade</h3>
+                            <p>Tratamento integrado com análise comportamental</p>
+                            <span class="card-arrow">→</span>
+                        </div>
+                    </div>
+
+                    <div class="specialty-card" data-modal="modalDepressao">
+                        <div class="card-content">
+                            <h3>Depressão</h3>
+                            <p>Suporte terapêutico e acompanhamento contínuo</p>
+                            <span class="card-arrow">→</span>
+                        </div>
+                    </div>
+
+                    <div class="specialty-card" data-modal="modalBurnout">
+                        <div class="card-content">
+                            <h3>Burnout</h3>
+                            <p>Recuperação do equilíbrio profissional e pessoal</p>
+                            <span class="card-arrow">→</span>
+                        </div>
+                    </div>
+
+                    <div class="specialty-card" data-modal="modalCompulsao">
+                        <div class="card-content">
+                            <h3>Compulsão Alimentar</h3>
+                            <p>Tratamento integrado e multidisciplinar</p>
+                            <span class="card-arrow">→</span>
+                        </div>
+                    </div>
+
+                    <div class="specialty-card" data-modal="modalTraumas">
+                        <div class="card-content">
+                            <h3>Traumas / Luto</h3>
+                            <p>Acolhimento e processamento de experiências</p>
+                            <span class="card-arrow">→</span>
+                        </div>
+                    </div>
+
+                    <div class="specialty-card" data-modal="modalInsonia">
+                        <div class="card-content">
+                            <h3>Insônia</h3>
+                            <p>Recuperação da qualidade do sono</p>
+                            <span class="card-arrow">→</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card especial sobre IA -->
+                    <div class="specialty-card feature-card" data-modal="modalIA">
+                        <div class="card-content">
+                            <h3>Tecnologia a seu favor</h3>
+                            <p>IA para análise e documentação, priorizando seu tempo de consulta</p>
+                            <span class="card-arrow">→</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Especialidades Section -->
-    <section class="section" id="especialidades">
-        <div class="container">
-            <span class="section-label">Especialidades</span>
-            
-            <div class="specialties-grid">
-                <!-- Transtornos Principais -->
-                <div class="specialty-card" data-modal="modalTDAH">
-                    <div class="card-content">
-                        <h3>TDAH</h3>
-                        <p>Análise comportamental e tratamento personalizado</p>
-                        <span class="card-arrow">→</span>
-                    </div>
-                </div>
-                
-                <div class="specialty-card" data-modal="modalAutismo">
-                    <div class="card-content">
-                        <h3>Autismo (TEA)</h3>
-                        <p>Abordagem especializada e acolhedora</p>
-                        <span class="card-arrow">→</span>
-                    </div>
-                </div>
-                
-                <div class="specialty-card" data-modal="modalAnsiedade">
-                    <div class="card-content">
-                        <h3>Ansiedade</h3>
-                        <p>Tratamento integrado com análise comportamental</p>
-                        <span class="card-arrow">→</span>
-                    </div>
-                </div>
-
-                <div class="specialty-card" data-modal="modalDepressao">
-                    <div class="card-content">
-                        <h3>Depressão</h3>
-                        <p>Suporte terapêutico e acompanhamento contínuo</p>
-                        <span class="card-arrow">→</span>
-                    </div>
-                </div>
-
-                <div class="specialty-card" data-modal="modalBurnout">
-                    <div class="card-content">
-                        <h3>Burnout</h3>
-                        <p>Recuperação do equilíbrio profissional e pessoal</p>
-                        <span class="card-arrow">→</span>
-                    </div>
-                </div>
-
-                <div class="specialty-card" data-modal="modalCompulsao">
-                    <div class="card-content">
-                        <h3>Compulsão Alimentar</h3>
-                        <p>Tratamento integrado e multidisciplinar</p>
-                        <span class="card-arrow">→</span>
-                    </div>
-                </div>
-
-                <div class="specialty-card" data-modal="modalTraumas">
-                    <div class="card-content">
-                        <h3>Traumas / Luto</h3>
-                        <p>Acolhimento e processamento de experiências</p>
-                        <span class="card-arrow">→</span>
-                    </div>
-                </div>
-
-                <div class="specialty-card" data-modal="modalInsonia">
-                    <div class="card-content">
-                        <h3>Insônia</h3>
-                        <p>Recuperação da qualidade do sono</p>
-                        <span class="card-arrow">→</span>
-                    </div>
-                </div>
-                
-                <!-- Card especial sobre IA -->
-                <div class="specialty-card feature-card" data-modal="modalIA">
-                    <div class="card-content">
-                        <h3>Tecnologia a seu favor</h3>
-                        <p>IA para análise e documentação, priorizando seu tempo de consulta</p>
-                        <span class="card-arrow">→</span>
-                    </div>
-                </div>
+            <div class="scroll-indicator">
+                <div class="scroll-arrow"></div>
             </div>
-        </div>
-    </section>
-    
-    <!-- Método Section -->
-    <section class="section" id="metodo">
-        <div class="container">
-            <span class="section-label">Método</span>
-            
-            <div class="method-content">
-                <h2 class="headline">Como funciona o atendimento</h2>
+        </section>
+        
+        <!-- Método Section -->
+        <section class="section" id="metodo">
+            <div class="container">
+                <span class="section-label">Método</span>
                 
-                <div class="steps-grid">
-                    <div class="step">
-                        <span class="step-number">01</span>
-                        <h3>Agendamento</h3>
-                        <p>Primeira consulta por R$ 350</p>
-                    </div>
+                <div class="method-content">
+                    <h2 class="headline">Como funciona o atendimento</h2>
                     
-                    <div class="step">
-                        <span class="step-number">02</span>
-                        <h3>Avaliação</h3>
-                        <p>Análise comportamental completa</p>
-                    </div>
-                    
-                    <div class="step">
-                        <span class="step-number">03</span>
-                        <h3>Diagnóstico</h3>
-                        <p>Utilizando IA para maior precisão</p>
-                    </div>
-                    
-                    <div class="step">
-                        <span class="step-number">04</span>
-                        <h3>Tratamento</h3>
-                        <p>Plano personalizado e acompanhamento</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Section -->
-    <section class="section" id="blog">
-        <div class="container">
-            <span class="section-label">Blog</span>
-            
-            <div class="blog-preview">
-                <h2 class="headline">Artigos Recentes</h2>
-                
-                <div class="articles-grid">
-                    <article class="article-card">
-                        <span class="article-date">22 Fev 2024</span>
-                        <h3>Uso de IA na Psiquiatria</h3>
-                        <span class="card-arrow">→</span>
-                    </article>
-                    
-                    <article class="article-card">
-                        <span class="article-date">20 Fev 2024</span>
-                        <h3>Canabidiol: Usos e Evidências</h3>
-                        <span class="card-arrow">→</span>
-                    </article>
-                    
-                    <article class="article-card">
-                        <span class="article-date">18 Fev 2024</span>
-                        <h3>Autismo: Novos Tratamentos</h3>
-                        <span class="card-arrow">→</span>
-                    </article>
-                </div>
-                
-                <a href="/blog" class="button button-secondary">Ver todos os artigos</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contato Section -->
-    <section class="section" id="contato">
-        <div class="container">
-            <span class="section-label">Contato</span>
-            
-            <div class="contact-content">
-                <h2 class="headline">Agende sua consulta</h2>
-                
-                <div class="contact-grid">
-                    <div class="contact-info">
-                        <div class="info-item">
-                            <h3>Localização</h3>
-                            <p>Itaim Bibi, São Paulo</p>
+                    <div class="steps-grid">
+                        <div class="step">
+                            <span class="step-number">01</span>
+                            <h3>Agendamento</h3>
+                            <p>Primeira consulta por R$ 350</p>
                         </div>
                         
-                        <div class="info-item">
-                            <h3>Valor</h3>
-                            <p>R$ 350 (primeira consulta)</p>
+                        <div class="step">
+                            <span class="step-number">02</span>
+                            <h3>Avaliação</h3>
+                            <p>Análise comportamental completa</p>
                         </div>
                         
-                        <div class="info-item">
-                            <h3>Horários</h3>
-                            <p>Segunda a Sexta, 8h às 18h</p>
+                        <div class="step">
+                            <span class="step-number">03</span>
+                            <h3>Diagnóstico</h3>
+                            <p>Utilizando IA para maior precisão</p>
                         </div>
-                    </div>
-                    
-                    <div class="contact-actions">
-                        <a href="https://wa.me/11965461146" class="button button-primary">WhatsApp</a>
-                        <a href="#" class="button button-secondary">Ver Localização</a>
+                        
+                        <div class="step">
+                            <span class="step-number">04</span>
+                            <h3>Tratamento</h3>
+                            <p>Plano personalizado e acompanhamento</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+            <div class="scroll-indicator">
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section class="section" id="blog">
+            <div class="container">
+                <span class="section-label">Blog</span>
+                
+                <div class="blog-preview">
+                    <h2 class="headline">Artigos Recentes</h2>
+                    
+                    <div class="articles-grid">
+                        <article class="article-card">
+                            <span class="article-date">22 Fev 2024</span>
+                            <h3>Uso de IA na Psiquiatria</h3>
+                            <span class="card-arrow">→</span>
+                        </article>
+                        
+                        <article class="article-card">
+                            <span class="article-date">20 Fev 2024</span>
+                            <h3>Canabidiol: Usos e Evidências</h3>
+                            <span class="card-arrow">→</span>
+                        </article>
+                        
+                        <article class="article-card">
+                            <span class="article-date">18 Fev 2024</span>
+                            <h3>Autismo: Novos Tratamentos</h3>
+                            <span class="card-arrow">→</span>
+                        </article>
+                    </div>
+                    
+                    <a href="/blog" class="button button-secondary">Ver todos os artigos</a>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- Contato Section -->
+        <section class="section" id="contato">
+            <div class="container">
+                <span class="section-label">Contato</span>
+                
+                <div class="contact-content">
+                    <h2 class="headline">Agende sua consulta</h2>
+                    
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <div class="info-item">
+                                <h3>Localização</h3>
+                                <p>Itaim Bibi, São Paulo</p>
+                            </div>
+                            
+                            <div class="info-item">
+                                <h3>Valor</h3>
+                                <p>R$ 350 (primeira consulta)</p>
+                            </div>
+                            
+                            <div class="info-item">
+                                <h3>Horários</h3>
+                                <p>Segunda a Sexta, 8h às 18h</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-actions">
+                            <a href="https://wa.me/11965461146" class="button button-primary">WhatsApp</a>
+                            <a href="#" class="button button-secondary">Ver Localização</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Sistema Modal Unificado -->
     <div class="modal-system" id="modalContainer">
@@ -1467,7 +1573,7 @@
                 }
             });
 
-            // Scroll suave para âncoras
+            // Scroll suave para âncoras (mesmo com scroll-snap)
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     if (this.getAttribute('data-modal')) return; // Ignorar links de modal
@@ -1480,10 +1586,20 @@
                     
                     e.preventDefault();
                     
-                    window.scrollTo({
-                        top: targetElement.offsetTop,
+                    targetElement.scrollIntoView({
                         behavior: 'smooth'
                     });
+                });
+            });
+
+            // Configurar indicadores de rolagem
+            document.querySelectorAll('.scroll-indicator').forEach(indicator => {
+                indicator.addEventListener('click', () => {
+                    const section = indicator.closest('.section');
+                    const nextSection = section.nextElementSibling;
+                    if (nextSection) {
+                        nextSection.scrollIntoView({ behavior: 'smooth' });
+                    }
                 });
             });
 
