@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-     <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Título e Descrição Principais -->
     <title>Dr. Gustavo Mendes | Psiquiatra em São Paulo - TDAH, Autismo, Ansiedade</title>
     <meta name="description" content="Psiquiatra em São Paulo especializado em TDAH, Autismo (TEA), Ansiedade e Depressão. Análise comportamental avançada com IA. Consultas no Itaim Bibi. Agende: (11) SEU-NUMERO">
     
-    <!-- Palavras-chave (ainda relevante para alguns mecanismos de busca) -->
+    <!-- Palavras-chave -->
     <meta name="keywords" content="psiquiatra são paulo, psiquiatra itaim bibi, tdah adulto, autismo adulto, tratamento ansiedade, tratamento depressão, psiquiatra canabidiol, médico tdah são paulo">
     
     <!-- Informações de Autor e Contato -->
@@ -17,7 +17,7 @@
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
     
-    <!-- Verificação de Propriedade (substitua pelos seus códigos) -->
+    <!-- Verificação de Propriedade -->
     <meta name="google-site-verification" content="seu-código-aqui">
     
     <!-- Canonical URL -->
@@ -26,7 +26,7 @@
     <!-- Alternativas de Idioma -->
     <link rel="alternate" href="https://dr.orcann.com/" hreflang="pt-BR">
     
-    <!-- Favicons (adicione os arquivos correspondentes) -->
+    <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -48,7 +48,7 @@
     <meta name="twitter:description" content="Psiquiatra especializado em TDAH, Autismo e Ansiedade. Atendimento com análise comportamental avançada no Itaim Bibi, São Paulo.">
     <meta name="twitter:image" content="https://dr.orcann.com/twitter-card.jpg">
     
-    <!-- Schema.org para Rich Snippets -->
+    <!-- Schema.org Physician -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -116,7 +116,7 @@
     }
     </script>
 
-    <!-- Schema.org para Organização Médica -->
+    <!-- Schema.org MedicalOrganization -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -141,7 +141,7 @@
     }
     </script>
 
-    <!-- Schema.org para Local Business -->
+    <!-- Schema.org LocalBusiness -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -181,19 +181,43 @@
     }
     </script>
     
-    <!-- Preload de Recursos Críticos -->
+    <!-- Preconnect para recursos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Fontes e ícones aqui se necessário -->
     
     <style>
         /* =========================================
            Variáveis e Reset
            ========================================= */
         :root {
+            /* Fontes */
             --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            
+            /* Cores */
+            --color-text: #333;
+            --color-text-light: #666;
+            --color-background: #fff;
+            --color-primary: #000;
+            --color-secondary: #f8f8f8;
+            --color-border: #eee;
+            --color-border-hover: #ddd;
+            
+            /* Espaçamento */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
             --spacing-base: clamp(4rem, 8vw, 8rem);
+            
+            /* Transições */
             --easing: cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-fast: 0.3s var(--easing);
+            --transition-medium: 0.5s var(--easing);
+            
+            /* Z-index */
+            --z-header: 50;
+            --z-menu: 90;
+            --z-modal: 100;
         }
 
         * {
@@ -205,8 +229,8 @@
         body {
             font-family: var(--font-primary);
             line-height: 1.6;
-            background: #fff;
-            color: #000;
+            background: var(--color-background);
+            color: var(--color-text);
             overflow-x: hidden;
         }
 
@@ -218,11 +242,11 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 2rem;
+            padding: var(--spacing-sm) var(--spacing-md);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 100;
+            z-index: var(--z-header);
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
         }
@@ -246,11 +270,11 @@
         .menu-overlay {
             position: fixed;
             inset: 0;
-            background: #fff;
+            background: var(--color-background);
             transform: translateX(100%);
-            transition: transform 0.6s var(--easing);
-            z-index: 99;
-            padding: 8rem 2rem 2rem;
+            transition: transform var(--transition-medium);
+            z-index: var(--z-menu);
+            padding: 8rem var(--spacing-md) var(--spacing-md);
         }
 
         .menu-overlay.active {
@@ -260,7 +284,7 @@
         .menu-nav {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: var(--spacing-md);
         }
 
         .menu-nav a {
@@ -268,11 +292,11 @@
             font-weight: 300;
             color: inherit;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color var(--transition-fast);
         }
 
         .menu-nav a:hover {
-            color: #666;
+            color: var(--color-text-light);
         }
 
         /* =========================================
@@ -295,9 +319,9 @@
         .section-label {
             font-size: 1rem;
             font-weight: 300;
-            color: #666;
+            color: var(--color-text-light);
             display: block;
-            margin-bottom: 3rem;
+            margin-bottom: var(--spacing-md);
         }
 
         /* =========================================
@@ -307,14 +331,14 @@
             font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 300;
             line-height: 1.2;
-            margin-bottom: 2rem;
+            margin-bottom: var(--spacing-md);
         }
 
         .subheadline {
             font-size: clamp(1.25rem, 2vw, 1.5rem);
-            color: #666;
+            color: var(--color-text-light);
             font-weight: 300;
-            margin-bottom: 3rem;
+            margin-bottom: var(--spacing-md);
         }
 
         /* =========================================
@@ -323,17 +347,18 @@
         .button {
             display: inline-flex;
             align-items: center;
-            padding: 1rem 2rem;
+            padding: var(--spacing-sm) var(--spacing-md);
             border-radius: 0.75rem;
             font-size: 1rem;
             font-weight: 400;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all var(--transition-fast);
             cursor: pointer;
+            border: none;
         }
 
         .button-primary {
-            background: #000;
+            background: var(--color-primary);
             color: #fff;
         }
 
@@ -342,13 +367,26 @@
         }
 
         .button-secondary {
-            border: 1px solid #eee;
-            color: #000;
+            border: 1px solid var(--color-border);
+            color: var(--color-primary);
+            background: transparent;
         }
 
         .button-secondary:hover {
-            border-color: #ddd;
-            background: #fafafa;
+            border-color: var(--color-border-hover);
+            background: var(--color-secondary);
+        }
+
+        .button-group {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+
+        .button-detail {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            margin-left: 0.5rem;
         }
 
         /* =========================================
@@ -357,73 +395,397 @@
         .features-grid,
         .specialties-grid,
         .steps-grid,
-        .articles-grid {
+        .articles-grid,
+        .pricing-grid,
+        .policy-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
         }
 
         .specialty-card {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid #eee;
-    border-radius: 16px;
-    padding: 32px;
-    cursor: pointer;
-    transition: all 0.3s var(--easing);
-}
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: var(--spacing-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+        }
 
-.specialty-card:hover {
-    background: #fafafa;
-    border-color: #ddd;
-    transform: translateY(-2px);
-}
+        .specialty-card:hover {
+            background: var(--color-secondary);
+            border-color: var(--color-border-hover);
+            transform: translateY(-2px);
+        }
 
-.card-content {
-    position: relative;
-}
+        .card-content {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-.card-content h3 {
-    font-size: 24px;
-    font-weight: 400;
-    margin-bottom: 8px;
-}
+        .card-content h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: var(--spacing-xs);
+        }
 
-.card-content p {
-    color: #666;
-    font-weight: 300;
-    margin-bottom: 24px;
-}
+        .card-content p {
+            color: var(--color-text-light);
+            font-weight: 300;
+            margin-bottom: var(--spacing-md);
+        }
 
-.card-arrow {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    font-size: 20px;
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: all 0.3s var(--easing);
-}
+        .card-arrow {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            font-size: 20px;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all var(--transition-fast);
+        }
 
-.specialty-card:hover .card-arrow {
-    opacity: 1;
-    transform: translateX(0);
-}
+        .specialty-card:hover .card-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
 
+        .feature-card {
+            grid-column: 1 / -1;
+            height: auto;
+            background: linear-gradient(to right, #f8f8f8, #ffffff);
+        }
 
-        .step-number {
-            font-size: 0.875rem;
-            color: #666;
-            margin-bottom: 1rem;
-            display: block;
+        /* Article Cards */
+        .article-card {
+            padding: var(--spacing-md);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            position: relative;
+        }
+
+        .article-card:hover {
+            background: var(--color-secondary);
+            border-color: var(--color-border-hover);
+            transform: translateY(-2px);
         }
 
         .article-date {
             font-size: 0.875rem;
-            color: #666;
+            color: var(--color-text-light);
             display: block;
             margin-bottom: 0.5rem;
+        }
+
+        /* Step Cards */
+        .step-number {
+            font-size: 0.875rem;
+            color: var(--color-text-light);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Pricing Cards */
+        .pricing-card {
+            background: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 1rem;
+            padding: var(--spacing-md);
+            transition: all var(--transition-fast);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--color-primary);
+            background: linear-gradient(to bottom right, #fafafa, #fff);
+        }
+
+        .pricing-type {
+            font-size: 1.125rem;
+            font-weight: 400;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-value {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-period {
+            font-size: 1rem;
+            color: var(--color-text-light);
+        }
+
+        .pricing-details {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .pricing-details li {
+            padding: 0.5rem 0;
+            color: var(--color-text-light);
+            font-weight: 300;
+        }
+
+        /* Policy Cards */
+        .policy-card {
+            background: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+
+        .policy-card h4 {
+            font-size: 1.125rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+
+        .policy-terms {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .policy-term {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .policy-label {
+            font-weight: 300;
+            color: var(--color-text-light);
+        }
+
+        .policy-value {
+            font-weight: 400;
+        }
+
+        /* =========================================
+           Sistema Modal Unificado
+           ========================================= */
+        .modal-system {
+            position: fixed;
+            inset: 0;
+            z-index: var(--z-modal);
+            display: none;
+        }
+
+        .modal-system.active {
+            display: block;
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+        }
+
+        .modal-system.active .modal-backdrop {
+            opacity: 1;
+        }
+
+        .modal-content {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 600px;
+            height: 100%;
+            background: var(--color-background);
+            padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform var(--transition-medium);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-system.active .modal-content {
+            transform: translateX(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--color-text-light);
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            transition: all var(--transition-fast);
+        }
+
+        .modal-close:hover {
+            background: var(--color-secondary);
+        }
+
+        .modal {
+            display: none;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-header {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .modal-label {
+            font-size: 0.875rem;
+            color: var(--color-text-light);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .modal-header h2 {
+            font-size: 2rem;
+            font-weight: 300;
+        }
+
+        .modal-section {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .modal-section h3 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .approach-cards {
+            display: grid;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .approach-card {
+            padding: 1.5rem;
+            border: 1px solid var(--color-border);
+            border-radius: 0.75rem;
+        }
+
+        .approach-number {
+            font-size: 0.875rem;
+            color: var(--color-text-light);
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .approach-card h4 {
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .approach-card p {
+            font-size: 0.875rem;
+            color: var(--color-text-light);
+            font-weight: 300;
+        }
+
+        .modal-cta {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: var(--spacing-md);
+        }
+
+        .modal-button {
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+        }
+
+        /* Info Container */
+        .info-container {
+            padding-bottom: var(--spacing-md);
+        }
+
+        .info-header {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .info-label {
+            font-size: 0.875rem;
+            color: var(--color-text-light);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .info-section {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .info-section h3 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .payment-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .payment-list li {
+            padding: 0.5rem 0;
+            font-weight: 300;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: var(--spacing-md);
+        }
+
+        /* Botão Flutuante */
+        .floating-info {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--color-border);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--color-primary);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            z-index: 90;
+        }
+
+        .floating-info:hover {
+            background: var(--color-background);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         /* =========================================
@@ -431,514 +793,57 @@
            ========================================= */
         @media (max-width: 768px) {
             .section {
-                padding: var(--spacing-base) 1rem;
+                padding: var(--spacing-base) var(--spacing-sm);
             }
             
             .headline {
                 font-size: 2rem;
             }
             
-            .features-grid,
-            .specialties-grid,
-            .steps-grid,
-            .articles-grid {
+            .specialties-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .specialty-card {
+                height: auto;
+                padding: var(--spacing-sm);
+            }
+            
+            .modal-content {
+                max-width: 100%;
+                padding: var(--spacing-md) var(--spacing-sm);
+            }
+            
+            .floating-info {
+                bottom: 24px;
+                right: 24px;
+                padding: 10px 20px;
+            }
+            
+            .pricing-grid,
+            .policy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+
+            .pricing-value {
+                font-size: 2rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
         }
-        <!-- Adicione estes estilos dentro da tag style no head -->
-/* Modal System */
-.modal-container {
-    position: fixed;
-    inset: 0;
-    z-index: 10000;
-    display: none;
-}
-
-.modal-container.active {
-    display: block;
-}
-
-.modal-backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    opacity: 0;
-    transition: opacity 0.3s var(--easing);
-}
-
-.modal-container.active .modal-backdrop {
-    opacity: 1;
-}
-
-.modal-content {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    max-width: 600px;
-    height: 100%;
-    background: #fff;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
-    transform: translateX(100%);
-    transition: transform 0.5s var(--easing);
-    overflow-y: auto;
-}
-
-.modal-container.active .modal-content {
-    transform: translateX(0);
-}
-
-.modal-close {
-    position: absolute;
-    top: 8rem;
-    right: 2rem;
-    background: none;
-    border: none;
-    font-size: 1rem;
-    font-weight: 300;
-    cursor: pointer;
-    z-index: 100000;
-}
-
-.modal {
-    display: none;
-    padding: 4rem 2rem 2rem;
-}
-
-.modal.active {
-    display: block;
-}
-
-.modal-header {
-    margin-bottom: 3rem;
-}
-
-.modal-label {
-    font-size: 0.875rem;
-    color: #666;
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 300;
-}
-
-.modal-header h2 {
-    font-size: 2rem;
-    font-weight: 300;
-}
-
-.modal-section {
-    margin-bottom: 3rem;
-}
-
-.modal-section h3 {
-    font-size: 1.25rem;
-    font-weight: 400;
-    margin-bottom: 1rem;
-}
-
-.approach-cards {
-    display: grid;
-    gap: 1rem;
-    margin: 2rem 0;
-}
-
-.approach-card {
-    padding: 1.5rem;
-    border: 1px solid #eee;
-    border-radius: 0.75rem;
-}
-
-.approach-number {
-    font-size: 0.875rem;
-    color: #666;
-    display: block;
-    margin-bottom: 1rem;
-}
-
-.approach-card h4 {
-    font-size: 1rem;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-}
-
-.approach-card p {
-    font-size: 0.875rem;
-    color: #666;
-    font-weight: 300;
-}
-
-.modal-cta {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 3rem;
-}
-
-.modal-button {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-}
-
-@media (max-width: 768px) {
-    .modal-content {
-        max-width: 100%;
-    }
-}
-
-/* Atualizações no grid de especialidades */
-.specialties-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.specialty-card {
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: all 0.3s var(--easing);
-}
-
-.specialty-card:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-}
-
-.feature-card {
-    grid-column: 1 / -1;
-    height: auto;
-    background: linear-gradient(to right, #f8f8f8, #ffffff);
-    border: 1px solid #eee;
-}
-
-.card-content {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.card-content h3 {
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin-bottom: 1rem;
-}
-
-.card-content p {
-    font-size: 1rem;
-    color: #666;
-    font-weight: 300;
-    margin-bottom: 2rem;
-}
-
-@media (max-width: 768px) {
-    .specialties-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .specialty-card {
-        height: auto;
-        padding: 1.5rem;
-    }
-}
-.pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-}
-
-.pricing-card {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 1rem;
-    padding: 2rem;
-    transition: all 0.3s var(--easing);
-}
-
-.pricing-card.featured {
-    border-color: #000;
-    background: linear-gradient(to bottom right, #fafafa, #fff);
-}
-
-.pricing-type {
-    font-size: 1.125rem;
-    font-weight: 400;
-    display: block;
-    margin-bottom: 1rem;
-}
-
-.pricing-value {
-    font-size: 2.5rem;
-    font-weight: 300;
-    margin-bottom: 1.5rem;
-}
-
-.pricing-period {
-    font-size: 1rem;
-    color: #666;
-}
-
-.pricing-details {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.pricing-details li {
-    padding: 0.5rem 0;
-    color: #666;
-    font-weight: 300;
-}
-
-.policy-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-}
-
-.policy-card {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 1rem;
-    padding: 1.5rem;
-}
-
-.policy-card h4 {
-    font-size: 1.125rem;
-    font-weight: 400;
-    margin-bottom: 1.5rem;
-}
-
-.policy-terms {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.policy-term {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #eee;
-}
-
-.policy-label {
-    font-weight: 300;
-    color: #666;
-}
-
-.policy-value {
-    font-weight: 400;
-}
-
-.payment-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.payment-list li {
-    padding: 0.5rem 0;
-    font-weight: 300;
-}
-
-.contact-buttons {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.button-detail {
-    font-size: 0.875rem;
-    opacity: 0.8;
-    margin-left: 0.5rem;
-}
-
-@media (max-width: 768px) {
-    .pricing-grid,
-    .policy-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-buttons {
-        flex-direction: column;
-    }
-
-    .pricing-value {
-        font-size: 2rem;
-    }
-}
-
-        /* Botão Flutuante */
-.floating-info {
-    position: fixed;
-    bottom: 32px;
-    right: 32px;
-    padding: 12px 24px;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    border: 1px solid #eee;
-    border-radius: 100px;
-    font-size: 14px;
-    font-weight: 300;
-    color: #000;
-    cursor: pointer;
-    transition: all 0.3s var(--easing);
-    z-index: 90;
-}
-
-.floating-info:hover {
-    background: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Sistema Modal */
-.modal-system {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    display: none;
-}
-
-.modal-system.active {
-    display: block;
-}
-
-.modal-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    opacity: 0;
-    transition: opacity 0.3s var(--easing);
-}
-
-.modal-system.active .modal-backdrop {
-    opacity: 1;
-}
-
-.modal-wrapper {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    max-width: 600px;
-    height: 100%;
-    background: #fff;
-    padding: 32px;
-    overflow-y: auto;
-    transform: translateX(100%);
-    transition: transform 0.5s var(--easing);
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
-}
-
-.modal-system.active .modal-wrapper {
-    transform: translateX(0);
-}
-
-@media (max-width: 768px) {
-    .modal-wrapper {
-        max-width: 100%;
-    }
-    
-    .floating-info {
-        bottom: 24px;
-        right: 24px;
-        padding: 10px 20px;
-    }
-}
-/* Adicione/atualize estes estilos na sua tag style */
-
-/* Sistema Modal Unificado */
-.modal-system {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    display: none;
-}
-
-.modal-system.active {
-    display: block;
-}
-
-.modal-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    opacity: 0;
-    transition: opacity 0.3s var(--easing);
-}
-
-.modal-system.active .modal-backdrop {
-    opacity: 1;
-}
-
-.modal-wrapper,
-.modal-content {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    max-width: 600px;
-    height: 100%;
-    background: #fff;
-    padding: 32px;
-    overflow-y: auto;
-    transform: translateX(100%);
-    transition: transform 0.5s var(--easing);
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
-}
-
-.modal-system.active .modal-wrapper,
-.modal-system.active .modal-content {
-    transform: translateX(0);
-}
-
-.modal-close {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    background: none;
-    border: none;
-    font-size: 16px;
-    font-weight: 300;
-    color: #666;
-    cursor: pointer;
-    padding: 8px 16px;
-    border-radius: 100px;
-    transition: all 0.3s var(--easing);
-}
-
-.modal-close:hover {
-    background: #f5f5f5;
-}
-
-@media (max-width: 768px) {
-    .modal-wrapper,
-    .modal-content {
-        max-width: 100%;
-        padding: 24px;
-    }
-}
-
-        
-        
-        
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <a href="#" class="logo">Dr. Gustavo Mendes</a>
-        <button class="menu-toggle">Menu</button>
+        <button class="menu-toggle" aria-label="Abrir menu">Menu</button>
     </header>
 
     <!-- Menu Overlay -->
@@ -949,9 +854,7 @@
             <a href="#metodo">Método</a>
             <a href="#blog">Blog</a>
             <a href="#contato">Contato</a>
-            <a href="#" class="menu-nav-item" data-modal="infoModal">
-    Preços e Informações
-</a>
+            <a href="#" data-modal="infoModal">Preços e Informações</a>
         </nav>
     </div>
 
@@ -1001,88 +904,89 @@
         </div>
     </section>
 
-<!-- Substitua a seção de especialidades atual por esta -->
-<section class="section" id="especialidades">
-    <div class="container">
-        <span class="section-label">Especialidades</span>
-        
-        <div class="specialties-grid">
-            <!-- Transtornos Principais -->
-            <div class="specialty-card" data-modal="modalTDAH">
-                <div class="card-content">
-                    <h3>TDAH</h3>
-                    <p>Análise comportamental e tratamento personalizado</p>
-                    <span class="card-arrow">→</span>
-                </div>
-            </div>
+    <!-- Especialidades Section -->
+    <section class="section" id="especialidades">
+        <div class="container">
+            <span class="section-label">Especialidades</span>
             
-            <div class="specialty-card" data-modal="modalAutismo">
-                <div class="card-content">
-                    <h3>Autismo (TEA)</h3>
-                    <p>Abordagem especializada e acolhedora</p>
-                    <span class="card-arrow">→</span>
+            <div class="specialties-grid">
+                <!-- Transtornos Principais -->
+                <div class="specialty-card" data-modal="modalTDAH">
+                    <div class="card-content">
+                        <h3>TDAH</h3>
+                        <p>Análise comportamental e tratamento personalizado</p>
+                        <span class="card-arrow">→</span>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="specialty-card" data-modal="modalAnsiedade">
-                <div class="card-content">
-                    <h3>Ansiedade</h3>
-                    <p>Tratamento integrado com análise comportamental</p>
-                    <span class="card-arrow">→</span>
+                
+                <div class="specialty-card" data-modal="modalAutismo">
+                    <div class="card-content">
+                        <h3>Autismo (TEA)</h3>
+                        <p>Abordagem especializada e acolhedora</p>
+                        <span class="card-arrow">→</span>
+                    </div>
                 </div>
-            </div>
+                
+                <div class="specialty-card" data-modal="modalAnsiedade">
+                    <div class="card-content">
+                        <h3>Ansiedade</h3>
+                        <p>Tratamento integrado com análise comportamental</p>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
 
-            <div class="specialty-card" data-modal="modalDepressao">
-                <div class="card-content">
-                    <h3>Depressão</h3>
-                    <p>Suporte terapêutico e acompanhamento contínuo</p>
-                    <span class="card-arrow">→</span>
+                <div class="specialty-card" data-modal="modalDepressao">
+                    <div class="card-content">
+                        <h3>Depressão</h3>
+                        <p>Suporte terapêutico e acompanhamento contínuo</p>
+                        <span class="card-arrow">→</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="specialty-card" data-modal="modalBurnout">
-                <div class="card-content">
-                    <h3>Burnout</h3>
-                    <p>Recuperação do equilíbrio profissional e pessoal</p>
-                    <span class="card-arrow">→</span>
+                <div class="specialty-card" data-modal="modalBurnout">
+                    <div class="card-content">
+                        <h3>Burnout</h3>
+                        <p>Recuperação do equilíbrio profissional e pessoal</p>
+                        <span class="card-arrow">→</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="specialty-card" data-modal="modalCompulsao">
-                <div class="card-content">
-                    <h3>Compulsão Alimentar</h3>
-                    <p>Tratamento integrado e multidisciplinar</p>
-                    <span class="card-arrow">→</span>
+                <div class="specialty-card" data-modal="modalCompulsao">
+                    <div class="card-content">
+                        <h3>Compulsão Alimentar</h3>
+                        <p>Tratamento integrado e multidisciplinar</p>
+                        <span class="card-arrow">→</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="specialty-card" data-modal="modalTraumas">
-                <div class="card-content">
-                    <h3>Traumas / Luto</h3>
-                    <p>Acolhimento e processamento de experiências</p>
-                    <p>Suporte no processo da elaboração da perda</p>
-                    <span class="card-arrow">→</span>
+                <div class="specialty-card" data-modal="modalTraumas">
+                    <div class="card-content">
+                        <h3>Traumas / Luto</h3>
+                        <p>Acolhimento e processamento de experiências</p>
+                        <span class="card-arrow">→</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="specialty-card" data-modal="modalInsonia">
-                <div class="card-content">
-                    <h3>Insônia</h3>
-                    <p>Recuperação da qualidade do sono</p>
-                    <span class="card-arrow">→</span>
+                <div class="specialty-card" data-modal="modalInsonia">
+                    <div class="card-content">
+                        <h3>Insônia</h3>
+                        <p>Recuperação da qualidade do sono</p>
+                        <span class="card-arrow">→</span>
+                    </div>
                 </div>
-            </div>
-            <!-- Card especial sobre IA -->
-            <div class="specialty-card feature-card" data-modal="modalIA">
-                <div class="card-content">
-                    <h3>Tecnologia a seu favor</h3>
-                    <p>IA para análise e documentação, priorizando seu tempo de consulta</p>
-                    <span class="card-arrow">→</span>
+                
+                <!-- Card especial sobre IA -->
+                <div class="specialty-card feature-card" data-modal="modalIA">
+                    <div class="card-content">
+                        <h3>Tecnologia a seu favor</h3>
+                        <p>IA para análise e documentação, priorizando seu tempo de consulta</p>
+                        <span class="card-arrow">→</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    
     <!-- Método Section -->
     <section class="section" id="metodo">
         <div class="container">
@@ -1180,475 +1084,431 @@
                     </div>
                     
                     <div class="contact-actions">
-                        <a href="https://wa.me/SEUNUMERO" class="button button-primary">WhatsApp</a>
+                        <a href="https://wa.me/11965461146" class="button button-primary">WhatsApp</a>
                         <a href="#" class="button button-secondary">Ver Localização</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Modal System -->
-<div class="modal-container" id="modalContainer">
-    <div class="modal-backdrop"></div>
-    <div class="modal-content">
-        <button class="modal-close">
-            Close
-        </button>
-        
-        <!-- Modal TDAH -->
-        <div class="modal" id="modalTDAH">
-            <div class="modal-header">
-                <span class="modal-label">Especialidade</span>
-                <h2>TDAH</h2>
-            </div>
-            
-            <div class="modal-body">
-                <div class="modal-section">
-                    <h3>Sobre o Transtorno</h3>
-                    <p>O TDAH (Transtorno do Déficit de Atenção com Hiperatividade) é uma condição neurobiológica que afeta a atenção, comportamento e desenvolvimento cognitivo.</p>
-                </div>
 
-                <div class="modal-section">
-                    <h3>Abordagem</h3>
-                    <div class="approach-cards">
-                        <div class="approach-card">
-                            <span class="approach-number">01</span>
-                            <h4>Avaliação Comportamental</h4>
-                            <p>Análise detalhada usando IA para identificar padrões comportamentais</p>
-                        </div>
-                        <div class="approach-card">
-                            <span class="approach-number">02</span>
-                            <h4>Diagnóstico Preciso</h4>
-                            <p>Combinação de avaliação clínica com análise tecnológica</p>
-                        </div>
-                        <div class="approach-card">
-                            <span class="approach-number">03</span>
-                            <h4>Tratamento Personalizado</h4>
-                            <p>Plano individualizado considerando seu contexto de vida</p>
+    <!-- Sistema Modal Unificado -->
+    <div class="modal-system" id="modalContainer">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fechar modal">Fechar</button>
+            
+            <!-- Modal TDAH -->
+            <div class="modal" id="modalTDAH">
+                <div class="modal-header">
+                    <span class="modal-label">Especialidade</span>
+                    <h2>TDAH</h2>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h3>Sobre o Transtorno</h3>
+                        <p>O TDAH (Transtorno do Déficit de Atenção com Hiperatividade) é uma condição neurobiológica que afeta a atenção, comportamento e desenvolvimento cognitivo.</p>
+                    </div>
+
+                    <div class="modal-section">
+                        <h3>Abordagem</h3>
+                        <div class="approach-cards">
+                            <div class="approach-card">
+                                <span class="approach-number">01</span>
+                                <h4>Avaliação Comportamental</h4>
+                                <p>Análise detalhada usando IA para identificar padrões comportamentais</p>
+                            </div>
+                            <div class="approach-card">
+                                <span class="approach-number">02</span>
+                                <h4>Diagnóstico Preciso</h4>
+                                <p>Combinação de avaliação clínica com análise tecnológica</p>
+                            </div>
+                            <div class="approach-card">
+                                <span class="approach-number">03</span>
+                                <h4>Tratamento Personalizado</h4>
+                                <p>Plano individualizado considerando seu contexto de vida</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="modal-cta">
-                    <a href="#contato" class="button button-primary modal-button">Agendar Consulta</a>
-                    <a href="/blog/tdah" class="button button-secondary modal-button">Ler mais sobre TDAH</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Autismo -->
-        <div class="modal" id="modalAutismo">
-            <div class="modal-header">
-                <span class="modal-label">Especialidade</span>
-                <h2>Autismo (TEA)</h2>
-            </div>
-            
-            <div class="modal-body">
-                <div class="modal-section">
-                    <h3>Sobre o Transtorno</h3>
-                    <p>O Transtorno do Espectro Autista (TEA) é uma condição neurodesenvolvimental que afeta a comunicação, interação social e comportamento.</p>
-                </div>
-
-                <div class="modal-section">
-                    <h3>Abordagem</h3>
-                    <div class="approach-cards">
-                        <div class="approach-card">
-                            <span class="approach-number">01</span>
-                            <h4>Avaliação Multidimensional</h4>
-                            <p>Análise comportamental completa com suporte de IA</p>
-                        </div>
-                        <div class="approach-card">
-                            <span class="approach-number">02</span>
-                            <h4>Intervenção Precoce</h4>
-                            <p>Identificação e suporte desde os primeiros sinais</p>
-                        </div>
-                        <div class="approach-card">
-                            <span class="approach-number">03</span>
-                            <h4>Suporte Familiar</h4>
-                            <p>Orientação e acompanhamento para toda a família</p>
-                        </div>
+                    <div class="modal-cta">
+                        <a href="#contato" class="button button-primary modal-button">Agendar Consulta</a>
+                        <a href="/blog/tdah" class="button button-secondary modal-button">Ler mais sobre TDAH</a>
                     </div>
                 </div>
-
-                <div class="modal-cta">
-                    <a href="#contato" class="button button-primary modal-button">Agendar Consulta</a>
-                    <a href="/blog/autismo" class="button button-secondary modal-button">Ler mais sobre Autismo</a>
-                </div>
             </div>
-        </div>
 
-        <!-- Modal Ansiedade -->
-        <div class="modal" id="modalAnsiedade">
-            <div class="modal-header">
-                <span class="modal-label">Especialidade</span>
-                <h2>Ansiedade</h2>
-            </div>
-            
-            <div class="modal-body">
-                <div class="modal-section">
-                    <h3>Sobre o Transtorno</h3>
-                    <p>A ansiedade é uma resposta natural do organismo, mas quando se torna excessiva pode impactar significativamente a qualidade de vida.</p>
+            <!-- Modal Autismo -->
+            <div class="modal" id="modalAutismo">
+                <div class="modal-header">
+                    <span class="modal-label">Especialidade</span>
+                    <h2>Autismo (TEA)</h2>
                 </div>
+                
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h3>Sobre o Transtorno</h3>
+                        <p>O Transtorno do Espectro Autista (TEA) é uma condição neurodesenvolvimental que afeta a comunicação, interação social e comportamento.</p>
+                    </div>
 
-                <div class="modal-section">
-                    <h3>Abordagem</h3>
-                    <div class="approach-cards">
-                        <div class="approach-card">
-                            <span class="approach-number">01</span>
-                            <h4>Análise de Padrões</h4>
-                            <p>Identificação de gatilhos e padrões comportamentais</p>
-                        </div>
-                        <div class="approach-card">
-                            <span class="approach-number">02</span>
-                            <h4>Estratégias Práticas</h4>
-                            <p>Ferramentas e técnicas para gestão da ansiedade</p>
-                        </div>
-                        <div class="approach-card">
-                            <span class="approach-number">03</span>
-                            <h4>Acompanhamento Contínuo</h4>
-                            <p>Suporte regular e ajustes no tratamento</p>
+                    <div class="modal-section">
+                        <h3>Abordagem</h3>
+                        <div class="approach-cards">
+                            <div class="approach-card">
+                                <span class="approach-number">01</span>
+                                <h4>Avaliação Multidimensional</h4>
+                                <p>Análise comportamental completa com suporte de IA</p>
+                            </div>
+                            <div class="approach-card">
+                                <span class="approach-number">02</span>
+                                <h4>Intervenção Precoce</h4>
+                                <p>Identificação e suporte desde os primeiros sinais</p>
+                            </div>
+                            <div class="approach-card">
+                                <span class="approach-number">03</span>
+                                <h4>Suporte Familiar</h4>
+                                <p>Orientação e acompanhamento para toda a família</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="modal-cta">
-                    <a href="#contato" class="button button-primary modal-button">Agendar Consulta</a>
-                    <a href="/blog/ansiedade" class="button button-secondary modal-button">Ler mais sobre Ansiedade</a>
+                    <div class="modal-cta">
+                        <a href="#contato" class="button button-primary modal-button">Agendar Consulta</a>
+                        <a href="/blog/autismo" class="button button-secondary modal-button">Ler mais sobre Autismo</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Ansiedade -->
+            <div class="modal" id="modalAnsiedade">
+                <div class="modal-header">
+                    <span class="modal-label">Especialidade</span>
+                    <h2>Ansiedade</h2>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h3>Sobre o Transtorno</h3>
+                        <p>A ansiedade é uma resposta natural do organismo, mas quando se torna excessiva pode impactar significativamente a qualidade de vida.</p>
+                    </div>
+
+                    <div class="modal-section">
+                        <h3>Abordagem</h3>
+                        <div class="approach-cards">
+                            <div class="approach-card">
+                                <span class="approach-number">01</span>
+                                <h4>Análise de Padrões</h4>
+                                <p>Identificação de gatilhos e padrões comportamentais</p>
+                            </div>
+                            <div class="approach-card">
+                                <span class="approach-number">02</span>
+                                <h4>Estratégias Práticas</h4>
+                                <p>Ferramentas e técnicas para gestão da ansiedade</p>
+                            </div>
+                            <div class="approach-card">
+                                <span class="approach-number">03</span>
+                                <h4>Acompanhamento Contínuo</h4>
+                                <p>Suporte regular e ajustes no tratamento</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-cta">
+                        <a href="#contato" class="button button-primary modal-button">Agendar Consulta</a>
+                        <a href="/blog/ansiedade" class="button button-secondary modal-button">Ler mais sobre Ansiedade</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal Depressão -->
+            <div class="modal" id="modalDepressao">
+                <div class="modal-header">
+                    <span class="modal-label">Especialidade</span>
+                    <h2>Depressão</h2>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h3>Sobre o Transtorno</h3>
+                        <p>A depressão é mais do que tristeza passageira - é uma condição clínica séria que afeta a forma como você se sente, pensa e age.</p>
+                    </div>
+
+                    <div class="modal-section">
+                        <h3>Abordagem</h3>
+                        <div class="approach-cards">
+                            <div class="approach-card">
+                                <span class="approach-number">01</span>
+                                <h4>Avaliação Integral</h4>
+                                <p>Análise abrangente de fatores físicos, emocionais e sociais</p>
+                            </div>
+                            <div class="approach-card">
+                                <span class="approach-number">02</span>
+                                <h4>Tratamento Combinado</h4>
+                                <p>Integração de medicação e psicoterapia quando necessário</p>
+                            </div>
+                            <div class="approach-card">
+                                <span class="approach-number">03</span>
+                                <h4>Monitoramento Constante</h4>
+                                <p>Acompanhamento próximo para ajustes no tratamento</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-cta">
+                        <a href="#contato" class="button button-primary modal-button">Agendar Consulta</a>
+                        <a href="/blog/depressao" class="button button-secondary modal-button">Ler mais sobre Depressão</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mais modais para outras especialidades... -->
+            
+            <!-- Modal Informações -->
+            <div class="modal" id="infoModal">
+                <div class="info-container">
+                    <div class="info-header">
+                        <span class="info-label">Valores e Condições</span>
+                        <h2>Informações de Consulta</h2>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>Modalidades de Atendimento</h3>
+                        <div class="pricing-grid">
+                            <div class="pricing-card">
+                                <span class="pricing-type">Primeira Consulta</span>
+                                <div class="pricing-value">R$ 350</div>
+                                <ul class="pricing-details">
+                                    <li>Presencial no Itaim Bibi</li>
+                                    <li>Parcelamento em até 3x sem juros</li>
+                                    <li>Nota fiscal para reembolso</li>
+                                </ul>
+                            </div>
+
+                            <div class="pricing-card">
+                                <span class="pricing-type">Retorno</span>
+                                <div class="pricing-value">R$ 200</div>
+                                <ul class="pricing-details">
+                                    <li>Consulta online</li>
+                                    <li>Parcelamento em até 2x sem juros</li>
+                                    <li>Nota fiscal para reembolso</li>
+                                </ul>
+                            </div>
+
+                            <div class="pricing-card featured">
+                                <span class="pricing-type">Psicoterapia</span>
+                                <div class="pricing-value">R$ 250<span class="pricing-period">/sessão</span></div>
+                                <ul class="pricing-details">
+                                    <li>Pacote de 12 sessões</li>
+                                    <li>Pagamento antecipado</li>
+                                    <li>Parcelamento em até 6x sem juros</li>
+                                    <li>Total: R$ 3.000</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>Política de Cancelamento</h3>
+                        
+                        <div class="policy-grid">
+                            <div class="policy-card">
+                                <h4>Consultas Individuais</h4>
+                                <div class="policy-terms">
+                                    <div class="policy-term">
+                                        <span class="policy-label">7+ dias antes</span>
+                                        <span class="policy-value">100% reembolso</span>
+                                    </div>
+                                    <div class="policy-term">
+                                        <span class="policy-label">48h a 7 dias antes</span>
+                                        <span class="policy-value">50% reembolso</span>
+                                    </div>
+                                    <div class="policy-term">
+                                        <span class="policy-label">Menos de 48h</span>
+                                        <span class="policy-value">Sem reembolso</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="policy-card">
+                                <h4>Pacote de Psicoterapia</h4>
+                                <div class="policy-terms">
+                                    <div class="policy-term">
+                                        <span class="policy-label">6+ sessões restantes</span>
+                                        <span class="policy-value">50% reembolso do restante</span>
+                                    </div>
+                                    <div class="policy-term">
+                                        <span class="policy-label">3-5 sessões restantes</span>
+                                        <span class="policy-value">25% reembolso do restante</span>
+                                    </div>
+                                    <div class="policy-term">
+                                        <span class="policy-label">1-2 sessões restantes</span>
+                                        <span class="policy-value">Sem reembolso</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>Formas de Pagamento</h3>
+                        <ul class="payment-list">
+                            <li>Cartão de crédito (parcelamento conforme modalidade)</li>
+                            <li>PIX</li>
+                            <li>Nota fiscal para reembolso junto ao plano de saúde</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>Contato</h3>
+                        <div class="contact-buttons">
+                            <a href="https://wa.me/11965461146" class="button button-primary">
+                                <span>WhatsApp</span>
+                                <span class="button-detail">(11) 96546-1146</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+    <!-- Botão Flutuante -->
+    <button class="floating-info" data-modal="infoModal">
+        <span>Valores e Condições</span>
+    </button>
 
     <!-- Scripts -->
-<script>
-        // Menu Toggle Functionality
-        const menuToggle = document.querySelector('.menu-toggle');
-        const menuOverlay = document.querySelector('.menu-overlay');
-        const menuLinks = document.querySelectorAll('.menu-nav a');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Menu Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menuOverlay = document.querySelector('.menu-overlay');
+            const menuLinks = document.querySelectorAll('.menu-nav a');
 
-        menuToggle.addEventListener('click', () => {
-            menuOverlay.classList.toggle('active');
-            menuToggle.textContent = menuOverlay.classList.contains('active') ? 'Close' : 'Menu';
-        });
+            function toggleMenu() {
+                menuOverlay.classList.toggle('active');
+                menuToggle.textContent = menuOverlay.classList.contains('active') ? 'Fechar' : 'Menu';
+                document.body.style.overflow = menuOverlay.classList.contains('active') ? 'hidden' : '';
+            }
 
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menuOverlay.classList.remove('active');
-                menuToggle.textContent = 'Menu';
-            });
-        });
+            menuToggle.addEventListener('click', toggleMenu);
 
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menuOverlay.classList.remove('active');
+                    menuToggle.textContent = 'Menu';
+                    document.body.style.overflow = '';
                 });
             });
-        });
 
-        // Card Interactions
-        document.querySelectorAll('.specialty-card, .article-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.querySelector('.card-arrow').style.opacity = '1';
-                card.querySelector('.card-arrow').style.transform = 'translateX(0)';
+            // Sistema Modal Unificado
+            const modalSystem = document.getElementById('modalContainer');
+            const modals = modalSystem.querySelectorAll('.modal');
+            const modalClose = modalSystem.querySelector('.modal-close');
+            const modalBackdrop = modalSystem.querySelector('.modal-backdrop');
+
+            function openModal(modalId) {
+                const targetModal = document.getElementById(modalId);
+                if (!targetModal) return;
+                
+                // Esconder todos os modais
+                modals.forEach(modal => modal.classList.remove('active'));
+                
+                // Mostrar o modal específico
+                targetModal.classList.add('active');
+                
+                // Ativar o sistema modal
+                modalSystem.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modalSystem.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Esconder todos os modais após animação
+                setTimeout(() => {
+                    modals.forEach(modal => modal.classList.remove('active'));
+                }, 300);
+            }
+
+            // Abrir modais através de data-attributes
+            document.querySelectorAll('[data-modal]').forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const modalId = trigger.getAttribute('data-modal');
+                    openModal(modalId);
+                });
             });
 
-            card.addEventListener('mouseleave', () => {
-                card.querySelector('.card-arrow').style.opacity = '0';
-                card.querySelector('.card-arrow').style.transform = 'translateX(-10px)';
-            });
-        });
-
-        // Intersection Observer for Fade-in Effects
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+            // Fechar modal com botão
+            modalClose.addEventListener('click', closeModal);
+            
+            // Fechar modal com backdrop
+            modalBackdrop.addEventListener('click', closeModal);
+            
+            // Fechar modal com ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modalSystem.classList.contains('active')) {
+                    closeModal();
                 }
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'all 0.6s var(--easing)';
-            observer.observe(section);
-        });
-<!-- Adicione este JavaScript no final do arquivo, dentro da tag script existente -->
-// Modal System
-const modalContainer = document.getElementById('modalContainer');
-const modals = document.querySelectorAll('.modal');
-const modalClose = document.querySelector('.modal-close');
-
-// Função para abrir modal específico
-function openModal(modalId) {
-    modalContainer.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    
-    modals.forEach(modal => {
-        modal.classList.remove('active');
-    });
-    
-    document.getElementById(modalId).classList.add('active');
-}
-
-// Função para fechar modal
-function closeModal() {
-    modalContainer.classList.remove('active');
-    document.body.style.overflow = '';
-    
-    modals.forEach(modal => {
-        modal.classList.remove('active');
-    });
-}
-
-// Event Listeners
-modalClose.addEventListener('click', closeModal);
-modalContainer.querySelector('.modal-backdrop').addEventListener('click', closeModal);
-
-// Adicionar listeners aos cards de especialidades
-document.querySelectorAll('.specialty-card').forEach((card, index) => {
-    card.addEventListener('click', () => {
-        const modalIds = ['modalTDAH', 'modalAutismo', 'modalAnsiedade'];
-        openModal(modalIds[index]);
-    });
-});
-// Corrija o JavaScript para os cards de especialidades
-document.addEventListener('DOMContentLoaded', () => {
-    // Certifique-se de que todos os cards tenham a seta
-    document.querySelectorAll('.specialty-card').forEach(card => {
-        const cardContent = card.querySelector('.card-content');
-        if (cardContent && !cardContent.querySelector('.card-arrow')) {
-            const arrow = document.createElement('span');
-            arrow.className = 'card-arrow';
-            arrow.textContent = '→';
-            cardContent.appendChild(arrow);
-        }
-    });
-
-    // Adicione ou atualize o mapeamento dos cards para os modais
-    const specialtyCards = document.querySelectorAll('.specialty-card');
-    
-    specialtyCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const modalId = card.getAttribute('data-modal');
-            if (modalId) {
-                // Abra o modal específico
-                const modal = document.getElementById(modalId);
-                if (modal) {
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
+            // Interação dos cards
+            document.querySelectorAll('.specialty-card, .article-card').forEach(card => {
+                // Certificar que todos os cards têm uma seta
+                const cardContent = card.querySelector('.card-content');
+                if (cardContent && !cardContent.querySelector('.card-arrow')) {
+                    const arrow = document.createElement('span');
+                    arrow.className = 'card-arrow';
+                    arrow.textContent = '→';
+                    cardContent.appendChild(arrow);
                 }
-            }
-        });
-    });
-});
-
-
-// Fechar com tecla ESC
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
-});
-
-// Substitua todo o JavaScript atual de modais por este:
-
-// Sistema de Modais
-document.addEventListener('DOMContentLoaded', () => {
-    // Função para abrir modal
-    function openModal(modalId) {
-        const modal = document.getElementById(modalId);
-        if (modal) {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-    }
-
-    // Função para fechar modal
-    function closeModal(modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    // Triggers para modal de informações
-    document.querySelectorAll('[data-modal="infoModal"]').forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal('infoModal');
-        });
-    });
-
-    // Triggers para modais de especialidades
-    document.querySelectorAll('.specialty-card').forEach((card, index) => {
-        card.addEventListener('click', () => {
-            const modalIds = ['modalTDAH', 'modalAutismo', 'modalAnsiedade'];
-            openModal(modalIds[index]);
-        });
-    });
-
-    // Botões de fechar
-    document.querySelectorAll('.modal-close').forEach(button => {
-        button.addEventListener('click', () => {
-            const modal = button.closest('.modal-system');
-            if (modal) {
-                closeModal(modal);
-            }
-        });
-    });
-
-    // Fechar ao clicar no backdrop
-    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
-        backdrop.addEventListener('click', () => {
-            const modal = backdrop.closest('.modal-system');
-            if (modal) {
-                closeModal(modal);
-            }
-        });
-    });
-
-    // Fechar com ESC
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            document.querySelectorAll('.modal-system.active').forEach(modal => {
-                closeModal(modal);
             });
-        }
-    });
 
-    // Prevenir propagação de clique no conteúdo
-    document.querySelectorAll('.modal-wrapper, .modal-content').forEach(content => {
-        content.addEventListener('click', (e) => {
-            e.stopPropagation();
+            // Scroll suave para âncoras
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('data-modal')) return; // Ignorar links de modal
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (!targetElement) return;
+                    
+                    e.preventDefault();
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Animação de fade-in com Intersection Observer
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'all 0.6s var(--easing)';
+                observer.observe(section);
+            });
         });
-    });
-});
-    
-</script>
-
-    <!-- 2. Adicione este botão flutuante antes do </body> -->
-<button class="floating-info" data-modal="infoModal">
-    <span>Valores e Condições</span>
-</button>
-
-<!-- 3. Adicione o modal antes do </body> -->
-<div class="modal-system" id="infoModal">
-    <div class="modal-backdrop"></div>
-    <div class="modal-wrapper">
-        <!-- Seção de Preços e Políticas -->
-<div class="info-container">
-    <div class="info-header">
-        <span class="info-label">Valores e Condições</span>
-        <h2>Informações de Consulta</h2>
-    </div>
-
-    <div class="info-section">
-        <h3>Modalidades de Atendimento</h3>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <span class="pricing-type">Primeira Consulta</span>
-                <div class="pricing-value">R$ 350</div>
-                <ul class="pricing-details">
-                    <li>Presencial no Itaim Bibi</li>
-                    <li>Parcelamento em até 3x sem juros</li>
-                    <li>Nota fiscal para reembolso</li>
-                </ul>
-            </div>
-
-            <div class="pricing-card">
-                <span class="pricing-type">Retorno</span>
-                <div class="pricing-value">R$ 200</div>
-                <ul class="pricing-details">
-                    <li>Consulta online</li>
-                    <li>Parcelamento em até 2x sem juros</li>
-                    <li>Nota fiscal para reembolso</li>
-                </ul>
-            </div>
-
-            <div class="pricing-card featured">
-                <span class="pricing-type">Psicoterapia</span>
-                <div class="pricing-value">R$ 250<span class="pricing-period">/sessão</span></div>
-                <ul class="pricing-details">
-                    <li>Pacote de 12 sessões</li>
-                    <li>Pagamento antecipado</li>
-                    <li>Parcelamento em até 6x sem juros</li>
-                    <li>Total: R$ 3.000</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="info-section">
-        <h3>Política de Cancelamento</h3>
-        
-        <div class="policy-grid">
-            <div class="policy-card">
-                <h4>Consultas Individuais</h4>
-                <div class="policy-terms">
-                    <div class="policy-term">
-                        <span class="policy-label">7+ dias antes</span>
-                        <span class="policy-value">100% reembolso</span>
-                    </div>
-                    <div class="policy-term">
-                        <span class="policy-label">48h a 7 dias antes</span>
-                        <span class="policy-value">50% reembolso</span>
-                    </div>
-                    <div class="policy-term">
-                        <span class="policy-label">Menos de 48h</span>
-                        <span class="policy-value">Sem reembolso</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="policy-card">
-                <h4>Pacote de Psicoterapia</h4>
-                <div class="policy-terms">
-                    <div class="policy-term">
-                        <span class="policy-label">6+ sessões restantes</span>
-                        <span class="policy-value">50% reembolso do restante</span>
-                    </div>
-                    <div class="policy-term">
-                        <span class="policy-label">3-5 sessões restantes</span>
-                        <span class="policy-value">25% reembolso do restante</span>
-                    </div>
-                    <div class="policy-term">
-                        <span class="policy-label">1-2 sessões restantes</span>
-                        <span class="policy-value">Sem reembolso</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="info-section">
-        <h3>Formas de Pagamento</h3>
-        <ul class="payment-list">
-            <li>Cartão de crédito (parcelamento conforme modalidade)</li>
-            <li>PIX</li>
-            <li>Nota fiscal para reembolso junto ao plano de saúde</li>
-        </ul>
-    </div>
-
-    <div class="info-section">
-        <h3>Contato</h3>
-        <div class="contact-buttons">
-            <a href="https://wa.me/11965461146" class="button button-primary">
-                <span>WhatsApp</span>
-                <span class="button-detail">(11) 96546-1146</span>
-            </a>
-            <button class="button button-secondary modal-close">Voltar</button>
-        </div>
-    </div>
-</div>
-
-    
+    </script>
 </body>
 </html>
