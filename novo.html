@@ -26,7 +26,7 @@
     <!-- Alternativas de Idioma -->
     <link rel="alternate" href="https://drgustavo.med.br/" hreflang="pt-BR">
     
-    <!-- Favicons - Imagens padrão para evitar erros 404 -->
+    <!-- Favicons -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
     
     <!-- Open Graph / Facebook -->
@@ -45,7 +45,7 @@
     <meta name="twitter:description" content="Psiquiatra especializado em TDAH, Autismo e Ansiedade. Atendimento com análise comportamental avançada no Itaim Bibi, São Paulo.">
     <meta name="twitter:image" content="https://drgustavo.med.br/twitter-card.jpg">
     
-    <!-- Schema.org -->
+    <!-- Schema.org Physician -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -64,7 +64,106 @@
             "addressLocality": "São Paulo",
             "addressRegion": "SP",
             "addressCountry": "BR"
-        }
+        },
+        "areaServed": {
+            "@type": "City",
+            "name": "São Paulo"
+        },
+        "availableService": [
+            {
+                "@type": "MedicalProcedure",
+                "name": "Tratamento de TDAH",
+                "description": "Diagnóstico e tratamento de TDAH em adultos"
+            },
+            {
+                "@type": "MedicalProcedure",
+                "name": "Acompanhamento de TEA",
+                "description": "Atendimento especializado para pessoas com Autismo"
+            },
+            {
+                "@type": "MedicalProcedure",
+                "name": "Tratamento de Ansiedade",
+                "description": "Tratamento personalizado para transtornos de ansiedade"
+            },
+            {
+                "@type": "MedicalProcedure",
+                "name": "Prescrição de Canabidiol",
+                "description": "Tratamento com canabidiol para condições específicas"
+            }
+        ],
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+            ],
+            "opens": "08:00",
+            "closes": "18:00"
+        },
+        "priceRange": "R$$$",
+        "sameAs": [
+            "https://www.linkedin.com/in/drgustavomendes"
+        ]
+    }
+    </script>
+
+    <!-- Schema.org MedicalOrganization -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MedicalOrganization",
+        "name": "Consultório Dr. Gustavo Mendes",
+        "@id": "https://drgustavo.med.br/#organization",
+        "url": "https://drgustavo.med.br",
+        "logo": "https://drgustavo.med.br/logo.png",
+        "image": "https://drgustavo.med.br/clinic-photo.jpg",
+        "medicalSpecialty": "Psychiatry",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Itaim Bibi",
+            "addressLocality": "São Paulo",
+            "addressRegion": "SP",
+            "addressCountry": "BR"
+        },
+        "telephone": "+55-11-96546-1146",
+        "email": "contato@drgustavo.med.br"
+    }
+    </script>
+
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Consultório Dr. Gustavo Mendes - Psiquiatria",
+        "@id": "https://drgustavo.med.br/#localbusiness",
+        "image": "https://drgustavo.med.br/clinic-photo.jpg",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Itaim Bibi",
+            "addressLocality": "São Paulo",
+            "addressRegion": "SP",
+            "addressCountry": "BR"
+        },
+        "url": "https://drgustavo.med.br",
+        "telephone": "+55-11-96546-1146",
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday"
+                ],
+                "opens": "08:00",
+                "closes": "18:00"
+            }
+        ]
     }
     </script>
     
@@ -92,7 +191,15 @@
         loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/ScrollTrigger.min.js", function() {
             loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/ScrollToPlugin.min.js", function() {
                 loadScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.3/TextPlugin.min.js", function() {
-                    loadScript("https://cdnjs.cloudflare.com/ajax/libs/split-type/0.3.3/split-type.min.js");
+                    loadScript("https://cdnjs.cloudflare.com/ajax/libs/split-type/0.3.3/split-type.min.js", function() {
+                        // Inicializar efeitos adicionais após carregamento
+                        if (window.initDiagonalEffects) {
+                            window.initDiagonalEffects();
+                        }
+                        if (window.initParticles) {
+                            window.initParticles();
+                        }
+                    });
                 });
             });
         });
@@ -258,6 +365,7 @@
             z-index: var(--z-negative);
             opacity: 0.85;
             will-change: transform;
+            pointer-events: none;
         }
 
         .mesh-primary {
@@ -283,6 +391,72 @@
                 radial-gradient(at 20% 35%, rgba(59, 130, 246, 0.25) 0px, transparent 50%),
                 radial-gradient(at 85% 15%, rgba(236, 72, 153, 0.25) 0px, transparent 50%),
                 radial-gradient(at 60% 90%, rgba(16, 185, 129, 0.2) 0px, transparent 50%);
+        }
+
+        /* =========================================
+           Diagonal Section & Enhancements
+           ========================================= */
+        .diagonal-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diagonal-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: var(--z-negative);
+            overflow: hidden;
+        }
+
+        .diagonal-shape {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(0 0, 100% 0, 55% 100%, 0% 100%);
+            background: linear-gradient(135deg, var(--mesh-blue), var(--mesh-purple));
+            transform-origin: left center;
+            transition: transform 10s ease;
+        }
+
+        .diagonal-shape-2 {
+            clip-path: polygon(100% 0, 100% 100%, 45% 100%, 0 0);
+            background: linear-gradient(135deg, var(--mesh-teal), var(--mesh-cyan));
+            opacity: 0.7;
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+            z-index: var(--z-negative);
+        }
+
+        /* =========================================
+           Particles System
+           ========================================= */
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: var(--z-negative);
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+            pointer-events: none;
         }
 
         /* =========================================
@@ -930,6 +1104,20 @@
             overflow: hidden;
         }
 
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.4) 100%);
+            z-index: var(--z-negative);
+            clip-path: polygon(45% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
         .hero-container {
             position: relative;
             z-index: 1;
@@ -950,6 +1138,8 @@
 
         .hero-text {
             max-width: 640px;
+            position: relative;
+            z-index: 2;
         }
 
         .hero-title {
@@ -999,6 +1189,7 @@
             transform: perspective(1000px) rotateY(-5deg) rotateX(3deg);
             filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.07));
             transition: all var(--transition-slow);
+            z-index: 2;
         }
 
         .hero-image:hover {
@@ -1356,8 +1547,7 @@
             position: relative;
         }
 
-        .steps-grid::before {
-            content: '';
+        .steps-connector {
             position: absolute;
             top: 48%;
             left: 0;
@@ -1369,6 +1559,13 @@
                 rgba(0, 102, 238, 0.2) 80%,
                 rgba(0, 102, 238, 0));
             z-index: 0;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 1.5s var(--easing-decelerate);
+        }
+
+        .steps-connector.animated {
+            transform: scaleX(1);
         }
 
         .step-card {
@@ -1578,6 +1775,216 @@
         }
 
         /* =========================================
+           Comparison Section
+           ========================================= */
+        .comparison-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-slider {
+            position: relative;
+            margin-top: var(--space-10);
+            overflow: hidden;
+            padding: 0 var(--space-4);
+            z-index: 1;
+        }
+
+        .comparison-track {
+            display: flex;
+            transition: transform var(--transition-slow);
+        }
+
+        .comparison-slide {
+            min-width: 100%;
+            padding: 0 var(--space-2);
+        }
+
+        .comparison-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--shadow-md);
+            transform: translateZ(0);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, 
+                rgba(255, 255, 255, 0) 30%, 
+                rgba(255, 255, 255, 0.4) 50%, 
+                rgba(255, 255, 255, 0) 70%);
+            opacity: 0;
+            z-index: 0;
+            transition: opacity var(--transition-normal), transform 2s var(--easing-standard);
+            transform: translateX(-100%);
+        }
+
+        .comparison-slide.active .comparison-card::before {
+            opacity: 1;
+            transform: translateX(100%);
+        }
+
+        .comparison-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-4);
+            color: var(--color-accent);
+            display: block;
+            text-align: center;
+            transition: transform var(--transition-normal);
+        }
+
+        .comparison-slide.active .comparison-icon {
+            transform: scale(1.1);
+        }
+
+        .comparison-title {
+            font-size: 1.75rem;
+            margin-bottom: var(--space-6);
+            text-align: center;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: var(--space-4);
+        }
+
+        .comparison-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-secondary));
+            border-radius: var(--radius-full);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .comparison-table th {
+            padding: var(--space-4);
+            font-weight: 500;
+            text-align: left;
+            color: var(--color-text-primary);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .comparison-table td {
+            padding: var(--space-4);
+            vertical-align: top;
+        }
+
+        .comparison-table tr:not(:last-child) td {
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .my-service, .traditional-service {
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            height: 100%;
+        }
+
+        .my-service {
+            background-color: rgba(18, 184, 136, 0.05);
+            color: var(--color-text-primary);
+            border: 1px solid rgba(18, 184, 136, 0.1);
+            box-shadow: var(--shadow-sm);
+            transform: scale(1.03);
+            position: relative;
+            z-index: 1;
+        }
+
+        .my-service strong {
+            font-weight: 600;
+            font-size: 1.125rem;
+            display: block;
+            margin-bottom: var(--space-2);
+            color: var(--color-text-primary);
+        }
+
+        .traditional-service {
+            background-color: rgba(229, 231, 235, 0.5);
+            color: var(--color-text-secondary);
+            border: 1px solid rgba(229, 231, 235, 0.8);
+        }
+
+        .traditional-service strong {
+            font-weight: 500;
+            display: block;
+            margin-bottom: var(--space-2);
+            color: var(--color-text-secondary);
+        }
+
+        .my-service p, .traditional-service p {
+            margin: 0;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .comparison-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-4);
+            margin-top: var(--space-8);
+        }
+
+        .comparison-arrow {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .comparison-arrow:hover {
+            background-color: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .comparison-dots {
+            display: flex;
+            gap: var(--space-2);
+        }
+
+        .comparison-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--color-border);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .comparison-dot.active {
+            background-color: var(--color-primary);
+            transform: scale(1.3);
+        }
+
+        /* =========================================
            CTA Banner - Conversion Enhancement
            ========================================= */
         .promo-banner {
@@ -1692,6 +2099,345 @@
             transform: translateY(-3px) scale(1.03);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
             color: var(--color-primary);
+        }
+
+        /* =========================================
+           Clinica Section - Enhanced Map
+           ========================================= */
+        .clinic-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-container {
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            margin-top: var(--space-8);
+            position: relative;
+            z-index: 1;
+            border: 1px solid var(--color-border);
+            background-color: var(--color-background);
+        }
+
+        .map-iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+            display: block;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+            pointer-events: none;
+        }
+
+        .map-container:hover .map-overlay {
+            opacity: 0;
+        }
+
+        .map-location-pulse {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background-color: var(--color-accent);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .map-location-pulse::before, 
+        .map-location-pulse::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background-color: var(--color-accent);
+            border-radius: 50%;
+            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+
+        .map-location-pulse::after {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                width: 20px;
+                height: 20px;
+                opacity: 1;
+            }
+            100% {
+                width: 100px;
+                height: 100px;
+                opacity: 0;
+            }
+        }
+
+        .map-actions {
+            display: flex;
+            gap: var(--space-4);
+            padding: var(--space-4) var(--space-6);
+            background-color: var(--color-surface-variant);
+            justify-content: center;
+        }
+
+        .map-location-details {
+            text-align: center;
+            margin-top: var(--space-6);
+        }
+
+        .location-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: var(--space-2);
+        }
+
+        .location-address {
+            color: var(--color-text-secondary);
+            font-weight: 300;
+            margin-bottom: var(--space-2);
+        }
+
+        .location-hours {
+            color: var(--color-text-tertiary);
+            font-size: 0.875rem;
+            font-weight: 300;
+        }
+
+        @media (max-width: 768px) {
+            .map-actions {
+                flex-direction: column;
+            }
+        }
+
+        /* =========================================
+           FAQ Section - Enhanced Accordion
+           ========================================= */
+        .faq-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .accordion {
+            margin-top: var(--space-8);
+            position: relative;
+            z-index: 1;
+        }
+
+        .accordion-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            margin-bottom: var(--space-4);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-ambient);
+        }
+
+        .accordion-item:hover {
+            box-shadow: var(--shadow-md);
+            border-color: rgba(0, 102, 238, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .accordion-item.active {
+            box-shadow: var(--shadow-md);
+            border-color: rgba(0, 102, 238, 0.3);
+        }
+
+        .accordion-header {
+            padding: var(--space-5) var(--space-6);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color var(--transition-fast);
+            background-color: transparent;
+        }
+
+        .accordion-header:hover {
+            background-color: rgba(0, 0, 0, 0.01);
+        }
+
+        .accordion-title {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin: 0;
+            padding-right: var(--space-4);
+        }
+
+        .accordion-icon {
+            font-size: 1.25rem;
+            transition: transform var(--transition-fast);
+            color: var(--color-text-tertiary);
+            font-weight: 300;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(45deg);
+            color: var(--color-accent);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-normal);
+        }
+
+        .accordion-content-inner {
+            padding: 0 var(--space-6) var(--space-6);
+            color: var(--color-text-secondary);
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* =========================================
+           Blog Section - Enhanced Card Design
+           ========================================= */
+        .blog-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all var(--transition-normal);
+            position: relative;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transform: translateZ(0);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, 
+                rgba(255, 255, 255, 0) 30%, 
+                rgba(255, 255, 255, 0.6) 50%, 
+                rgba(255, 255, 255, 0) 70%);
+            opacity: 0;
+            z-index: 0;
+            transition: opacity var(--transition-normal), transform 0.8s var(--easing-standard);
+            transform: translateX(-100%);
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(0, 102, 238, 0.2);
+        }
+
+        .article-card:hover::before {
+            opacity: 1;
+            transform: translateX(100%);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+
+        .article-content {
+            padding: var(--space-6);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+        }
+
+        .article-date {
+            color: var(--color-text-tertiary);
+            font-size: 0.75rem;
+            margin-bottom: var(--space-2);
+            display: block;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .article-title {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-3);
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--color-text-primary);
+            position: relative;
+            padding-bottom: var(--space-3);
+        }
+
+        .article-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-secondary));
+            transition: width var(--transition-normal);
+        }
+
+        .article-card:hover .article-title::after {
+            width: 60px;
+        }
+
+        .article-card p {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            font-weight: 400;
+            margin-bottom: var(--space-4);
+            flex: 1;
+        }
+
+        .article-readmore {
+            align-self: flex-start;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-accent);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            transition: all var(--transition-fast);
+        }
+
+        .article-readmore:hover {
+            transform: translateX(4px);
         }
 
         /* =========================================
@@ -2082,6 +2828,280 @@
         }
 
         /* =========================================
+           Modal System - Contextual Dialog Framework
+           ========================================= */
+        .modal-system {
+            position: fixed;
+            inset: 0;
+            z-index: var(--z-modal);
+            display: none;
+        }
+
+        .modal-system.active {
+            display: block;
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        .modal-system.active .modal-backdrop {
+            opacity: 1;
+        }
+
+        .modal-dialog {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            background-color: var(--color-background);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            transform: translate(-50%, -40%) scale(0.95);
+            opacity: 0;
+            transition: transform var(--transition-normal), opacity var(--transition-normal);
+            overflow-y: auto;
+        }
+
+        .modal-system.active .modal-dialog {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .modal-content {
+            padding: var(--space-8);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--color-surface);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            z-index: 1;
+            color: var(--color-text-tertiary);
+        }
+
+        .modal-close:hover {
+            background-color: var(--color-border);
+            color: var(--color-text-primary);
+            transform: rotate(90deg);
+        }
+
+        .modal {
+            display: none;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-header {
+            margin-bottom: var(--space-6);
+        }
+
+        .modal-label {
+            color: var(--color-text-tertiary);
+            font-size: 0.875rem;
+            margin-bottom: var(--space-1);
+            display: block;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            position: relative;
+            padding-bottom: var(--space-3);
+        }
+
+        .modal-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 48px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-secondary));
+            border-radius: var(--radius-full);
+        }
+
+        .modal-body {
+            margin-bottom: var(--space-6);
+        }
+
+        .modal-section {
+            margin-bottom: var(--space-6);
+        }
+
+        .modal-section-title {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-4);
+            font-weight: 500;
+            color: var(--color-text-primary);
+        }
+
+        .approach-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+            margin: var(--space-6) 0;
+        }
+
+        .approach-card {
+            background-color: var(--color-surface);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            height: 100%;
+            border: 1px solid var(--color-border);
+            transition: all var(--transition-fast);
+        }
+
+        .approach-card:hover {
+            background-color: var(--color-background);
+            border-color: var(--color-accent);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .approach-number {
+            color: var(--color-text-tertiary);
+            font-size: 0.875rem;
+            margin-bottom: var(--space-2);
+            display: block;
+            font-weight: 500;
+        }
+
+        .approach-title {
+            font-size: 1.125rem;
+            margin-bottom: var(--space-2);
+            font-weight: 500;
+            color: var(--color-text-primary);
+        }
+
+        .approach-desc {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        @media (max-width: 768px) {
+            .modal-dialog {
+                width: 95%;
+            }
+        }
+
+        /* =========================================
+           CTA Banner - Final Call to Action
+           ========================================= */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-variant));
+            color: white;
+            border-radius: var(--radius-xl);
+            padding: var(--space-10) var(--space-8);
+            text-align: center;
+            margin: var(--space-16) 0 var(--space-6);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transform: translateZ(0);
+        }
+
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(45deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                transparent 100%);
+            transform: translateX(-100%);
+            animation: shine 8s infinite linear;
+        }
+
+        .cta-title {
+            font-size: clamp(1.75rem, 5vw, 3rem);
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            margin-bottom: var(--space-8);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-4);
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-note {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: var(--space-4);
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (min-width: 768px) {
+            .cta-buttons {
+                flex-direction: row;
+            }
+        }
+
+        /* =========================================
            Utilities & Responsive Adjustments
            ========================================= */
         .text-center {
@@ -2269,7 +3289,8 @@
             .whatsapp-button, 
             .hero-cta,
             .promo-banner,
-            .contact-actions {
+            .contact-actions,
+            .modal-system {
                 display: none !important;
             }
             
@@ -2355,6 +3376,7 @@
             <a href="#depoimentos" class="nav-mobile-link">Depoimentos</a>
             <a href="#clinica" class="nav-mobile-link">Consultório</a>
             <a href="#faq" class="nav-mobile-link">Perguntas Frequentes</a>
+            <a href="#blog" class="nav-mobile-link">Blog</a>
             <a href="#contato" class="nav-mobile-link">Contato</a>
         </div>
         
@@ -2365,9 +3387,15 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
-        <section class="hero" id="hero">
-            <div class="mesh-gradient mesh-primary" id="heroMesh"></div>
+        <!-- Hero Section with Diagonal Effect -->
+        <section class="hero diagonal-section" id="hero">
+            <div class="diagonal-bg">
+                <div class="diagonal-shape"></div>
+                <div class="diagonal-shape diagonal-shape-2"></div>
+            </div>
+            <div class="mesh-gradient mesh-primary"></div>
+            <div class="particles-container" id="heroParticles"></div>
+            
             <div class="hero-container">
                 <div class="hero-content">
                     <div class="hero-text gsap-fade-in">
@@ -2381,7 +3409,7 @@
                     </div>
                     
                     <div class="hero-image gsap-fade-in">
-                        <!-- Substitui a imagem por um placeholder colorido -->
+                        <!-- Placeholders for images -->
                         <div class="hero-doctor-img" style="background: linear-gradient(135deg, #3182f6, #0066ee); height: 480px; width: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 600;">
                             Dr. Gustavo Mendes
                         </div>
@@ -2399,16 +3427,23 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Floating elements for hero section -->
+            <div class="floating-element floating-1" style="width: 150px; height: 150px; top: 15%; left: 10%; opacity: 0.05;"></div>
+            <div class="floating-element floating-2" style="width: 100px; height: 100px; top: 60%; right: 15%; opacity: 0.03;"></div>
+            <div class="floating-element floating-3" style="width: 80px; height: 80px; top: 30%; right: 30%; opacity: 0.02;"></div>
         </section>
 
         <!-- About Section -->
         <section class="section about-section" id="sobre">
-            <div class="mesh-gradient mesh-subtle" id="aboutMesh"></div>
+            <div class="mesh-gradient mesh-subtle"></div>
+            <div class="particles-container" id="aboutParticles"></div>
+            
             <div class="container">
                 <div class="about-content">
                     <div class="about-image gsap-fade-in">
                         <div class="doctor-photo-container">
-                            <!-- Substitui a imagem por um placeholder colorido -->
+                            <!-- Placeholder for doctor photo -->
                             <div class="doctor-photo" style="background: linear-gradient(135deg, #3182f6, #0066ee); height: 420px; width: 100%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 600;">
                                 Dr. Gustavo Mendes
                             </div>
@@ -2448,7 +3483,7 @@
         
         <!-- Specialties Section -->
         <section class="section" id="especialidades">
-            <div class="mesh-gradient mesh-accent" id="especialidadesMesh"></div>
+            <div class="mesh-gradient mesh-accent"></div>
             <div class="container">
                 <div class="text-center max-w-2xl mx-auto mb-10 gsap-fade-in">
                     <span class="section-label">Especialidades</span>
@@ -2457,56 +3492,56 @@
                 </div>
                 
                 <div class="grid grid-cols-4 gap-6">
-                    <div class="feature-card gsap-fade-up">
+                    <div class="feature-card gsap-fade-up" data-modal="modalTDAH">
                         <div class="feature-icon">🧠</div>
                         <h3 class="feature-title">TDAH</h3>
                         <p class="feature-description">Análise comportamental e tratamento personalizado para dificuldades de atenção, concentração e hiperatividade.</p>
                         <span class="card-arrow">→</span>
                     </div>
                     
-                    <div class="feature-card gsap-fade-up">
+                    <div class="feature-card gsap-fade-up" data-modal="modalAutismo">
                         <div class="feature-icon">🔄</div>
                         <h3 class="feature-title">Autismo (TEA)</h3>
                         <p class="feature-description">Abordagem especializada e acolhedora para adultos e adolescentes com TEA.</p>
                         <span class="card-arrow">→</span>
                     </div>
                     
-                    <div class="feature-card gsap-fade-up">
+                    <div class="feature-card gsap-fade-up" data-modal="modalAnsiedade">
                         <div class="feature-icon">😓</div>
                         <h3 class="feature-title">Ansiedade</h3>
                         <p class="feature-description">Tratamento integrado para transtornos de ansiedade, pânico e fobias com análise personalizada.</p>
                         <span class="card-arrow">→</span>
                     </div>
                     
-                    <div class="feature-card gsap-fade-up">
+                    <div class="feature-card gsap-fade-up" data-modal="modalDepressao">
                         <div class="feature-icon">😔</div>
                         <h3 class="feature-title">Depressão</h3>
                         <p class="feature-description">Abordagem multifacetada para quadros depressivos com suporte contínuo e terapêutica individualizada.</p>
                         <span class="card-arrow">→</span>
                     </div>
                     
-                    <div class="feature-card gsap-fade-up">
+                    <div class="feature-card gsap-fade-up" data-modal="modalCanabidiol">
                         <div class="feature-icon">🌿</div>
                         <h3 class="feature-title">Canabidiol (CBD)</h3>
                         <p class="feature-description">Prescrição especializada com certificação internacional para casos selecionados.</p>
                         <span class="card-arrow">→</span>
                     </div>
                     
-                    <div class="feature-card gsap-fade-up">
+                    <div class="feature-card gsap-fade-up" data-modal="modalCuidadosPaliativos">
                         <div class="feature-icon">🤲</div>
                         <h3 class="feature-title">Cuidados Paliativos</h3>
                         <p class="feature-description">Manejo de sintomas complexos, suporte ao luto e qualidade de vida em doenças avançadas.</p>
                         <span class="card-arrow">→</span>
                     </div>
                     
-                    <div class="feature-card gsap-fade-up">
+                    <div class="feature-card gsap-fade-up" data-modal="modalTraumas">
                         <div class="feature-icon">💔</div>
                         <h3 class="feature-title">Traumas / Luto</h3>
                         <p class="feature-description">Acolhimento e processamento de experiências traumáticas com abordagem narrativa.</p>
                         <span class="card-arrow">→</span>
                     </div>
                     
-                    <div class="feature-card gsap-fade-up">
+                    <div class="feature-card gsap-fade-up" data-modal="modalInsonia">
                         <div class="feature-icon">😴</div>
                         <h3 class="feature-title">Insônia</h3>
                         <p class="feature-description">Recuperação da qualidade do sono com protocolos personalizados e terapêutica integrada.</p>
@@ -2516,9 +3551,9 @@
             </div>
         </section>
         
-        <!-- Method Section -->
+        <!-- Method Section - With Line Connector -->
         <section class="section method-section" id="metodo">
-            <div class="mesh-gradient mesh-subtle" id="metodoMesh"></div>
+            <div class="mesh-gradient mesh-subtle"></div>
             <div class="container method-content">
                 <div class="text-center max-w-2xl mx-auto mb-10 gsap-fade-in">
                     <span class="section-label">Método</span>
@@ -2527,6 +3562,9 @@
                 </div>
                 
                 <div class="grid grid-cols-2 steps-grid">
+                    <!-- Animated connector between steps -->
+                    <div class="steps-connector" id="stepsConnector"></div>
+                    
                     <div class="step-card gsap-fade-up">
                         <div class="step-number">01</div>
                         <h3 class="step-title">Escuta Ativa</h3>
@@ -2554,9 +3592,11 @@
             </div>
         </section>
         
-        <!-- Testimonials Section -->
+        <!-- Testimonials Section with Floating Bubbles -->
         <section class="section" id="depoimentos">
-            <div class="mesh-gradient mesh-accent" id="depoimentosMesh"></div>
+            <div class="mesh-gradient mesh-accent"></div>
+            <div class="particles-container" id="testimonialsParticles"></div>
+            
             <div class="container">
                 <div class="text-center max-w-2xl mx-auto mb-10 gsap-fade-in">
                     <span class="section-label">Depoimentos</span>
@@ -2594,10 +3634,395 @@
                 </div>
             </div>
         </section>
+        
+        <!-- Comparison Section - Why Choose Me -->
+        <section class="section comparison-section" id="diferenciais">
+            <div class="mesh-gradient mesh-subtle"></div>
+            <div class="container">
+                <div class="text-center max-w-2xl mx-auto mb-10 gsap-fade-in">
+                    <span class="section-label">Diferenciais</span>
+                    <h2 class="section-title">Por que escolher <span>meu atendimento?</span></h2>
+                    <p class="section-subtitle">Comparação entre o atendimento tradicional e minha abordagem inovadora.</p>
+                </div>
                 
+                <div class="comparison-slider fade-in">
+                    <div class="comparison-track">
+                        <!-- Slide 1 -->
+                        <div class="comparison-slide active">
+                            <div class="comparison-card">
+                                <div class="comparison-icon">⏱️</div>
+                                <h3 class="comparison-title">Duração da Consulta</h3>
+                                
+                                <table class="comparison-table">
+                                    <thead>
+                                        <tr>
+                                            <th width="50%">Meu Atendimento</th>
+                                            <th width="50%">Atendimento Tradicional</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="my-service">
+                                                    <strong>2 horas completas</strong>
+                                                    <p>Tempo adequado para uma avaliação profunda</p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="traditional-service">
+                                                    <strong>15-30 minutos</strong>
+                                                    <p>Consultas rápidas e superficiais</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="comparison-slide">
+                            <div class="comparison-card">
+                                <div class="comparison-icon">🧠</div>
+                                <h3 class="comparison-title">Análise Comportamental</h3>
+                                
+                                <table class="comparison-table">
+                                    <thead>
+                                        <tr>
+                                            <th width="50%">Meu Atendimento</th>
+                                            <th width="50%">Atendimento Tradicional</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="my-service">
+                                                    <strong>Potencializada por IA</strong>
+                                                    <p>Identificação precisa de padrões sutis</p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="traditional-service">
+                                                    <strong>Básica ou inexistente</strong>
+                                                    <p>Análise superficial sem tecnologia</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 3 -->
+                        <div class="comparison-slide">
+                            <div class="comparison-card">
+                                <div class="comparison-icon">📝</div>
+                                <h3 class="comparison-title">Documentação</h3>
+                                
+                                <table class="comparison-table">
+                                    <thead>
+                                        <tr>
+                                            <th width="50%">Meu Atendimento</th>
+                                            <th width="50%">Atendimento Tradicional</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="my-service">
+                                                    <strong>Narrativa Personalizada</strong>
+                                                    <p>Relatório detalhado em linguagem acessível</p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="traditional-service">
+                                                    <strong>Prontuário Padrão</strong>
+                                                    <p>Anotações genéricas e técnicas</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 4 -->
+                        <div class="comparison-slide">
+                            <div class="comparison-card">
+                                <div class="comparison-icon">💊</div>
+                                <h3 class="comparison-title">Opções Terapêuticas</h3>
+                                
+                                <table class="comparison-table">
+                                    <thead>
+                                        <tr>
+                                            <th width="50%">Meu Atendimento</th>
+                                            <th width="50%">Atendimento Tradicional</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="my-service">
+                                                    <strong>Inclui Canabidiol</strong>
+                                                    <p>Quando indicado, com certificação internacional</p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="traditional-service">
+                                                    <strong>Apenas medicamentos convencionais</strong>
+                                                    <p>Opções limitadas de tratamento</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 5 -->
+                        <div class="comparison-slide">
+                            <div class="comparison-card">
+                                <div class="comparison-icon">🎓</div>
+                                <h3 class="comparison-title">Formação Especializada</h3>
+                                
+                                <table class="comparison-table">
+                                    <thead>
+                                        <tr>
+                                            <th width="50%">Meu Atendimento</th>
+                                            <th width="50%">Atendimento Tradicional</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="my-service">
+                                                    <strong>Certificações Internacionais</strong>
+                                                    <p>SCC, IACM e University of Colorado</p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="traditional-service">
+                                                    <strong>Formação Básica</strong>
+                                                    <p>Sem especialização avançada</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-controls">
+                        <button class="comparison-arrow comparison-prev">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 12H5M12 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        
+                        <div class="comparison-dots">
+                            <div class="comparison-dot active" data-slide="0"></div>
+                            <div class="comparison-dot" data-slide="1"></div>
+                            <div class="comparison-dot" data-slide="2"></div>
+                            <div class="comparison-dot" data-slide="3"></div>
+                            <div class="comparison-dot" data-slide="4"></div>
+                        </div>
+                        
+                        <button class="comparison-arrow comparison-next">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-10 fade-in">
+                    <a href="#contato" class="btn btn-primary btn-lg">Experimentar a diferença</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Clinic Section - Office Location with Map -->
+        <section class="section clinic-section" id="clinica">
+            <div class="mesh-gradient mesh-subtle"></div>
+            <div class="container">
+                <div class="text-center max-w-2xl mx-auto mb-10 gsap-fade-in">
+                    <span class="section-label">Consultório</span>
+                    <h2 class="section-title">Ambiente <span>Acolhedor e Discreto</span></h2>
+                    <p class="section-subtitle">Localização privilegiada no Itaim Bibi, próximo a transporte público e estacionamentos.</p>
+                </div>
+                
+                <div class="map-container gsap-fade-in">
+                    <iframe 
+                        class="map-iframe"
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14628.472082478024!2d-46.6806809!3d-23.5847376!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce57702e1da5c7%3A0x7ced5a701b2e5de6!2sDr.%20Gustavo%20Mendes%20e%20Silva%20-%20Psiquiatra!5e0!3m2!1spt-BR!2sbr!4v1710247646654!5m2!1spt-BR!2sbr" 
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    
+                    <div class="map-overlay">
+                        <div class="map-location-pulse"></div>
+                    </div>
+                    
+                    <div class="map-actions">
+                        <a href="https://maps.app.goo.gl/Ra5Z3GTQyxgQsfAi9?g_st=ic" class="btn btn-primary" target="_blank">
+                            Como Chegar
+                        </a>
+                        <a href="https://maps.app.goo.gl/Ra5Z3GTQyxgQsfAi9?g_st=ic" class="btn btn-secondary" target="_blank">
+                            Ver Avaliações
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="map-location-details gsap-fade-in" style="transition-delay: 0.2s;">
+                    <h3 class="location-title">Dr. Gustavo Mendes - Consultório de Psiquiatria</h3>
+                    <p class="location-address">Itaim Bibi, São Paulo - SP, Brasil</p>
+                    <p class="location-hours">Segunda a Sexta: 08:00 - 18:00</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section - Enhanced Accordion -->
+        <section class="section faq-section" id="faq">
+            <div class="mesh-gradient mesh-accent"></div>
+            <div class="container">
+                <div class="text-center max-w-2xl mx-auto mb-10 gsap-fade-in">
+                    <span class="section-label">Dúvidas Frequentes</span>
+                    <h2 class="section-title">Perguntas e <span>Respostas</span></h2>
+                    <p class="section-subtitle">Respostas para as dúvidas mais comuns sobre meu atendimento e abordagem terapêutica.</p>
+                </div>
+                
+                <div class="accordion gsap-fade-in">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-title">Como funciona a primeira consulta?</h3>
+                            <div class="accordion-icon">+</div>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-content-inner">
+                                <p>A primeira consulta tem duração de 2 horas. Nos primeiros 90 minutos, realizo uma avaliação detalhada da sua história, sintomas e comportamentos, com o auxílio de tecnologia para análise comportamental. Nos 30 minutos finais, discutimos as impressões, possíveis diagnósticos e opções de tratamento. Você receberá um relatório narrativo detalhado alguns dias após a consulta.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-title">O canabidiol (CBD) é realmente eficaz e seguro?</h3>
+                            <div class="accordion-icon">+</div>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-content-inner">
+                                <p>O canabidiol possui evidências científicas sólidas para diversas condições, como ansiedade, autismo, TDAH, insônia e dor crônica. É não-psicoativo (não causa "high") e tem excelente perfil de segurança. Como médico certificado internacionalmente, avalio cuidadosamente a indicação para cada caso, considerando interações medicamentosas e monitorando os resultados.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-title">Como é feita a análise comportamental com IA?</h3>
+                            <div class="accordion-icon">+</div>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-content-inner">
+                                <p>Durante a consulta, utilizo um sistema de inteligência artificial que analisa padrões de linguagem, expressões e histórico médico, identificando correlações que podem passar despercebidas em avaliações convencionais. Esta análise auxilia no diagnóstico e na elaboração do plano terapêutico, sempre sob minha supervisão clínica. A IA é uma ferramenta complementar, nunca substitui o olhar médico humanizado.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-title">Você aceita planos de saúde?</h3>
+                            <div class="accordion-icon">+</div>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-content-inner">
+                                <p>Não atendo diretamente por planos de saúde, pois eles limitariam o tempo de consulta e a qualidade do atendimento que ofereço. No entanto, forneço recibo com CRM e CID para reembolso junto ao seu plano, dependendo da sua cobertura. Muitos pacientes conseguem reembolso parcial ou integral após submeterem o recibo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <h3 class="accordion-title">Qual a frequência das consultas de acompanhamento?</h3>
+                            <div class="accordion-icon">+</div>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-content-inner">
+                                <p>O acompanhamento é personalizado conforme a necessidade de cada caso. Tipicamente, após a primeira consulta, recomendo um retorno em 3-4 semanas para avaliar a resposta inicial ao tratamento. Posteriormente, dependendo da evolução, as consultas podem ser espaçadas para intervalos de 2 a 3 meses. Estou disponível para consultas pontuais via telemedicina entre os retornos programados, se necessário.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Blog Section - New Modern Cards -->
+        <section class="section blog-section" id="blog">
+            <div class="mesh-gradient mesh-subtle"></div>
+            <div class="container">
+                <div class="text-center max-w-2xl mx-auto mb-10 gsap-fade-in">
+                    <span class="section-label">Blog</span>
+                    <h2 class="section-title">Artigos <span>Recentes</span></h2>
+                    <p class="section-subtitle">Compartilho conhecimentos e atualizações em psiquiatria, neurodiversidade e tratamentos inovadores.</p>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-6">
+                    <article class="article-card gsap-fade-up">
+                        <div style="background: linear-gradient(135deg, #0066ee, #3182f6); height: 180px;" class="article-image"></div>
+                        <div class="article-content">
+                            <span class="article-date">22 Fev 2024</span>
+                            <h3 class="article-title">Uso de IA na Psiquiatria: Ampliando a Percepção Clínica</h3>
+                            <p>Como a inteligência artificial está revolucionando o diagnóstico e tratamento de condições psiquiátricas.</p>
+                            <a href="#" class="article-readmore">
+                                Ler mais
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+                    
+                    <article class="article-card gsap-fade-up">
+                        <div style="background: linear-gradient(135deg, #6366f1, #8b5cf6); height: 180px;" class="article-image"></div>
+                        <div class="article-content">
+                            <span class="article-date">20 Fev 2024</span>
+                            <h3 class="article-title">Canabidiol: Evidências Científicas e Aplicações Clínicas</h3>
+                            <p>Um panorama atual das pesquisas e usos terapêuticos do CBD em transtornos neuropsiquiátricos.</p>
+                            <a href="#" class="article-readmore">
+                                Ler mais
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+                    
+                    <article class="article-card gsap-fade-up">
+                        <div style="background: linear-gradient(135deg, #10b981, #059669); height: 180px;" class="article-image"></div>
+                        <div class="article-content">
+                            <span class="article-date">18 Fev 2024</span>
+                            <h3 class="article-title">Autismo em Adultos: Diagnóstico Tardio e Qualidade de Vida</h3>
+                            <p>Como identificar e apoiar adultos com TEA não diagnosticados na infância.</p>
+                            <a href="#" class="article-readmore">
+                                Ler mais
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="text-center mt-10 gsap-fade-in">
+                    <a href="/blog" class="btn btn-outline">Ver todos os artigos</a>
+                </div>
+            </div>
+        </section>
+        
         <!-- Contact Section -->
         <section class="section contact-section" id="contato">
-            <div class="mesh-gradient mesh-subtle" id="contatoMesh"></div>
+            <div class="mesh-gradient mesh-primary"></div>
             <div class="container">
                 <div class="text-center max-w-2xl mx-auto mb-10 gsap-fade-in">
                     <span class="section-label">Contato</span>
@@ -2662,14 +4087,27 @@
             </div>
         </section>
         
-        <!-- WhatsApp Button -->
-        <a href="https://wa.me/11965461146?text=Olá,%20Dr.%20Gustavo.%20Gostaria%20de%20agendar%20uma%20consulta." class="whatsapp-button" id="whatsappButton">
-            <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
-            <span class="whatsapp-text">Agendar Consulta</span>
-        </a>
+        <!-- Final CTA Banner -->
+        <div class="container">
+            <div class="cta-banner gsap-fade-in">
+                <h2 class="cta-title">Pronto para transformar sua saúde mental?</h2>
+                <p class="cta-subtitle">Consultas de 2 horas, análise comportamental avançada e abordagem humanizada.</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20minha%20consulta." class="btn btn-lg" style="background-color: white; color: var(--color-primary);">Agendar Agora</a>
+                    <a href="#" data-modal="infoModal" class="btn btn-outline btn-lg" style="color: white; border-color: rgba(255, 255, 255, 0.3);">Preços e Informações</a>
+                </div>
+                <div class="cta-note">Apenas 5 vagas disponíveis esta semana</div>
+            </div>
+        </div>
     </main>
+    
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/11965461146?text=Olá,%20Dr.%20Gustavo.%20Gostaria%20de%20agendar%20uma%20consulta." class="whatsapp-button" id="whatsappButton">
+        <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span class="whatsapp-text">Agendar Consulta</span>
+    </a>
     
     <!-- Footer -->
     <footer class="footer">
@@ -2715,10 +4153,10 @@
                 <div class="footer-nav-container">
                     <h3 class="footer-nav-title">Especialidades</h3>
                     <nav class="footer-nav">
-                        <a href="#" class="footer-nav-item">TDAH</a>
-                        <a href="#" class="footer-nav-item">Autismo (TEA)</a>
-                        <a href="#" class="footer-nav-item">Ansiedade</a>
-                        <a href="#" class="footer-nav-item">Canabidiol</a>
+                        <a href="#" class="footer-nav-item" data-modal="modalTDAH">TDAH</a>
+                        <a href="#" class="footer-nav-item" data-modal="modalAutismo">Autismo (TEA)</a>
+                        <a href="#" class="footer-nav-item" data-modal="modalAnsiedade">Ansiedade</a>
+                        <a href="#" class="footer-nav-item" data-modal="modalCanabidiol">Canabidiol</a>
                     </nav>
                 </div>
                 
@@ -2738,136 +4176,1004 @@
         </div>
     </footer>
     
-    <!-- GSAP Animations -->
+    <!-- Modal System -->
+    <div class="modal-system" id="modalContainer">
+        <div class="modal-backdrop"></div>
+        
+        <!-- Modal Content Container -->
+        <div class="modal-dialog">
+            <button class="modal-close" aria-label="Fechar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            
+            <!-- Modal TDAH -->
+            <div class="modal" id="modalTDAH">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="modal-label">Especialidade</span>
+                        <h2 class="modal-title">TDAH</h2>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Sobre o Transtorno</h3>
+                            <p>O TDAH (Transtorno do Déficit de Atenção com Hiperatividade) é uma condição neurobiológica que afeta cerca de 5% dos adultos. Muito além da simples "falta de foco", o TDAH impacta as funções executivas, afetando organização, gestão do tempo e regulação emocional.</p>
+                        </div>
+
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Minha Abordagem</h3>
+                            <div class="approach-cards">
+                                <div class="approach-card">
+                                    <span class="approach-number">01</span>
+                                    <h4 class="approach-title">Avaliação Comportamental Ampliada</h4>
+                                    <p class="approach-desc">Análise detalhada usando IA para identificar padrões comportamentais sutis não percebidos em consultas convencionais</p>
+                                </div>
+                                <div class="approach-card">
+                                    <span class="approach-number">02</span>
+                                    <h4 class="approach-title">Tratamento Multimodal</h4>
+                                    <p class="approach-desc">Combinação personalizada de medicamentos, estratégias comportamentais e, quando indicado, canabidiol como alternativa terapêutica</p>
+                                </div>
+                                <div class="approach-card">
+                                    <span class="approach-number">03</span>
+                                    <h4 class="approach-title">Orientação Prática</h4>
+                                    <p class="approach-desc">Ferramentas concretas para organização, foco e gestão emocional aplicadas ao seu contexto específico de vida</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-actions">
+                            <a href="#contato" class="btn btn-primary w-full">Agendar Consulta</a>
+                            <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20sobre%20TDAH" class="btn btn-secondary w-full">WhatsApp Direto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal Autismo -->
+            <div class="modal" id="modalAutismo">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="modal-label">Especialidade</span>
+                        <h2 class="modal-title">Autismo (TEA)</h2>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Sobre o Transtorno</h3>
+                            <p>O Transtorno do Espectro Autista (TEA) é uma condição neurodesenvolvimental que afeta a comunicação, interação social e comportamento. Em adultos, muitas vezes não diagnosticados na infância, o TEA pode manifestar-se de formas sutis e gerar desafios significativos.</p>
+                        </div>
+
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Minha Abordagem</h3>
+                            <div class="approach-cards">
+                                <div class="approach-card">
+                                    <span class="approach-number">01</span>
+                                    <h4 class="approach-title">Diagnóstico Especializado para Adultos</h4>
+                                    <p class="approach-desc">Avaliação específica para TEA em adultos, frequentemente não identificado em abordagens convencionais</p>
+                                </div>
+                                <div class="approach-card">
+                                    <span class="approach-number">02</span>
+                                    <h4 class="approach-title">Manejo de Comorbidades</h4>
+                                    <p class="approach-desc">Tratamento integrado das condições frequentemente associadas ao TEA, como ansiedade, depressão e sensibilidade sensorial</p>
+                                </div>
+                                <div class="approach-card">
+                                    <span class="approach-number">03</span>
+                                    <h4 class="approach-title">Possibilidade de Canabidiol</h4>
+                                    <p class="approach-desc">Experiência com prescrição responsável de canabidiol para manejo de irritabilidade, ansiedade e hipersensibilidade sensorial em casos selecionados</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-actions">
+                            <a href="#contato" class="btn btn-primary w-full">Agendar Consulta</a>
+                            <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20sobre%20Autismo%20(TEA)" class="btn btn-secondary w-full">WhatsApp Direto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal Ansiedade -->
+            <div class="modal" id="modalAnsiedade">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="modal-label">Especialidade</span>
+                        <h2 class="modal-title">Ansiedade</h2>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Sobre o Transtorno</h3>
+                            <p>A ansiedade é uma resposta natural do organismo, mas quando se torna excessiva pode impactar significativamente a qualidade de vida.</p>
+                        </div>
+
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Abordagem</h3>
+                            <div class="approach-cards">
+                                <div class="approach-card">
+                                    <span class="approach-number">01</span>
+                                    <h4 class="approach-title">Análise de Padrões</h4>
+                                    <p class="approach-desc">Identificação de gatilhos e padrões comportamentais</p>
+                                </div>
+                                <div class="approach-card">
+                                    <span class="approach-number">02</span>
+                                    <h4 class="approach-title">Estratégias Práticas</h4>
+                                    <p class="approach-desc">Ferramentas e técnicas para gestão da ansiedade</p>
+                                </div>
+                                <div class="approach-card">
+                                    <span class="approach-number">03</span>
+                                    <h4 class="approach-title">Acompanhamento Contínuo</h4>
+                                    <p class="approach-desc">Suporte regular e ajustes no tratamento</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-actions">
+                            <a href="#contato" class="btn btn-primary w-full">Agendar Consulta</a>
+                            <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20sobre%20Ansiedade" class="btn btn-secondary w-full">WhatsApp Direto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal Depressão -->
+            <div class="modal" id="modalDepressao">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="modal-label">Especialidade</span>
+                        <h2 class="modal-title">Depressão</h2>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Sobre o Transtorno</h3>
+                            <p>A depressão é mais do que tristeza passageira - é uma condição clínica séria que afeta a forma como você se sente, pensa e age.</p>
+                        </div>
+
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Abordagem</h3>
+                            <div class="approach-cards">
+                                <div class="approach-card">
+                                    <span class="approach-number">01</span>
+                                    <h4 class="approach-title">Avaliação Integral</h4>
+                                    <p class="approach-desc">Análise abrangente de fatores físicos, emocionais e sociais</p>
+                                </div>
+                                <div class="approach-card">
+                                    <span class="approach-number">02</span>
+                                    <h4 class="approach-title">Tratamento Combinado</h4>
+                                    <p class="approach-desc">Integração de medicação e psicoterapia quando necessário</p>
+                                </div>
+                                <div class="approach-card">
+                                    <span class="approach-number">03</span>
+                                    <h4 class="approach-title">Monitoramento Constante</h4>
+                                    <p class="approach-desc">Acompanhamento próximo para ajustes no tratamento</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-actions">
+                            <a href="#contato" class="btn btn-primary w-full">Agendar Consulta</a>
+                            <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20sobre%20Depressão" class="btn btn-secondary w-full">WhatsApp Direto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal Canabidiol -->
+            <div class="modal" id="modalCanabidiol">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="modal-label">Especialidade</span>
+                        <h2 class="modal-title">Canabidiol (CBD)</h2>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Sobre o Tratamento</h3>
+                            <p>O canabidiol (CBD) é um componente não psicoativo da cannabis com crescentes evidências científicas para o tratamento de diversas condições neuropsiquiátricas. Como especialista certificado internacionalmente pela Society of Cannabis Clinicians (SCC), ofereço prescrição responsável e baseada em evidências.</p>
+                        </div>
+
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Aplicações Terapêuticas</h3>
+                            <div class="approach-cards">
+                                <div class="approach-card">
+                                    <span class="approach-number">01</span>
+                                    <h4 class="approach-title">Transtornos de Ansiedade</h4>
+                                    <p class="approach-desc">Ansiedade generalizada, transtorno do pânico e fobia social</p>
+                                </div>
+                                <div class="approach-card">
+                                    <span class="approach-number">02</span>
+                                    <h4 class="approach-title">Transtornos do Neurodesenvolvimento</h4>
+                                    <p class="approach-desc">Irritabilidade no TEA, hiperatividade no TDAH e alterações do sono</p>
+                                </div>
+                                <div class="approach-card">
+                                    <span class="approach-number">03</span>
+                                    <h4 class="approach-title">Dor Crônica e Inflamação</h4>
+                                    <p class="approach-desc">Fibromialgia, neuropatia e dores crônicas refratárias a tratamentos convencionais</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Minha Formação</h3>
+                            <p>Possuo Certificação Internacional em Medicina Canabinoide pela IACM, sou membro da Society of Cannabis Clinicians (SCC) e tenho formação adicional pelo The Medical Cannabis Institute (TMCI Global) e pela EEPHCFMUSP.</p>
+                        </div>
+
+                        <div class="modal-actions">
+                            <a href="#contato" class="btn btn-primary w-full">Agendar Consulta</a>
+                            <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20sobre%20Canabidiol" class="btn btn-secondary w-full">WhatsApp Direto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal Cuidados Paliativos -->
+            <div class="modal" id="modalCuidadosPaliativos">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="modal-label">Especialidade</span>
+                        <h2 class="modal-title">Cuidados Paliativos</h2>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Sobre a Especialidade</h3>
+                            <p>Os Cuidados Paliativos são uma abordagem que melhora a qualidade de vida de pacientes e familiares diante de doenças que ameaçam a continuidade da vida. Além do controle da dor e outros sintomas, oferece suporte psicológico, social e espiritual.</p>
+                        </div>
+
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Minha Abordagem</h3>
+                            <div class="approach-cards">
+                                <div class="approach-card">
+                                    <span class="approach-number">01</span>
+                                    <h4 class="approach-title">Manejo de Sintomas Complexos</h4>
+                                    <p class="approach-desc">Controle especializado de dor, ansiedade, depressão, insônia e outros sintomas comuns</p>
+                                </div>
+                                <div class="approach-card">
+                                    <span class="approach-number">02</span>
+                                    <h4 class="approach-title">Suporte ao Luto</h4>
+                                    <p class="approach-desc">Acompanhamento especializado no processo de luto, ajudando na elaboração e prevenção de complicações</p>
+                                </div>
+                                <div class="approach-card">
+                                    <span class="approach-number">03</span>
+                                    <h4 class="approach-title">Comunicação de Más Notícias</h4>
+                                    <p class="approach-desc">Facilitação do diálogo entre pacientes, familiares e equipes de saúde em momentos difíceis</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Formação Específica</h3>
+                            <p>Formação pelo MJHS Institute for Innovation in Palliative Care e pelo Palliative Care Program da University of Colorado, com experiência clínica no manejo de casos complexos.</p>
+                        </div>
+
+                        <div class="modal-actions">
+                            <a href="#contato" class="btn btn-primary w-full">Agendar Consulta</a>
+                            <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20sobre%20Cuidados%20Paliativos" class="btn btn-secondary w-full">WhatsApp Direto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal Traumas/Luto -->
+            <div class="modal" id="modalTraumas">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="modal-label">Especialidade</span>
+                        <h2 class="modal-title">Traumas / Luto</h2>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Sobre estas Condições</h3>
+                            <p>Traumas e processos de luto podem gerar impactos profundos no funcionamento psíquico, com manifestações somáticas e emocionais que afetam significativamente a qualidade de vida. O acolhimento adequado destas experiências é fundamental para a elaboração e ressignificação.</p>
+                        </div>
+
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Minha Abordagem</h3>
+                            <div class="approach-cards">
+                                <div class="approach-card">
+                                    <span class="approach-number">01</span>
+                                    <h4 class="approach-title">Acolhimento Não-Julgamental</h4>
+                                    <p class="approach-desc">Escuta qualificada e acolhedora, criando espaço seguro para a expressão de sentimentos difíceis</p>
+                                </div>
+                                <div class="approach-card">
+                                    <span class="approach-number">02</span>
+                                    <h4 class="approach-title">Medicina Narrativa</h4>
+                                    <p class="approach-desc">Utilização de técnicas narrativas que facilitam a integração e ressignificação das experiências traumáticas</p>
+                                </div>
+                                <div class="approach-card">
+                                    <span class="approach-number">03</span>
+                                    <h4 class="approach-title">Abordagem Integrada</h4>
+                                    <p class="approach-desc">Combinação de suporte medicamentoso quando necessário com estratégias de apoio psicológico</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-actions">
+                            <a href="#contato" class="btn btn-primary w-full">Agendar Consulta</a>
+                            <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20sobre%20Traumas/Luto" class="btn btn-secondary w-full">WhatsApp Direto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal Insônia -->
+            <div class="modal" id="modalInsonia">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="modal-label">Especialidade</span>
+                        <h2 class="modal-title">Insônia</h2>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Sobre a Condição</h3>
+                            <p>A insônia é mais que um simples desconforto noturno - é um transtorno do sono que afeta profundamente a saúde física e mental, com impactos na cognição, humor e sistema imunológico. Muitas vezes, é tanto sintoma quanto causa de outros transtornos psiquiátricos.</p>
+                        </div>
+
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Minha Abordagem</h3>
+                            <div class="approach-cards">
+                                <div class="approach-card">
+                                    <span class="approach-number">01</span>
+                                    <h4 class="approach-title">Avaliação Detalhada</h4>
+                                    <p class="approach-desc">Análise minuciosa de padrões de sono, comportamentos associados e potenciais causas subjacentes</p>
+                                </div>
+                                <div class="approach-card">
+                                    <span class="approach-number">02</span>
+                                    <h4 class="approach-title">Higiene do Sono</h4>
+                                    <p class="approach-desc">Implementação de protocolos de higiene do sono personalizados para cada caso</p>
+                                </div>
+                                <div class="approach-card">
+                                    <span class="approach-number">03</span>
+                                    <h4 class="approach-title">Intervenção Multimodal</h4>
+                                    <p class="approach-desc">Combinação de terapia cognitivo-comportamental para insônia, medicamentos e, quando indicado, canabidiol</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-actions">
+                            <a href="#contato" class="btn btn-primary w-full">Agendar Consulta</a>
+                            <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20sobre%20Insônia" class="btn btn-secondary w-full">WhatsApp Direto</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal Informações -->
+            <div class="modal" id="infoModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="modal-label">Valores e Condições</span>
+                        <h2 class="modal-title">Informações de Consulta</h2>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Modalidades de Atendimento</h3>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="feature-card">
+                                    <h4 class="text-lg mb-2">Primeira Consulta</h4>
+                                    <p class="text-2xl font-medium mb-2">R$ 350</p>
+                                    <ul class="text-sm">
+                                        <li class="mb-1">✓ Presencial no Itaim Bibi</li>
+                                        <li class="mb-1">✓ Parcelamento em até 3x sem juros</li>
+                                        <li class="mb-1">✓ Nota fiscal para reembolso</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <h4 class="text-lg mb-2">Retorno</h4>
+                                    <p class="text-2xl font-medium mb-2">R$ 200</p>
+                                    <ul class="text-sm">
+                                        <li class="mb-1">✓ Consulta online</li>
+                                        <li class="mb-1">✓ Parcelamento em até 2x sem juros</li>
+                                        <li class="mb-1">✓ Nota fiscal para reembolso</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="feature-card" style="border-color: var(--color-accent); background-color: rgba(0, 112, 243, 0.03);">
+                                    <h4 class="text-lg mb-2">Psicoterapia</h4>
+                                    <p class="text-2xl font-medium mb-2">R$ 250<span class="text-sm font-normal">/sessão</span></p>
+                                    <ul class="text-sm">
+                                        <li class="mb-1">✓ Pacote de 12 sessões</li>
+                                        <li class="mb-1">✓ Pagamento antecipado</li>
+                                        <li class="mb-1">✓ Parcelamento em até 6x sem juros</li>
+                                        <li class="mb-1">✓ Total: R$ 3.000</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Política de Cancelamento</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="feature-card">
+                                    <h4 class="text-lg mb-2">Consultas Individuais</h4>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <div class="text-sm">7+ dias antes:</div>
+                                        <div class="text-sm font-medium">100% reembolso</div>
+                                        <div class="text-sm">48h a 7 dias antes:</div>
+                                        <div class="text-sm font-medium">50% reembolso</div>
+                                        <div class="text-sm">Menos de 48h:</div>
+                                        <div class="text-sm font-medium">Sem reembolso</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <h4 class="text-lg mb-2">Pacote de Psicoterapia</h4>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <div class="text-sm">6+ sessões restantes:</div>
+                                        <div class="text-sm font-medium">50% reembolso do restante</div>
+                                        <div class="text-sm">3-5 sessões restantes:</div>
+                                        <div class="text-sm font-medium">25% reembolso do restante</div>
+                                        <div class="text-sm">1-2 sessões restantes:</div>
+                                        <div class="text-sm font-medium">Sem reembolso</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">Formas de Pagamento</h3>
+                            <ul>
+                                <li>✓ Cartão de crédito (parcelamento conforme modalidade)</li>
+                                <li>✓ PIX</li>
+                                <li>✓ Nota fiscal para reembolso junto ao plano de saúde</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-actions">
+                            <a href="https://wa.me/11965461146" class="btn btn-primary w-full">
+                                WhatsApp (11) 96546-1146
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Enhanced JavaScript for Advanced Effects -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Register GSAP Plugins
-            gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, TextPlugin);
+            // Initialize navigation and UI components with fallbacks
+            initializeBaseUI();
             
-            // Initialize mesh gradient animation - Simplificado para garantir compatibilidade
-            function initMeshGradients() {
-                try {
-                    // Hero mesh - apenas tenta a animação se GSAP estiver disponível
-                    if (gsap && document.getElementById('heroMesh')) {
-                        gsap.to("#heroMesh", {
-                            duration: 15,
-                            backgroundPosition: "100% 100%",
-                            ease: "sine.inOut",
-                            repeat: -1,
-                            yoyo: true
-                        });
-                    }
-                    
-                    // Tentativa de animar outros meshes apenas se o primeiro for bem-sucedido
-                    if (document.getElementById('aboutMesh')) {
-                        gsap.to("#aboutMesh", { duration: 20, backgroundPosition: "-30% 30%", ease: "sine.inOut", repeat: -1, yoyo: true });
-                    }
-                    
-                    if (document.getElementById('especialidadesMesh')) {
-                        gsap.to("#especialidadesMesh", { duration: 18, backgroundPosition: "30% -30%", ease: "sine.inOut", repeat: -1, yoyo: true });
-                    }
-                    
-                    if (document.getElementById('metodoMesh')) {
-                        gsap.to("#metodoMesh", { duration: 22, backgroundPosition: "-20% -20%", ease: "sine.inOut", repeat: -1, yoyo: true });
-                    }
-                    
-                    if (document.getElementById('depoimentosMesh')) {
-                        gsap.to("#depoimentosMesh", { duration: 25, backgroundPosition: "20% 40%", ease: "sine.inOut", repeat: -1, yoyo: true });
-                    }
-                    
-                    if (document.getElementById('contatoMesh')) {
-                        gsap.to("#contatoMesh", { duration: 20, backgroundPosition: "10% -40%", ease: "sine.inOut", repeat: -1, yoyo: true });
-                    }
-                } catch (e) {
-                    console.log("Gradientes animados não suportados neste navegador");
-                }
-            }
+            // Try to init advanced features if GSAP loaded
+            waitForGSAP();
+        });
+        
+        // Base UI functions that work without GSAP
+        function initializeBaseUI() {
+            // Mobile Navigation Toggle
+            const navToggle = document.querySelector('.nav-toggle');
+            const body = document.body;
+            const navBackdrop = document.querySelector('.nav-backdrop');
+            const navMobileLinks = document.querySelectorAll('.nav-mobile-link');
             
-            // Hero animation - Simplificado para maior compatibilidade
-            function animateHero() {
-                try {
-                    const heroTl = gsap.timeline();
-                    
-                    // Verificar se SplitType está disponível antes de usar
-                    let titleChars = document.querySelectorAll('#heroTitle');
-                    let subtitleLines = document.querySelectorAll('#heroSubtitle');
-                    
-                    // Tentar usar SplitType se disponível, caso contrário usar elementos diretos
-                    try {
-                        if (typeof SplitType !== 'undefined') {
-                            const titleText = new SplitType('#heroTitle', { types: 'chars, words' });
-                            const subtitleText = new SplitType('#heroSubtitle', { types: 'lines' });
-                            titleChars = titleText.chars;
-                            subtitleLines = subtitleText.lines;
-                        }
-                    } catch (e) {
-                        console.log("SplitType não disponível, usando animação simplificada");
-                    }
-                    
-                    // Animações básicas que funcionarão sem SplitType
-                    heroTl
-                        .fromTo('.header', 
-                            { y: -100, opacity: 0 },
-                            { y: 0, opacity: 1, duration: 1, ease: 'power3.out' },
-                            0)
-                        .fromTo('#heroTitle', 
-                            { y: 30, opacity: 0 },
-                            { y: 0, opacity: 1, duration: 1, ease: 'power4.out' },
-                            0.3)
-                        .fromTo('#heroSubtitle', 
-                            { y: 20, opacity: 0 },
-                            { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
-                            0.8)
-                        .fromTo('.hero-cta .btn', 
-                            { y: 20, opacity: 0, scale: 0.9 },
-                            { y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.1, ease: 'back.out(1.7)' },
-                            1)
-                        .fromTo('.hero-image', 
-                            { y: 50, opacity: 0 },
-                            { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out' },
-                            0.5)
-                        .fromTo('.promo-banner', 
-                            { y: 50, opacity: 0 },
-                            { y: 0, opacity: 1, duration: 1, ease: 'power3.out' },
-                            1.2);
-                } catch (e) {
-                    console.log("Animações avançadas não suportadas, conteúdo já está visível");
-                }
-            }
-            
-            // Header scroll effect
-            function initHeaderEffects() {
-                let lastScrollTop = 0;
-                const header = document.getElementById('header');
-                
-                window.addEventListener('scroll', () => {
-                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    
-                    // Add scrolled class
-                    if (scrollTop > 50) {
-                        header.classList.add('header-scrolled');
-                    } else {
-                        header.classList.remove('header-scrolled');
-                    }
-                    
-                    // Hide on scroll down, show on scroll up
-                    if (scrollTop > lastScrollTop && scrollTop > 300) {
-                        // Scrolling down
-                        header.classList.add('header-hidden');
-                    } else {
-                        // Scrolling up
-                        header.classList.remove('header-hidden');
-                    }
-                    
-                    lastScrollTop = scrollTop;
+            if (navToggle) {
+                navToggle.addEventListener('click', () => {
+                    body.classList.toggle('nav-open');
                 });
             }
             
+            if (navBackdrop) {
+                navBackdrop.addEventListener('click', () => {
+                    body.classList.remove('nav-open');
+                });
+            }
+            
+            navMobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    body.classList.remove('nav-open');
+                });
+            });
+            
+            // Header scroll effects
+            const header = document.getElementById('header');
+            let lastScrollTop = 0;
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Add scrolled class
+                if (scrollTop > 50) {
+                    header.classList.add('header-scrolled');
+                } else {
+                    header.classList.remove('header-scrolled');
+                }
+                
+                // Hide on scroll down, show on scroll up
+                if (scrollTop > lastScrollTop && scrollTop > 300) {
+                    header.classList.add('header-hidden');
+                } else {
+                    header.classList.remove('header-hidden');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+            
+            // Accordion functionality
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-content');
+                const contentInner = item.querySelector('.accordion-content-inner');
+                
+                if (header && content && contentInner) {
+                    header.addEventListener('click', () => {
+                        // Close all other items
+                        const isActive = item.classList.contains('active');
+                        
+                        accordionItems.forEach(otherItem => {
+                            if (otherItem !== item && otherItem.classList.contains('active')) {
+                                otherItem.classList.remove('active');
+                                const otherContent = otherItem.querySelector('.accordion-content');
+                                if (otherContent) {
+                                    otherContent.style.maxHeight = '0';
+                                }
+                            }
+                        });
+                        
+                        // Toggle current item
+                        if (!isActive) {
+                            item.classList.add('active');
+                            content.style.maxHeight = `${contentInner.offsetHeight}px`;
+                        } else {
+                            item.classList.remove('active');
+                            content.style.maxHeight = '0';
+                        }
+                    });
+                }
+            });
+            
+            // Comparison slider
+            const comparisonSlides = document.querySelectorAll('.comparison-slide');
+            const comparisonDots = document.querySelectorAll('.comparison-dot');
+            const prevButton = document.querySelector('.comparison-prev');
+            const nextButton = document.querySelector('.comparison-next');
+            const comparisonTrack = document.querySelector('.comparison-track');
+            
+            if (comparisonSlides.length && comparisonDots.length) {
+                let currentSlide = 0;
+                
+                function updateSlider() {
+                    // Update track position
+                    if (comparisonTrack) {
+                        comparisonTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+                    }
+                    
+                    // Update active class on slides
+                    comparisonSlides.forEach((slide, index) => {
+                        if (index === currentSlide) {
+                            slide.classList.add('active');
+                        } else {
+                            slide.classList.remove('active');
+                        }
+                    });
+                    
+                    // Update dots
+                    comparisonDots.forEach((dot, index) => {
+                        if (index === currentSlide) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                }
+                
+                // Set up dot navigation
+                comparisonDots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        currentSlide = index;
+                        updateSlider();
+                    });
+                });
+                
+                // Set up prev/next buttons
+                if (prevButton) {
+                    prevButton.addEventListener('click', () => {
+                        currentSlide = (currentSlide - 1 + comparisonSlides.length) % comparisonSlides.length;
+                        updateSlider();
+                    });
+                }
+                
+                if (nextButton) {
+                    nextButton.addEventListener('click', () => {
+                        currentSlide = (currentSlide + 1) % comparisonSlides.length;
+                        updateSlider();
+                    });
+                }
+                
+                // Auto-advance every 5 seconds
+                setInterval(() => {
+                    currentSlide = (currentSlide + 1) % comparisonSlides.length;
+                    updateSlider();
+                }, 5000);
+            }
+            
+            // Form handling
+            const contactForm = document.getElementById('preSchedulingForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // Simple form submission simulation
+                    const button = contactForm.querySelector('button[type="submit"]');
+                    const originalText = button.textContent;
+                    
+                    button.textContent = 'Enviando...';
+                    button.disabled = true;
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        // Success message
+                        contactForm.innerHTML = `
+                            <div class="text-center">
+                                <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--color-success);">✓</div>
+                                <h3 class="form-title">Mensagem Enviada</h3>
+                                <p class="form-description">Entraremos em contato em breve para confirmar sua consulta.</p>
+                                <div class="mt-8">
+                                    <a href="https://wa.me/11965461146" class="btn btn-accent w-full">
+                                        Falar no WhatsApp Agora
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                    }, 1500);
+                });
+            }
+            
+            // Modal handling
+            const modalTriggers = document.querySelectorAll('[data-modal]');
+            const modalSystem = document.getElementById('modalContainer');
+            const modalBackdrop = modalSystem?.querySelector('.modal-backdrop');
+            const modalClose = modalSystem?.querySelector('.modal-close');
+            
+            modalTriggers.forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const modalId = trigger.getAttribute('data-modal');
+                    const targetModal = document.getElementById(modalId);
+                    
+                    if (modalSystem && targetModal) {
+                        // Hide all modals
+                        document.querySelectorAll('.modal').forEach(modal => {
+                            modal.classList.remove('active');
+                        });
+                        
+                        // Show the target modal
+                        targetModal.classList.add('active');
+                        modalSystem.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+            
+            if (modalClose) {
+                modalClose.addEventListener('click', closeModal);
+            }
+            
+            if (modalBackdrop) {
+                modalBackdrop.addEventListener('click', closeModal);
+            }
+            
+            function closeModal() {
+                if (modalSystem) {
+                    modalSystem.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+            
+            // Initialize countdown timer
+            const countdownElement = document.querySelector('.countdown');
+            if (countdownElement) {
+                // Set random end time between 24-48 hours from now
+                const hoursToAdd = Math.floor(Math.random() * 24) + 24;
+                const endTime = new Date();
+                endTime.setHours(endTime.getHours() + hoursToAdd);
+                
+                function updateCountdown() {
+                    const now = new Date();
+                    const timeRemaining = endTime - now;
+                    
+                    if (timeRemaining <= 0) {
+                        countdownElement.textContent = 'Últimas vagas disponíveis!';
+                        return;
+                    }
+                    
+                    const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                    
+                    countdownElement.textContent = `${hours}h ${minutes}m restantes`;
+                    
+                    // Update every minute
+                    setTimeout(updateCountdown, 60000);
+                }
+                
+                // Start countdown
+                updateCountdown();
+            }
+            
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        
+                        // Smooth scroll to target
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start',
+                            inline: 'nearest'
+                        });
+                        
+                        // Close mobile nav if open
+                        document.body.classList.remove('nav-open');
+                    }
+                });
+            });
+        }
+        
+        // Wait for GSAP to be loaded then initialize advanced effects
+        function waitForGSAP(attempts = 0) {
+            if (typeof gsap !== 'undefined') {
+                // GSAP is loaded, initialize advanced effects
+                initAdvancedEffects();
+            } else if (attempts < 5) {
+                // Try again after a delay (up to 5 attempts)
+                setTimeout(() => waitForGSAP(attempts + 1), 500);
+            }
+        }
+        
+        // Advanced effects that require GSAP
+        function initAdvancedEffects() {
+            // Register GSAP plugins
+            if (typeof ScrollTrigger !== 'undefined') gsap.registerPlugin(ScrollTrigger);
+            if (typeof ScrollToPlugin !== 'undefined') gsap.registerPlugin(ScrollToPlugin);
+            if (typeof TextPlugin !== 'undefined') gsap.registerPlugin(TextPlugin);
+            
+            // Initialize diagonal effects
+            initDiagonalEffects();
+            
+            // Initialize particle systems
+            initParticles();
+            
+            // Initialize method section connector animation
+            initMethodConnector();
+            
+            // Animate hero section
+            animateHero();
+            
+            // Scroll animations
+            initScrollAnimations();
+        }
+        
+        // Diagonal hero section animation
+        function initDiagonalEffects() {
+            const diagonalShape = document.querySelector('.diagonal-shape');
+            
+            if (diagonalShape && gsap) {
+                // Create timeline for diagonal expansion/contraction
+                const diagonalTimeline = gsap.timeline({
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "power1.inOut"
+                });
+                
+                diagonalTimeline
+                    .to(diagonalShape, {
+                        duration: 8,
+                        clipPath: "polygon(0 0, 100% 0, 65% 100%, 0% 100%)",
+                        ease: "sine.inOut"
+                    })
+                    .to(diagonalShape, {
+                        duration: 8,
+                        clipPath: "polygon(0 0, 100% 0, 45% 100%, 0% 100%)",
+                        ease: "sine.inOut"
+                    });
+            }
+            
+            // Animate mesh gradients
+            const meshGradients = document.querySelectorAll('.mesh-gradient');
+            
+            meshGradients.forEach(gradient => {
+                if (gsap) {
+                    gsap.to(gradient, {
+                        duration: 15,
+                        backgroundPosition: "100% 100%",
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut"
+                    });
+                }
+            });
+        }
+        
+        // Particle effects system
+        function initParticles() {
+            const particleContainers = document.querySelectorAll('.particles-container');
+            
+            particleContainers.forEach(container => {
+                const containerWidth = container.offsetWidth;
+                const containerHeight = container.offsetHeight;
+                
+                // Create a random number of particles (15-30)
+                const particleCount = Math.floor(Math.random() * 15) + 15;
+                
+                // Create and append particles
+                for (let i = 0; i < particleCount; i++) {
+                    createParticle(container, containerWidth, containerHeight);
+                }
+            });
+        }
+        
+        function createParticle(container, containerWidth, containerHeight) {
+            // Create a particle element
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random properties
+            const size = Math.random() * 10 + 5; // 5-15px
+            const posX = Math.random() * containerWidth;
+            const posY = Math.random() * containerHeight;
+            const opacity = Math.random() * 0.5 + 0.1; // 0.1-0.6
+            
+            // Random color
+            const colors = [
+                'rgba(59, 130, 246, 0.8)', // Blue
+                'rgba(6, 182, 212, 0.8)',  // Cyan
+                'rgba(16, 185, 129, 0.8)', // Green
+                'rgba(236, 72, 153, 0.8)'  // Pink
+            ];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Set styles
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${posX}px`;
+            particle.style.top = `${posY}px`;
+            particle.style.opacity = `${opacity}`;
+            particle.style.backgroundColor = color;
+            
+            // Add floating animation
+            const animationDuration = Math.random() * 10 + 10; // 10-20s
+            const delay = Math.random() * 5; // 0-5s
+            
+            if (gsap) {
+                gsap.to(particle, {
+                    y: -50 + Math.random() * 100,
+                    x: -50 + Math.random() * 100,
+                    duration: animationDuration,
+                    repeat: -1,
+                    yoyo: true,
+                    delay: delay,
+                    ease: "sine.inOut"
+                });
+            } else {
+                // Fallback to basic CSS animation
+                particle.style.animation = `float ${animationDuration}s ease-in-out ${delay}s infinite`;
+            }
+            
+            // Add to container
+            container.appendChild(particle);
+        }
+        
+        // Method section connector animation
+        function initMethodConnector() {
+            const connector = document.getElementById('stepsConnector');
+            
+            if (connector && typeof ScrollTrigger !== 'undefined') {
+                ScrollTrigger.create({
+                    trigger: '.steps-grid',
+                    start: 'top 70%',
+                    onEnter: () => {
+                        connector.classList.add('animated');
+                    },
+                    once: true
+                });
+            } else if (connector) {
+                // Fallback if ScrollTrigger not available
+                window.addEventListener('scroll', function checkScroll() {
+                    const rect = connector.getBoundingClientRect();
+                    if (rect.top < window.innerHeight * 0.8) {
+                        connector.classList.add('animated');
+                        window.removeEventListener('scroll', checkScroll);
+                    }
+                });
+            }
+        }
+        
+        // Hero section animation
+        function animateHero() {
+            if (!gsap) return;
+            
+            const heroTimeline = gsap.timeline({
+                defaults: { 
+                    ease: "power3.out",
+                    duration: 1
+                }
+            });
+            
+            heroTimeline
+                .fromTo('.header', 
+                    { y: -100, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 1 },
+                    0)
+                .fromTo('#heroTitle', 
+                    { y: 30, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 1 },
+                    0.3)
+                .fromTo('#heroSubtitle', 
+                    { y: 20, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.8 },
+                    0.5)
+                .fromTo('.hero-cta .btn', 
+                    { y: 20, opacity: 0, scale: 0.9 },
+                    { y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.1 },
+                    0.8)
+                .fromTo('.hero-image', 
+                    { y: 30, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 1.2 },
+                    0.4)
+                .fromTo('.promo-banner', 
+                    { y: 30, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 1 },
+                    1);
+                
+            // Try to use SplitType for text animation if available
+            if (typeof SplitType !== 'undefined') {
+                try {
+                    // Split hero title into characters for staggered animation
+                    const titleText = new SplitType('#heroTitle', { types: 'chars' });
+                    
+                    gsap.from(titleText.chars, {
+                        opacity: 0,
+                        y: 20,
+                        rotateX: -90,
+                        stagger: 0.02,
+                        duration: 1,
+                        ease: "back.out(1.7)",
+                        delay: 0.3
+                    });
+                } catch (e) {
+                    console.log("SplitType animation fallback");
+                }
+            }
+            
+            // Animate floating elements
+            gsap.to('.floating-element', {
+                y: -20,
+                duration: 3,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                stagger: 0.5
+            });
+        }
+        
+        // Scroll animations
+        function initScrollAnimations() {
+            if (!gsap || typeof ScrollTrigger === 'undefined') return;
+            
             // Animate sections on scroll
-            function initScrollAnimations() {
-                // Section titles & labels
-                gsap.utils.toArray('.section').forEach(section => {
-                    const tl = gsap.timeline({
+            gsap.utils.toArray('.section').forEach(section => {
+                // Section title animation
+                const sectionLabel = section.querySelector('.section-label');
+                const sectionTitle = section.querySelector('.section-title');
+                const sectionSubtitle = section.querySelector('.section-subtitle');
+                
+                if (sectionLabel && sectionTitle) {
+                    const titleTl = gsap.timeline({
                         scrollTrigger: {
                             trigger: section,
                             start: "top 75%",
@@ -2875,261 +5181,110 @@
                         }
                     });
                     
-                    tl.fromTo(section.querySelector('.section-label'), 
-                        { x: -30, opacity: 0 },
-                        { x: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
-                        0);
-                    
-                    tl.fromTo(section.querySelector('.section-title'), 
-                        { y: 30, opacity: 0 },
-                        { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
-                        0.2);
-                    
-                    if (section.querySelector('.section-subtitle')) {
-                        tl.fromTo(section.querySelector('.section-subtitle'), 
+                    titleTl
+                        .fromTo(sectionLabel, 
+                            { x: -20, opacity: 0 },
+                            { x: 0, opacity: 1, duration: 0.8 })
+                        .fromTo(sectionTitle, 
+                            { y: 30, opacity: 0 },
+                            { y: 0, opacity: 1, duration: 0.8 },
+                            "-=0.6");
+                        
+                    if (sectionSubtitle) {
+                        titleTl.fromTo(sectionSubtitle,
                             { y: 20, opacity: 0 },
-                            { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
-                            0.4);
+                            { y: 0, opacity: 1, duration: 0.8 },
+                            "-=0.6");
                     }
-                });
+                }
                 
-                // Fade up items
-                gsap.utils.toArray('.gsap-fade-up').forEach(item => {
-                    gsap.fromTo(item, 
+                // Card animations
+                const cards = section.querySelectorAll('.feature-card, .step-card, .testimonial-card, .article-card');
+                
+                if (cards.length) {
+                    gsap.fromTo(cards,
                         { y: 50, opacity: 0 },
                         { 
                             y: 0, 
                             opacity: 1, 
-                            duration: 0.8, 
-                            ease: 'power3.out',
+                            duration: 0.6,
+                            stagger: 0.1,
+                            ease: "power2.out",
                             scrollTrigger: {
-                                trigger: item,
-                                start: "top 85%",
-                                toggleActions: "play none none none"
+                                trigger: cards[0].parentNode,
+                                start: "top 80%"
                             }
                         }
                     );
-                });
-                
-                // Fade in items
-                gsap.utils.toArray('.gsap-fade-in').forEach(item => {
-                    gsap.fromTo(item, 
-                        { opacity: 0 },
-                        { 
-                            opacity: 1, 
-                            duration: 1, 
-                            ease: 'power2.out',
-                            scrollTrigger: {
-                                trigger: item,
-                                start: "top 85%",
-                                toggleActions: "play none none none"
-                            }
-                        }
-                    );
-                });
-                
-                // Scale in items
-                gsap.utils.toArray('.gsap-scale-in').forEach(item => {
-                    gsap.fromTo(item, 
-                        { scale: 0.8, opacity: 0 },
-                        { 
-                            scale: 1, 
-                            opacity: 1, 
-                            duration: 0.8, 
-                            ease: 'back.out(1.7)',
-                            scrollTrigger: {
-                                trigger: item,
-                                start: "top 85%",
-                                toggleActions: "play none none none"
-                            }
-                        }
-                    );
-                });
-            }
+                }
+            });
             
-            // Initialize WhatsApp button animation
-            function initWhatsAppButton() {
-                gsap.fromTo('#whatsappButton', 
-                    { scale: 0, opacity: 0 },
-                    { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(1.7)', delay: 1.5 }
+            // Map container reveal
+            const mapContainer = document.querySelector('.map-container');
+            if (mapContainer) {
+                gsap.fromTo(mapContainer,
+                    { y: 50, opacity: 0 },
+                    { 
+                        y: 0, 
+                        opacity: 1, 
+                        duration: 1,
+                        scrollTrigger: {
+                            trigger: mapContainer,
+                            start: "top 80%"
+                        }
+                    }
                 );
             }
             
-            // Mobile navigation
-            function initMobileNav() {
-                const navToggle = document.querySelector('.nav-toggle');
-                const navBackdrop = document.querySelector('.nav-backdrop');
-                const navMobileLinks = document.querySelectorAll('.nav-mobile-link');
-                const body = document.body;
-                
-                function toggleNav() {
-                    body.classList.toggle('nav-open');
-                    
-                    if (body.classList.contains('nav-open')) {
-                        gsap.fromTo('.nav-mobile-link', 
-                            { x: 20, opacity: 0 },
-                            { x: 0, opacity: 1, stagger: 0.05, duration: 0.5, ease: 'power3.out' }
-                        );
+            // Contact form reveal
+            const formContainer = document.querySelector('.form-container');
+            if (formContainer) {
+                gsap.fromTo(formContainer,
+                    { y: 50, opacity: 0 },
+                    { 
+                        y: 0, 
+                        opacity: 1, 
+                        duration: 1,
+                        scrollTrigger: {
+                            trigger: formContainer,
+                            start: "top 80%"
+                        }
                     }
-                }
-                
-                navToggle.addEventListener('click', toggleNav);
-                navBackdrop.addEventListener('click', toggleNav);
-                
-                navMobileLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        body.classList.remove('nav-open');
-                    });
-                });
+                );
             }
             
-            // Smooth scroll navigation
-            function initSmoothScroll() {
-                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', function(e) {
-                        const target = document.querySelector(this.getAttribute('href'));
-                        if (!target) return;
-                        
-                        e.preventDefault();
-                        
-                        gsap.to(window, {
-                            duration: 1,
-                            scrollTo: {
-                                y: target,
-                                offsetY: 80
-                            },
-                            ease: 'power3.inOut'
-                        });
-                        
-                        // Update active state in nav
-                        document.querySelectorAll('.nav-link').forEach(link => {
-                            link.classList.remove('active');
-                        });
-                        
-                        document.querySelectorAll(`.nav-link[href="${this.getAttribute('href')}"]`).forEach(link => {
-                            link.classList.add('active');
-                        });
-                    });
-                });
-            }
-            
-            // Initialize form effects
-            function initFormEffects() {
-                const form = document.getElementById('preSchedulingForm');
-                if (!form) return;
-                
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const button = this.querySelector('button[type="submit"]');
-                    const originalText = button.innerHTML;
-                    
-                    // Animate button
-                    button.innerHTML = 'Enviando...';
-                    button.disabled = true;
-                    
-                    // Simulate form submission (replace with actual form handling)
-                    setTimeout(() => {
-                        // Success animation
-                        gsap.to(form, {
-                            opacity: 0,
-                            y: 20,
-                            duration: 0.3,
-                            onComplete: () => {
-                                form.innerHTML = `
-                                    <div class="text-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto; color: var(--color-success);">
-                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                        </svg>
-                                        <h3 class="form-title mt-6">Mensagem Enviada</h3>
-                                        <p class="form-description">Entraremos em contato em breve para confirmar sua consulta.</p>
-                                        <div class="mt-8">
-                                            <a href="https://wa.me/11965461146" class="btn btn-accent w-full">
-                                                Falar no WhatsApp Agora
-                                            </a>
-                                        </div>
-                                    </div>
-                                `;
-                                
-                                gsap.fromTo(form, 
-                                    { opacity: 0, y: 20 },
-                                    { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }
-                                );
-                            }
-                        });
-                    }, 1500);
-                });
-            }
-            
-            // Countdown timer
-            function initCountdown() {
-                const countdownEl = document.querySelector('.countdown');
-                if (!countdownEl) return;
-                
-                // Set countdown to 48 hours from now
-                const now = new Date();
-                const end = new Date(now.getTime() + 48 * 60 * 60 * 1000);
-                
-                function updateCountdown() {
-                    const now = new Date();
-                    const diff = end - now;
-                    
-                    if (diff <= 0) {
-                        countdownEl.textContent = 'Últimas vagas disponíveis!';
-                        return;
+            // Final CTA banner
+            const ctaBanner = document.querySelector('.cta-banner');
+            if (ctaBanner) {
+                const ctaTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ctaBanner,
+                        start: "top 80%"
                     }
-                    
-                    const hours = Math.floor(diff / (1000 * 60 * 60));
-                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                    
-                    countdownEl.textContent = `${hours}h ${minutes}m restantes`;
-                    
-                    setTimeout(updateCountdown, 60000); // Update every minute
-                }
+                });
                 
-                updateCountdown();
+                ctaTl
+                    .fromTo(ctaBanner,
+                        { y: 50, opacity: 0 },
+                        { y: 0, opacity: 1, duration: 1 }
+                    )
+                    .fromTo(ctaBanner.querySelector('.cta-title'),
+                        { y: 20, opacity: 0 },
+                        { y: 0, opacity: 1, duration: 0.8 },
+                        "-=0.7"
+                    )
+                    .fromTo(ctaBanner.querySelector('.cta-subtitle'),
+                        { y: 20, opacity: 0 },
+                        { y: 0, opacity: 1, duration: 0.8 },
+                        "-=0.6"
+                    )
+                    .fromTo(ctaBanner.querySelector('.cta-buttons'),
+                        { y: 20, opacity: 0 },
+                        { y: 0, opacity: 1, duration: 0.8 },
+                        "-=0.5"
+                    );
             }
-            
-            // Initialize all systems - com verificação de falhas
-            function initAll() {
-                try {
-                    // Inicializar apenas funções básicas que não bloqueiam o conteúdo
-                    initHeaderEffects();
-                    initMobileNav();
-                    initSmoothScroll();
-                    initFormEffects();
-                    initCountdown();
-                    
-                    // Verificar se GSAP está funcionando antes de tentar animações
-                    if (typeof gsap !== 'undefined' && gsap.to) {
-                        // Delegar inicialização de animações para depois do carregamento completo
-                        setTimeout(() => {
-                            initMeshGradients();
-                            animateHero();
-                            initScrollAnimations();
-                            initWhatsAppButton();
-                        }, 100);
-                    } else {
-                        console.log("GSAP não detectado. Conteúdo será exibido sem animações.");
-                    }
-                } catch (e) {
-                    console.log("Erro na inicialização, mas o conteúdo está visível", e);
-                }
-            }
-            
-            // Garantir que o conteúdo seja sempre visível, independente dos scripts
-            document.addEventListener('DOMContentLoaded', function() {
-                // Backups para garantir visibilidade do conteúdo
-                document.body.style.opacity = 1;
-                
-                try {
-                    initAll();
-                } catch (e) {
-                    console.log("Erro durante inicialização, mas o site continua utilizável", e);
-                }
-            });
-        });
+        }
     </script>
 </body>
 </html>
