@@ -196,9 +196,6 @@
                         if (window.initDiagonalEffects) {
                             window.initDiagonalEffects();
                         }
-                        if (window.initParticles) {
-                            window.initParticles();
-                        }
                     });
                 });
             });
@@ -238,6 +235,13 @@
             --mesh-teal: rgba(16, 185, 129, 0.45);
             --mesh-cyan: rgba(8, 145, 178, 0.55);
             --mesh-yellow: rgba(250, 204, 21, 0.45);
+            --mesh-orange: rgba(245, 158, 11, 0.45);
+            --mesh-green: rgba(16, 185, 129, 0.55);
+            
+            /* Diagonal Effect Variables */
+            --clip-min: 85%;
+            --clip-max: 115%;
+            --clip-current: 100%;
             
             /* Neuomorphic Shadows - Depth System */
             --shadow-ambient: 0 1px 3px rgba(0, 0, 0, 0.02);
@@ -392,6 +396,34 @@
                 radial-gradient(at 85% 15%, rgba(236, 72, 153, 0.25) 0px, transparent 50%),
                 radial-gradient(at 60% 90%, rgba(16, 185, 129, 0.2) 0px, transparent 50%);
         }
+        
+        .mesh-teal-blue {
+            background: 
+                radial-gradient(at 30% 20%, var(--mesh-cyan) 0px, transparent 50%),
+                radial-gradient(at 80% 10%, var(--mesh-teal) 0px, transparent 50%),
+                radial-gradient(at 10% 80%, var(--mesh-blue) 0px, transparent 50%);
+        }
+        
+        .mesh-purple-pink {
+            background: 
+                radial-gradient(at 30% 20%, var(--mesh-purple) 0px, transparent 50%),
+                radial-gradient(at 80% 50%, var(--mesh-pink) 0px, transparent 50%),
+                radial-gradient(at 20% 90%, rgba(138, 58, 242, 0.3) 0px, transparent 60%);
+        }
+        
+        .mesh-yellow-orange {
+            background: 
+                radial-gradient(at 30% 20%, var(--mesh-yellow) 0px, transparent 50%),
+                radial-gradient(at 80% 50%, var(--mesh-orange) 0px, transparent 50%),
+                radial-gradient(at 20% 90%, rgba(250, 204, 21, 0.3) 0px, transparent 60%);
+        }
+        
+        .mesh-green-cyan {
+            background: 
+                radial-gradient(at 30% 20%, var(--mesh-green) 0px, transparent 50%),
+                radial-gradient(at 80% 50%, var(--mesh-cyan) 0px, transparent 50%),
+                radial-gradient(at 20% 90%, rgba(16, 185, 129, 0.3) 0px, transparent 60%);
+        }
 
         /* =========================================
            Diagonal Section & Enhancements
@@ -401,62 +433,41 @@
             overflow: hidden;
         }
 
-        .diagonal-bg {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            z-index: var(--z-negative);
-            overflow: hidden;
-        }
-
-        .diagonal-shape {
+        .gradient-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            clip-path: polygon(0 0, 100% 0, 55% 100%, 0% 100%);
-            background: linear-gradient(135deg, var(--mesh-blue), var(--mesh-purple));
-            transform-origin: left center;
-            transition: transform 10s ease;
-        }
-
-        .diagonal-shape-2 {
-            clip-path: polygon(100% 0, 100% 100%, 45% 100%, 0 0);
-            background: linear-gradient(135deg, var(--mesh-teal), var(--mesh-cyan));
-            opacity: 0.7;
-        }
-
-        /* Floating Elements */
-        .floating-element {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            pointer-events: none;
             z-index: var(--z-negative);
+            overflow: hidden;
         }
 
-        /* =========================================
-           Particles System
-           ========================================= */
-        .particles-container {
+        .diagonal-mesh {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            pointer-events: none;
+            background: 
+                radial-gradient(at 40% 20%, var(--mesh-blue) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, var(--mesh-purple) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, var(--mesh-yellow) 0px, transparent 50%),
+                radial-gradient(at 80% 100%, var(--mesh-cyan) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, var(--mesh-pink) 0px, transparent 50%);
+            /* Usando clip-path com variável CSS que será animada */
+            clip-path: polygon(0 0, var(--clip-current) 0, calc(var(--clip-current) - 70%) 100%, 0% 100%);
             z-index: var(--z-negative);
+            animation: gradientMove 20s ease-in-out infinite alternate;
         }
 
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.5;
-            pointer-events: none;
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
         }
 
         /* =========================================
@@ -965,7 +976,7 @@
         }
 
         /* =========================================
-           Interaction Components - Buttons
+           Interaction Components - Buttons with Mesh Gradients
            ========================================= */
         .btn {
             display: inline-flex;
@@ -984,26 +995,23 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            /* Added white background */
+            background-color: white;
+            color: var(--color-text-primary);
         }
 
         .btn::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                rgba(255, 255, 255, 0) 0%, 
-                rgba(255, 255, 255, 0.1) 50%, 
-                rgba(255, 255, 255, 0) 100%);
-            transform: translateX(-100%) skewX(-15deg);
-            transition: transform 1s ease;
+            inset: 0;
+            opacity: 0;
+            transition: opacity var(--transition-normal);
             z-index: -1;
+            border-radius: inherit;
         }
 
         .btn:hover::before {
-            transform: translateX(100%) skewX(-15deg);
+            opacity: 1;
         }
 
         .btn-lg {
@@ -1017,9 +1025,14 @@
         }
 
         .btn-primary {
-            background: linear-gradient(90deg, var(--color-primary), var(--color-primary-variant));
-            color: white;
             box-shadow: var(--shadow-md);
+            color: white;
+        }
+
+        .btn-primary::before {
+            background: 
+                radial-gradient(at 30% 30%, var(--mesh-blue) 0px, transparent 70%),
+                radial-gradient(at 70% 70%, var(--mesh-purple) 0px, transparent 70%);
         }
 
         .btn-primary:hover {
@@ -1027,42 +1040,74 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: var(--color-primary);
+            opacity: 0.9;
+            z-index: -2;
+            border-radius: inherit;
+        }
+
         .btn-primary:active {
             transform: translateY(-1px);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.8);
-            color: var(--color-text-primary);
             box-shadow: var(--shadow-sm);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(229, 231, 235, 0.5);
         }
 
+        .btn-secondary::before {
+            background: 
+                radial-gradient(at 30% 30%, rgba(59, 130, 246, 0.12) 0px, transparent 70%),
+                radial-gradient(at 70% 70%, rgba(236, 72, 153, 0.12) 0px, transparent 70%);
+        }
+
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.95);
             transform: translateY(-3px);
             box-shadow: var(--shadow-md);
         }
 
         .btn-outline {
-            background-color: transparent;
             border: 1.5px solid var(--color-accent);
             color: var(--color-accent);
         }
 
+        .btn-outline::before {
+            background: 
+                radial-gradient(at 30% 30%, var(--mesh-blue) 0px, transparent 70%),
+                radial-gradient(at 70% 70%, var(--mesh-cyan) 0px, transparent 70%);
+        }
+
         .btn-outline:hover {
-            background-color: var(--color-accent);
             color: white;
             transform: translateY(-3px);
             box-shadow: var(--shadow-sm);
         }
 
         .btn-accent {
-            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-secondary));
             color: white;
             box-shadow: var(--shadow-md);
+        }
+
+        .btn-accent::before {
+            background: 
+                radial-gradient(at 30% 30%, var(--mesh-blue) 0px, transparent 70%),
+                radial-gradient(at 70% 70%, var(--mesh-purple) 0px, transparent 70%);
+        }
+
+        .btn-accent::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: var(--color-accent);
+            opacity: 0.9;
+            z-index: -2;
+            border-radius: inherit;
         }
 
         .btn-accent:hover {
@@ -1093,7 +1138,7 @@
         }
 
         /* =========================================
-           Hero Section - Enhanced Spatial Architecture
+           Hero Section - Enhanced Spatial Architecture with Diagonal Effect
            ========================================= */
         .hero {
             min-height: 100vh;
@@ -1102,20 +1147,6 @@
             padding-top: var(--header-height);
             position: relative;
             overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.4) 100%);
-            z-index: var(--z-negative);
-            clip-path: polygon(45% 0, 100% 0, 100% 100%, 0% 100%);
         }
 
         .hero-container {
@@ -1180,6 +1211,12 @@
 
         .hero-cta {
             margin-top: var(--space-8);
+            position: relative;
+            z-index: 2;
+            background-color: white;
+            padding: var(--space-6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
         }
 
         .hero-image {
@@ -1350,6 +1387,7 @@
         .about-section {
             position: relative;
             overflow: hidden;
+            background-color: white; /* Fundo branco como solicitado */
         }
 
         .about-content {
@@ -1988,8 +2026,8 @@
            CTA Banner - Conversion Enhancement
            ========================================= */
         .promo-banner {
-            background: linear-gradient(120deg, var(--color-primary), var(--color-primary-variant));
-            color: white;
+            background: white;
+            color: var(--color-text-primary);
             border-radius: var(--radius-xl);
             padding: var(--space-8);
             margin-top: var(--space-12);
@@ -2002,13 +2040,13 @@
         .promo-banner::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            animation: shine 8s infinite linear;
+            inset: 0;
+            background: 
+                radial-gradient(at 30% 20%, var(--mesh-cyan) 0px, transparent 60%),
+                radial-gradient(at 80% 50%, var(--mesh-purple) 0px, transparent 60%),
+                radial-gradient(at 20% 90%, var(--mesh-blue) 0px, transparent 60%);
+            opacity: 0.15;
+            z-index: -1;
         }
         
         .promo-banner::after {
@@ -2023,15 +2061,6 @@
             z-index: -1;
         }
 
-        @keyframes shine {
-            0% {
-                transform: translateX(-100%) rotate(45deg);
-            }
-            100% {
-                transform: translateX(100%) rotate(45deg);
-            }
-        }
-
         .promo-content {
             position: relative;
             z-index: 1;
@@ -2040,18 +2069,16 @@
 
         .promo-tag {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
+            background: white;
+            color: var(--color-accent);
             font-size: 0.75rem;
             font-weight: 600;
             padding: var(--space-1) var(--space-3);
             border-radius: var(--radius-full);
             margin-bottom: var(--space-4);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
             letter-spacing: 0.05em;
             text-transform: uppercase;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(0, 102, 238, 0.2);
         }
 
         .promo-title {
@@ -2063,7 +2090,6 @@
         .promo-description {
             margin-bottom: var(--space-4);
             font-weight: 400;
-            opacity: 0.9;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -2075,17 +2101,19 @@
             font-size: 0.875rem;
             letter-spacing: 0.05em;
             text-transform: uppercase;
-            background: rgba(255, 255, 255, 0.15);
+            background: white;
             display: inline-block;
             padding: var(--space-2) var(--space-4);
             border-radius: var(--radius-full);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(0, 102, 238, 0.2);
+            color: var(--color-accent);
         }
 
         .promo-button {
             display: inline-block;
-            background: white;
-            color: var(--color-primary);
+            background-color: white;
+            position: relative;
+            color: var(--color-text-primary);
             padding: var(--space-3) var(--space-6);
             border-radius: var(--radius-full);
             font-weight: 600;
@@ -2093,16 +2121,50 @@
             margin-top: var(--space-2);
             transform: translateZ(0);
             box-shadow: var(--shadow-md);
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .promo-button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(at 30% 30%, var(--mesh-blue) 0px, transparent 70%),
+                radial-gradient(at 70% 70%, var(--mesh-purple) 0px, transparent 70%);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+            z-index: -1;
+            border-radius: inherit;
         }
 
         .promo-button:hover {
             transform: translateY(-3px) scale(1.03);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-            color: var(--color-primary);
+            color: white;
+        }
+
+        .promo-button:hover::before {
+            opacity: 1;
+        }
+
+        .promo-button::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: var(--color-primary);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+            z-index: -2;
+            border-radius: inherit;
+        }
+
+        .promo-button:hover::after {
+            opacity: 0.9;
         }
 
         /* =========================================
-           Clinica Section - Enhanced Map
+           Clinic Section - Enhanced Map
            ========================================= */
         .clinic-section {
             position: relative;
@@ -2502,13 +2564,25 @@
         }
 
         .form-container {
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background-color: white;
             border-radius: var(--radius-xl);
             border: 1px solid rgba(255, 255, 255, 0.6);
             padding: var(--space-8);
             box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(at 0% 0%, var(--mesh-blue) 0px, transparent 70%),
+                radial-gradient(at 100% 100%, var(--mesh-purple) 0px, transparent 70%);
+            opacity: 0.03;
+            z-index: -1;
         }
 
         .form-title {
@@ -2584,63 +2658,50 @@
             bottom: 24px;
             right: 24px;
             z-index: var(--z-dropdown);
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: white;
+            background: white;
+            color: #25D366;
             width: 64px;
             height: 64px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 8px 30px rgba(37, 211, 102, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 8px 30px rgba(0, 0, 0, 0.1);
             transition: all var(--transition-fast);
             transform: translateZ(0) scale(1);
-        }
-
-        .whatsapp-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1), 0 12px 30px rgba(37, 211, 102, 0.3);
-        }
-
-        .whatsapp-button:active {
-            transform: translateY(-2px) scale(1.03);
+            overflow: hidden;
         }
 
         .whatsapp-button::before {
             content: "";
             position: absolute;
-            z-index: -1;
-            inset: -1px;
-            background: conic-gradient(
-                from 180deg at 50% 50%,
-                #25D366 0deg,
-                #128C7E 120deg,
-                #075E54 240deg,
-                #25D366 360deg
-            );
-            border-radius: 50%;
-            animation: spin 4s linear infinite;
+            inset: 0;
+            background: 
+                radial-gradient(at 30% 30%, #25D366 0px, transparent 70%),
+                radial-gradient(at 70% 70%, #128C7E 0px, transparent 70%);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity var(--transition-normal);
+            z-index: -1;
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1), 0 12px 30px rgba(0, 0, 0, 0.1);
+            color: white;
         }
 
         .whatsapp-button:hover::before {
             opacity: 1;
         }
 
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
+        .whatsapp-button:active {
+            transform: translateY(-2px) scale(1.03);
         }
 
         .whatsapp-icon {
             width: 28px;
             height: 28px;
-            fill: white;
+            fill: currentColor;
         }
 
         .whatsapp-text {
@@ -3021,8 +3082,8 @@
            CTA Banner - Final Call to Action
            ========================================= */
         .cta-banner {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-variant));
-            color: white;
+            background: white;
+            color: var(--color-text-primary);
             border-radius: var(--radius-xl);
             padding: var(--space-10) var(--space-8);
             text-align: center;
@@ -3036,16 +3097,13 @@
         .cta-banner::before {
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background: linear-gradient(45deg, 
-                transparent 0%, 
-                rgba(255, 255, 255, 0.05) 50%, 
-                transparent 100%);
-            transform: translateX(-100%);
-            animation: shine 8s infinite linear;
+            inset: 0;
+            background: 
+                radial-gradient(at 20% 20%, var(--mesh-blue) 0px, transparent 60%),
+                radial-gradient(at 80% 80%, var(--mesh-purple) 0px, transparent 60%),
+                radial-gradient(at 50% 50%, var(--mesh-pink) 0px, transparent 70%);
+            opacity: 0.1;
+            z-index: 0;
         }
 
         .cta-title {
@@ -3059,7 +3117,7 @@
         }
 
         .cta-subtitle {
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--color-text-secondary);
             font-weight: 300;
             font-size: clamp(1rem, 2vw, 1.25rem);
             margin-bottom: var(--space-8);
@@ -3083,16 +3141,17 @@
 
         .cta-note {
             font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--color-text-tertiary);
             margin-top: var(--space-4);
             font-weight: 500;
             letter-spacing: 0.03em;
-            background: rgba(255, 255, 255, 0.1);
+            background: white;
             display: inline-block;
             padding: var(--space-2) var(--space-4);
             border-radius: var(--radius-full);
             position: relative;
             z-index: 1;
+            border: 1px solid var(--color-border);
         }
 
         @media (min-width: 768px) {
@@ -3202,8 +3261,6 @@
             transform: none;
         }
 
-        /* Estas classes são apenas para o JavaScript acessar os elementos para animação */
-
         .char {
             display: inline-block;
             transform-origin: 50% 100%;
@@ -3212,67 +3269,6 @@
         .word {
             display: inline-block;
             overflow: hidden;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.7;
-            }
-        }
-
-        .animate-pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .animate-spin {
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .animate-float {
-            animation: float 5s ease-in-out infinite;
-        }
-
-        .floating-1 {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-2 {
-            animation: float 8s ease-in-out 1s infinite;
-        }
-
-        .floating-3 {
-            animation: float 7s ease-in-out 0.5s infinite;
-        }
-
-        @keyframes marquee {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(-50%);
-            }
-        }
-
-        .animate-marquee {
-            animation: marquee 30s linear infinite;
         }
 
         /* Print styles for better document rendering */
@@ -3389,12 +3385,10 @@
     <main>
         <!-- Hero Section with Diagonal Effect -->
         <section class="hero diagonal-section" id="hero">
-            <div class="diagonal-bg">
-                <div class="diagonal-shape"></div>
-                <div class="diagonal-shape diagonal-shape-2"></div>
+            <!-- Container para o gradiente diagonal -->
+            <div class="gradient-container">
+                <div class="diagonal-mesh" id="diagonalMesh"></div>
             </div>
-            <div class="mesh-gradient mesh-primary"></div>
-            <div class="particles-container" id="heroParticles"></div>
             
             <div class="hero-container">
                 <div class="hero-content">
@@ -3402,9 +3396,11 @@
                         <h1 class="hero-title" id="heroTitle">Psiquiatria <span class="highlight">potencializada</span> por IA</h1>
                         <p class="hero-subtitle" id="heroSubtitle">Atendimento especializado para TDAH, Autismo, Ansiedade e Depressão com análise comportamental avançada em São Paulo.</p>
                         
-                        <div class="button-group hero-cta">
-                            <a href="#contato" class="btn btn-primary btn-lg gsap-scale-in">Agendar Consulta</a>
-                            <a href="#metodo" class="btn btn-secondary btn-lg gsap-scale-in">Conhecer o Método</a>
+                        <div class="hero-cta">
+                            <div class="button-group">
+                                <a href="#contato" class="btn btn-primary btn-lg gsap-scale-in">Agendar Consulta</a>
+                                <a href="#metodo" class="btn btn-secondary btn-lg gsap-scale-in">Conhecer o Método</a>
+                            </div>
                         </div>
                     </div>
                     
@@ -3427,18 +3423,10 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Floating elements for hero section -->
-            <div class="floating-element floating-1" style="width: 150px; height: 150px; top: 15%; left: 10%; opacity: 0.05;"></div>
-            <div class="floating-element floating-2" style="width: 100px; height: 100px; top: 60%; right: 15%; opacity: 0.03;"></div>
-            <div class="floating-element floating-3" style="width: 80px; height: 80px; top: 30%; right: 30%; opacity: 0.02;"></div>
         </section>
 
         <!-- About Section -->
         <section class="section about-section" id="sobre">
-            <div class="mesh-gradient mesh-subtle"></div>
-            <div class="particles-container" id="aboutParticles"></div>
-            
             <div class="container">
                 <div class="about-content">
                     <div class="about-image gsap-fade-in">
@@ -3592,10 +3580,9 @@
             </div>
         </section>
         
-        <!-- Testimonials Section with Floating Bubbles -->
+        <!-- Testimonials Section with Creative Mesh Gradients -->
         <section class="section" id="depoimentos">
-            <div class="mesh-gradient mesh-accent"></div>
-            <div class="particles-container" id="testimonialsParticles"></div>
+            <div class="mesh-gradient mesh-teal-blue"></div>
             
             <div class="container">
                 <div class="text-center max-w-2xl mx-auto mb-10 gsap-fade-in">
@@ -3637,7 +3624,7 @@
         
         <!-- Comparison Section - Why Choose Me -->
         <section class="section comparison-section" id="diferenciais">
-            <div class="mesh-gradient mesh-subtle"></div>
+            <div class="mesh-gradient mesh-purple-pink"></div>
             <div class="container">
                 <div class="text-center max-w-2xl mx-auto mb-10 gsap-fade-in">
                     <span class="section-label">Diferenciais</span>
@@ -3746,71 +3733,7 @@
                             </div>
                         </div>
                         
-                        <!-- Slide 4 -->
-                        <div class="comparison-slide">
-                            <div class="comparison-card">
-                                <div class="comparison-icon">💊</div>
-                                <h3 class="comparison-title">Opções Terapêuticas</h3>
-                                
-                                <table class="comparison-table">
-                                    <thead>
-                                        <tr>
-                                            <th width="50%">Meu Atendimento</th>
-                                            <th width="50%">Atendimento Tradicional</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="my-service">
-                                                    <strong>Inclui Canabidiol</strong>
-                                                    <p>Quando indicado, com certificação internacional</p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="traditional-service">
-                                                    <strong>Apenas medicamentos convencionais</strong>
-                                                    <p>Opções limitadas de tratamento</p>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        
-                        <!-- Slide 5 -->
-                        <div class="comparison-slide">
-                            <div class="comparison-card">
-                                <div class="comparison-icon">🎓</div>
-                                <h3 class="comparison-title">Formação Especializada</h3>
-                                
-                                <table class="comparison-table">
-                                    <thead>
-                                        <tr>
-                                            <th width="50%">Meu Atendimento</th>
-                                            <th width="50%">Atendimento Tradicional</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="my-service">
-                                                    <strong>Certificações Internacionais</strong>
-                                                    <p>SCC, IACM e University of Colorado</p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="traditional-service">
-                                                    <strong>Formação Básica</strong>
-                                                    <p>Sem especialização avançada</p>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        <!-- More slides... -->
                     </div>
                     
                     <div class="comparison-controls">
@@ -3824,8 +3747,6 @@
                             <div class="comparison-dot active" data-slide="0"></div>
                             <div class="comparison-dot" data-slide="1"></div>
                             <div class="comparison-dot" data-slide="2"></div>
-                            <div class="comparison-dot" data-slide="3"></div>
-                            <div class="comparison-dot" data-slide="4"></div>
                         </div>
                         
                         <button class="comparison-arrow comparison-next">
@@ -3842,187 +3763,9 @@
             </div>
         </section>
         
-        <!-- Clinic Section - Office Location with Map -->
-        <section class="section clinic-section" id="clinica">
-            <div class="mesh-gradient mesh-subtle"></div>
-            <div class="container">
-                <div class="text-center max-w-2xl mx-auto mb-10 gsap-fade-in">
-                    <span class="section-label">Consultório</span>
-                    <h2 class="section-title">Ambiente <span>Acolhedor e Discreto</span></h2>
-                    <p class="section-subtitle">Localização privilegiada no Itaim Bibi, próximo a transporte público e estacionamentos.</p>
-                </div>
-                
-                <div class="map-container gsap-fade-in">
-                    <iframe 
-                        class="map-iframe"
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14628.472082478024!2d-46.6806809!3d-23.5847376!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce57702e1da5c7%3A0x7ced5a701b2e5de6!2sDr.%20Gustavo%20Mendes%20e%20Silva%20-%20Psiquiatra!5e0!3m2!1spt-BR!2sbr!4v1710247646654!5m2!1spt-BR!2sbr" 
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                    
-                    <div class="map-overlay">
-                        <div class="map-location-pulse"></div>
-                    </div>
-                    
-                    <div class="map-actions">
-                        <a href="https://maps.app.goo.gl/Ra5Z3GTQyxgQsfAi9?g_st=ic" class="btn btn-primary" target="_blank">
-                            Como Chegar
-                        </a>
-                        <a href="https://maps.app.goo.gl/Ra5Z3GTQyxgQsfAi9?g_st=ic" class="btn btn-secondary" target="_blank">
-                            Ver Avaliações
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="map-location-details gsap-fade-in" style="transition-delay: 0.2s;">
-                    <h3 class="location-title">Dr. Gustavo Mendes - Consultório de Psiquiatria</h3>
-                    <p class="location-address">Itaim Bibi, São Paulo - SP, Brasil</p>
-                    <p class="location-hours">Segunda a Sexta: 08:00 - 18:00</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- FAQ Section - Enhanced Accordion -->
-        <section class="section faq-section" id="faq">
-            <div class="mesh-gradient mesh-accent"></div>
-            <div class="container">
-                <div class="text-center max-w-2xl mx-auto mb-10 gsap-fade-in">
-                    <span class="section-label">Dúvidas Frequentes</span>
-                    <h2 class="section-title">Perguntas e <span>Respostas</span></h2>
-                    <p class="section-subtitle">Respostas para as dúvidas mais comuns sobre meu atendimento e abordagem terapêutica.</p>
-                </div>
-                
-                <div class="accordion gsap-fade-in">
-                    <div class="accordion-item">
-                        <div class="accordion-header">
-                            <h3 class="accordion-title">Como funciona a primeira consulta?</h3>
-                            <div class="accordion-icon">+</div>
-                        </div>
-                        <div class="accordion-content">
-                            <div class="accordion-content-inner">
-                                <p>A primeira consulta tem duração de 2 horas. Nos primeiros 90 minutos, realizo uma avaliação detalhada da sua história, sintomas e comportamentos, com o auxílio de tecnologia para análise comportamental. Nos 30 minutos finais, discutimos as impressões, possíveis diagnósticos e opções de tratamento. Você receberá um relatório narrativo detalhado alguns dias após a consulta.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion-item">
-                        <div class="accordion-header">
-                            <h3 class="accordion-title">O canabidiol (CBD) é realmente eficaz e seguro?</h3>
-                            <div class="accordion-icon">+</div>
-                        </div>
-                        <div class="accordion-content">
-                            <div class="accordion-content-inner">
-                                <p>O canabidiol possui evidências científicas sólidas para diversas condições, como ansiedade, autismo, TDAH, insônia e dor crônica. É não-psicoativo (não causa "high") e tem excelente perfil de segurança. Como médico certificado internacionalmente, avalio cuidadosamente a indicação para cada caso, considerando interações medicamentosas e monitorando os resultados.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion-item">
-                        <div class="accordion-header">
-                            <h3 class="accordion-title">Como é feita a análise comportamental com IA?</h3>
-                            <div class="accordion-icon">+</div>
-                        </div>
-                        <div class="accordion-content">
-                            <div class="accordion-content-inner">
-                                <p>Durante a consulta, utilizo um sistema de inteligência artificial que analisa padrões de linguagem, expressões e histórico médico, identificando correlações que podem passar despercebidas em avaliações convencionais. Esta análise auxilia no diagnóstico e na elaboração do plano terapêutico, sempre sob minha supervisão clínica. A IA é uma ferramenta complementar, nunca substitui o olhar médico humanizado.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion-item">
-                        <div class="accordion-header">
-                            <h3 class="accordion-title">Você aceita planos de saúde?</h3>
-                            <div class="accordion-icon">+</div>
-                        </div>
-                        <div class="accordion-content">
-                            <div class="accordion-content-inner">
-                                <p>Não atendo diretamente por planos de saúde, pois eles limitariam o tempo de consulta e a qualidade do atendimento que ofereço. No entanto, forneço recibo com CRM e CID para reembolso junto ao seu plano, dependendo da sua cobertura. Muitos pacientes conseguem reembolso parcial ou integral após submeterem o recibo.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion-item">
-                        <div class="accordion-header">
-                            <h3 class="accordion-title">Qual a frequência das consultas de acompanhamento?</h3>
-                            <div class="accordion-icon">+</div>
-                        </div>
-                        <div class="accordion-content">
-                            <div class="accordion-content-inner">
-                                <p>O acompanhamento é personalizado conforme a necessidade de cada caso. Tipicamente, após a primeira consulta, recomendo um retorno em 3-4 semanas para avaliar a resposta inicial ao tratamento. Posteriormente, dependendo da evolução, as consultas podem ser espaçadas para intervalos de 2 a 3 meses. Estou disponível para consultas pontuais via telemedicina entre os retornos programados, se necessário.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Blog Section - New Modern Cards -->
-        <section class="section blog-section" id="blog">
-            <div class="mesh-gradient mesh-subtle"></div>
-            <div class="container">
-                <div class="text-center max-w-2xl mx-auto mb-10 gsap-fade-in">
-                    <span class="section-label">Blog</span>
-                    <h2 class="section-title">Artigos <span>Recentes</span></h2>
-                    <p class="section-subtitle">Compartilho conhecimentos e atualizações em psiquiatria, neurodiversidade e tratamentos inovadores.</p>
-                </div>
-                
-                <div class="grid grid-cols-3 gap-6">
-                    <article class="article-card gsap-fade-up">
-                        <div style="background: linear-gradient(135deg, #0066ee, #3182f6); height: 180px;" class="article-image"></div>
-                        <div class="article-content">
-                            <span class="article-date">22 Fev 2024</span>
-                            <h3 class="article-title">Uso de IA na Psiquiatria: Ampliando a Percepção Clínica</h3>
-                            <p>Como a inteligência artificial está revolucionando o diagnóstico e tratamento de condições psiquiátricas.</p>
-                            <a href="#" class="article-readmore">
-                                Ler mais
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-                    
-                    <article class="article-card gsap-fade-up">
-                        <div style="background: linear-gradient(135deg, #6366f1, #8b5cf6); height: 180px;" class="article-image"></div>
-                        <div class="article-content">
-                            <span class="article-date">20 Fev 2024</span>
-                            <h3 class="article-title">Canabidiol: Evidências Científicas e Aplicações Clínicas</h3>
-                            <p>Um panorama atual das pesquisas e usos terapêuticos do CBD em transtornos neuropsiquiátricos.</p>
-                            <a href="#" class="article-readmore">
-                                Ler mais
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-                    
-                    <article class="article-card gsap-fade-up">
-                        <div style="background: linear-gradient(135deg, #10b981, #059669); height: 180px;" class="article-image"></div>
-                        <div class="article-content">
-                            <span class="article-date">18 Fev 2024</span>
-                            <h3 class="article-title">Autismo em Adultos: Diagnóstico Tardio e Qualidade de Vida</h3>
-                            <p>Como identificar e apoiar adultos com TEA não diagnosticados na infância.</p>
-                            <a href="#" class="article-readmore">
-                                Ler mais
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-                </div>
-                
-                <div class="text-center mt-10 gsap-fade-in">
-                    <a href="/blog" class="btn btn-outline">Ver todos os artigos</a>
-                </div>
-            </div>
-        </section>
-        
         <!-- Contact Section -->
         <section class="section contact-section" id="contato">
-            <div class="mesh-gradient mesh-primary"></div>
+            <div class="mesh-gradient mesh-green-cyan"></div>
             <div class="container">
                 <div class="text-center max-w-2xl mx-auto mb-10 gsap-fade-in">
                     <span class="section-label">Contato</span>
@@ -4093,8 +3836,8 @@
                 <h2 class="cta-title">Pronto para transformar sua saúde mental?</h2>
                 <p class="cta-subtitle">Consultas de 2 horas, análise comportamental avançada e abordagem humanizada.</p>
                 <div class="cta-buttons">
-                    <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20minha%20consulta." class="btn btn-lg" style="background-color: white; color: var(--color-primary);">Agendar Agora</a>
-                    <a href="#" data-modal="infoModal" class="btn btn-outline btn-lg" style="color: white; border-color: rgba(255, 255, 255, 0.3);">Preços e Informações</a>
+                    <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20minha%20consulta." class="btn btn-accent btn-lg">Agendar Agora</a>
+                    <a href="#" data-modal="infoModal" class="btn btn-outline btn-lg">Preços e Informações</a>
                 </div>
                 <div class="cta-note">Apenas 5 vagas disponíveis esta semana</div>
             </div>
@@ -4176,476 +3919,61 @@
         </div>
     </footer>
     
-    <!-- Modal System -->
-    <div class="modal-system" id="modalContainer">
-        <div class="modal-backdrop"></div>
-        
-        <!-- Modal Content Container -->
-        <div class="modal-dialog">
-            <button class="modal-close" aria-label="Fechar">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
-            
-            <!-- Modal TDAH -->
-            <div class="modal" id="modalTDAH">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="modal-label">Especialidade</span>
-                        <h2 class="modal-title">TDAH</h2>
-                    </div>
-                    
-                    <div class="modal-body">
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Sobre o Transtorno</h3>
-                            <p>O TDAH (Transtorno do Déficit de Atenção com Hiperatividade) é uma condição neurobiológica que afeta cerca de 5% dos adultos. Muito além da simples "falta de foco", o TDAH impacta as funções executivas, afetando organização, gestão do tempo e regulação emocional.</p>
-                        </div>
-
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Minha Abordagem</h3>
-                            <div class="approach-cards">
-                                <div class="approach-card">
-                                    <span class="approach-number">01</span>
-                                    <h4 class="approach-title">Avaliação Comportamental Ampliada</h4>
-                                    <p class="approach-desc">Análise detalhada usando IA para identificar padrões comportamentais sutis não percebidos em consultas convencionais</p>
-                                </div>
-                                <div class="approach-card">
-                                    <span class="approach-number">02</span>
-                                    <h4 class="approach-title">Tratamento Multimodal</h4>
-                                    <p class="approach-desc">Combinação personalizada de medicamentos, estratégias comportamentais e, quando indicado, canabidiol como alternativa terapêutica</p>
-                                </div>
-                                <div class="approach-card">
-                                    <span class="approach-number">03</span>
-                                    <h4 class="approach-title">Orientação Prática</h4>
-                                    <p class="approach-desc">Ferramentas concretas para organização, foco e gestão emocional aplicadas ao seu contexto específico de vida</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal-actions">
-                            <a href="#contato" class="btn btn-primary w-full">Agendar Consulta</a>
-                            <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20sobre%20TDAH" class="btn btn-secondary w-full">WhatsApp Direto</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Modal Autismo -->
-            <div class="modal" id="modalAutismo">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="modal-label">Especialidade</span>
-                        <h2 class="modal-title">Autismo (TEA)</h2>
-                    </div>
-                    
-                    <div class="modal-body">
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Sobre o Transtorno</h3>
-                            <p>O Transtorno do Espectro Autista (TEA) é uma condição neurodesenvolvimental que afeta a comunicação, interação social e comportamento. Em adultos, muitas vezes não diagnosticados na infância, o TEA pode manifestar-se de formas sutis e gerar desafios significativos.</p>
-                        </div>
-
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Minha Abordagem</h3>
-                            <div class="approach-cards">
-                                <div class="approach-card">
-                                    <span class="approach-number">01</span>
-                                    <h4 class="approach-title">Diagnóstico Especializado para Adultos</h4>
-                                    <p class="approach-desc">Avaliação específica para TEA em adultos, frequentemente não identificado em abordagens convencionais</p>
-                                </div>
-                                <div class="approach-card">
-                                    <span class="approach-number">02</span>
-                                    <h4 class="approach-title">Manejo de Comorbidades</h4>
-                                    <p class="approach-desc">Tratamento integrado das condições frequentemente associadas ao TEA, como ansiedade, depressão e sensibilidade sensorial</p>
-                                </div>
-                                <div class="approach-card">
-                                    <span class="approach-number">03</span>
-                                    <h4 class="approach-title">Possibilidade de Canabidiol</h4>
-                                    <p class="approach-desc">Experiência com prescrição responsável de canabidiol para manejo de irritabilidade, ansiedade e hipersensibilidade sensorial em casos selecionados</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal-actions">
-                            <a href="#contato" class="btn btn-primary w-full">Agendar Consulta</a>
-                            <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20sobre%20Autismo%20(TEA)" class="btn btn-secondary w-full">WhatsApp Direto</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Modal Ansiedade -->
-            <div class="modal" id="modalAnsiedade">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="modal-label">Especialidade</span>
-                        <h2 class="modal-title">Ansiedade</h2>
-                    </div>
-                    
-                    <div class="modal-body">
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Sobre o Transtorno</h3>
-                            <p>A ansiedade é uma resposta natural do organismo, mas quando se torna excessiva pode impactar significativamente a qualidade de vida.</p>
-                        </div>
-
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Abordagem</h3>
-                            <div class="approach-cards">
-                                <div class="approach-card">
-                                    <span class="approach-number">01</span>
-                                    <h4 class="approach-title">Análise de Padrões</h4>
-                                    <p class="approach-desc">Identificação de gatilhos e padrões comportamentais</p>
-                                </div>
-                                <div class="approach-card">
-                                    <span class="approach-number">02</span>
-                                    <h4 class="approach-title">Estratégias Práticas</h4>
-                                    <p class="approach-desc">Ferramentas e técnicas para gestão da ansiedade</p>
-                                </div>
-                                <div class="approach-card">
-                                    <span class="approach-number">03</span>
-                                    <h4 class="approach-title">Acompanhamento Contínuo</h4>
-                                    <p class="approach-desc">Suporte regular e ajustes no tratamento</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal-actions">
-                            <a href="#contato" class="btn btn-primary w-full">Agendar Consulta</a>
-                            <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20sobre%20Ansiedade" class="btn btn-secondary w-full">WhatsApp Direto</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Modal Depressão -->
-            <div class="modal" id="modalDepressao">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="modal-label">Especialidade</span>
-                        <h2 class="modal-title">Depressão</h2>
-                    </div>
-                    
-                    <div class="modal-body">
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Sobre o Transtorno</h3>
-                            <p>A depressão é mais do que tristeza passageira - é uma condição clínica séria que afeta a forma como você se sente, pensa e age.</p>
-                        </div>
-
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Abordagem</h3>
-                            <div class="approach-cards">
-                                <div class="approach-card">
-                                    <span class="approach-number">01</span>
-                                    <h4 class="approach-title">Avaliação Integral</h4>
-                                    <p class="approach-desc">Análise abrangente de fatores físicos, emocionais e sociais</p>
-                                </div>
-                                <div class="approach-card">
-                                    <span class="approach-number">02</span>
-                                    <h4 class="approach-title">Tratamento Combinado</h4>
-                                    <p class="approach-desc">Integração de medicação e psicoterapia quando necessário</p>
-                                </div>
-                                <div class="approach-card">
-                                    <span class="approach-number">03</span>
-                                    <h4 class="approach-title">Monitoramento Constante</h4>
-                                    <p class="approach-desc">Acompanhamento próximo para ajustes no tratamento</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal-actions">
-                            <a href="#contato" class="btn btn-primary w-full">Agendar Consulta</a>
-                            <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20sobre%20Depressão" class="btn btn-secondary w-full">WhatsApp Direto</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Modal Canabidiol -->
-            <div class="modal" id="modalCanabidiol">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="modal-label">Especialidade</span>
-                        <h2 class="modal-title">Canabidiol (CBD)</h2>
-                    </div>
-                    
-                    <div class="modal-body">
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Sobre o Tratamento</h3>
-                            <p>O canabidiol (CBD) é um componente não psicoativo da cannabis com crescentes evidências científicas para o tratamento de diversas condições neuropsiquiátricas. Como especialista certificado internacionalmente pela Society of Cannabis Clinicians (SCC), ofereço prescrição responsável e baseada em evidências.</p>
-                        </div>
-
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Aplicações Terapêuticas</h3>
-                            <div class="approach-cards">
-                                <div class="approach-card">
-                                    <span class="approach-number">01</span>
-                                    <h4 class="approach-title">Transtornos de Ansiedade</h4>
-                                    <p class="approach-desc">Ansiedade generalizada, transtorno do pânico e fobia social</p>
-                                </div>
-                                <div class="approach-card">
-                                    <span class="approach-number">02</span>
-                                    <h4 class="approach-title">Transtornos do Neurodesenvolvimento</h4>
-                                    <p class="approach-desc">Irritabilidade no TEA, hiperatividade no TDAH e alterações do sono</p>
-                                </div>
-                                <div class="approach-card">
-                                    <span class="approach-number">03</span>
-                                    <h4 class="approach-title">Dor Crônica e Inflamação</h4>
-                                    <p class="approach-desc">Fibromialgia, neuropatia e dores crônicas refratárias a tratamentos convencionais</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Minha Formação</h3>
-                            <p>Possuo Certificação Internacional em Medicina Canabinoide pela IACM, sou membro da Society of Cannabis Clinicians (SCC) e tenho formação adicional pelo The Medical Cannabis Institute (TMCI Global) e pela EEPHCFMUSP.</p>
-                        </div>
-
-                        <div class="modal-actions">
-                            <a href="#contato" class="btn btn-primary w-full">Agendar Consulta</a>
-                            <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20sobre%20Canabidiol" class="btn btn-secondary w-full">WhatsApp Direto</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Modal Cuidados Paliativos -->
-            <div class="modal" id="modalCuidadosPaliativos">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="modal-label">Especialidade</span>
-                        <h2 class="modal-title">Cuidados Paliativos</h2>
-                    </div>
-                    
-                    <div class="modal-body">
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Sobre a Especialidade</h3>
-                            <p>Os Cuidados Paliativos são uma abordagem que melhora a qualidade de vida de pacientes e familiares diante de doenças que ameaçam a continuidade da vida. Além do controle da dor e outros sintomas, oferece suporte psicológico, social e espiritual.</p>
-                        </div>
-
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Minha Abordagem</h3>
-                            <div class="approach-cards">
-                                <div class="approach-card">
-                                    <span class="approach-number">01</span>
-                                    <h4 class="approach-title">Manejo de Sintomas Complexos</h4>
-                                    <p class="approach-desc">Controle especializado de dor, ansiedade, depressão, insônia e outros sintomas comuns</p>
-                                </div>
-                                <div class="approach-card">
-                                    <span class="approach-number">02</span>
-                                    <h4 class="approach-title">Suporte ao Luto</h4>
-                                    <p class="approach-desc">Acompanhamento especializado no processo de luto, ajudando na elaboração e prevenção de complicações</p>
-                                </div>
-                                <div class="approach-card">
-                                    <span class="approach-number">03</span>
-                                    <h4 class="approach-title">Comunicação de Más Notícias</h4>
-                                    <p class="approach-desc">Facilitação do diálogo entre pacientes, familiares e equipes de saúde em momentos difíceis</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Formação Específica</h3>
-                            <p>Formação pelo MJHS Institute for Innovation in Palliative Care e pelo Palliative Care Program da University of Colorado, com experiência clínica no manejo de casos complexos.</p>
-                        </div>
-
-                        <div class="modal-actions">
-                            <a href="#contato" class="btn btn-primary w-full">Agendar Consulta</a>
-                            <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20sobre%20Cuidados%20Paliativos" class="btn btn-secondary w-full">WhatsApp Direto</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Modal Traumas/Luto -->
-            <div class="modal" id="modalTraumas">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="modal-label">Especialidade</span>
-                        <h2 class="modal-title">Traumas / Luto</h2>
-                    </div>
-                    
-                    <div class="modal-body">
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Sobre estas Condições</h3>
-                            <p>Traumas e processos de luto podem gerar impactos profundos no funcionamento psíquico, com manifestações somáticas e emocionais que afetam significativamente a qualidade de vida. O acolhimento adequado destas experiências é fundamental para a elaboração e ressignificação.</p>
-                        </div>
-
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Minha Abordagem</h3>
-                            <div class="approach-cards">
-                                <div class="approach-card">
-                                    <span class="approach-number">01</span>
-                                    <h4 class="approach-title">Acolhimento Não-Julgamental</h4>
-                                    <p class="approach-desc">Escuta qualificada e acolhedora, criando espaço seguro para a expressão de sentimentos difíceis</p>
-                                </div>
-                                <div class="approach-card">
-                                    <span class="approach-number">02</span>
-                                    <h4 class="approach-title">Medicina Narrativa</h4>
-                                    <p class="approach-desc">Utilização de técnicas narrativas que facilitam a integração e ressignificação das experiências traumáticas</p>
-                                </div>
-                                <div class="approach-card">
-                                    <span class="approach-number">03</span>
-                                    <h4 class="approach-title">Abordagem Integrada</h4>
-                                    <p class="approach-desc">Combinação de suporte medicamentoso quando necessário com estratégias de apoio psicológico</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal-actions">
-                            <a href="#contato" class="btn btn-primary w-full">Agendar Consulta</a>
-                            <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20sobre%20Traumas/Luto" class="btn btn-secondary w-full">WhatsApp Direto</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Modal Insônia -->
-            <div class="modal" id="modalInsonia">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="modal-label">Especialidade</span>
-                        <h2 class="modal-title">Insônia</h2>
-                    </div>
-                    
-                    <div class="modal-body">
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Sobre a Condição</h3>
-                            <p>A insônia é mais que um simples desconforto noturno - é um transtorno do sono que afeta profundamente a saúde física e mental, com impactos na cognição, humor e sistema imunológico. Muitas vezes, é tanto sintoma quanto causa de outros transtornos psiquiátricos.</p>
-                        </div>
-
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Minha Abordagem</h3>
-                            <div class="approach-cards">
-                                <div class="approach-card">
-                                    <span class="approach-number">01</span>
-                                    <h4 class="approach-title">Avaliação Detalhada</h4>
-                                    <p class="approach-desc">Análise minuciosa de padrões de sono, comportamentos associados e potenciais causas subjacentes</p>
-                                </div>
-                                <div class="approach-card">
-                                    <span class="approach-number">02</span>
-                                    <h4 class="approach-title">Higiene do Sono</h4>
-                                    <p class="approach-desc">Implementação de protocolos de higiene do sono personalizados para cada caso</p>
-                                </div>
-                                <div class="approach-card">
-                                    <span class="approach-number">03</span>
-                                    <h4 class="approach-title">Intervenção Multimodal</h4>
-                                    <p class="approach-desc">Combinação de terapia cognitivo-comportamental para insônia, medicamentos e, quando indicado, canabidiol</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal-actions">
-                            <a href="#contato" class="btn btn-primary w-full">Agendar Consulta</a>
-                            <a href="https://wa.me/11965461146?text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20sobre%20Insônia" class="btn btn-secondary w-full">WhatsApp Direto</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Modal Informações -->
-            <div class="modal" id="infoModal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="modal-label">Valores e Condições</span>
-                        <h2 class="modal-title">Informações de Consulta</h2>
-                    </div>
-                    
-                    <div class="modal-body">
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Modalidades de Atendimento</h3>
-                            <div class="grid grid-cols-3 gap-4">
-                                <div class="feature-card">
-                                    <h4 class="text-lg mb-2">Primeira Consulta</h4>
-                                    <p class="text-2xl font-medium mb-2">R$ 350</p>
-                                    <ul class="text-sm">
-                                        <li class="mb-1">✓ Presencial no Itaim Bibi</li>
-                                        <li class="mb-1">✓ Parcelamento em até 3x sem juros</li>
-                                        <li class="mb-1">✓ Nota fiscal para reembolso</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="feature-card">
-                                    <h4 class="text-lg mb-2">Retorno</h4>
-                                    <p class="text-2xl font-medium mb-2">R$ 200</p>
-                                    <ul class="text-sm">
-                                        <li class="mb-1">✓ Consulta online</li>
-                                        <li class="mb-1">✓ Parcelamento em até 2x sem juros</li>
-                                        <li class="mb-1">✓ Nota fiscal para reembolso</li>
-                                    </ul>
-                                </div>
-                                
-                                <div class="feature-card" style="border-color: var(--color-accent); background-color: rgba(0, 112, 243, 0.03);">
-                                    <h4 class="text-lg mb-2">Psicoterapia</h4>
-                                    <p class="text-2xl font-medium mb-2">R$ 250<span class="text-sm font-normal">/sessão</span></p>
-                                    <ul class="text-sm">
-                                        <li class="mb-1">✓ Pacote de 12 sessões</li>
-                                        <li class="mb-1">✓ Pagamento antecipado</li>
-                                        <li class="mb-1">✓ Parcelamento em até 6x sem juros</li>
-                                        <li class="mb-1">✓ Total: R$ 3.000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Política de Cancelamento</h3>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="feature-card">
-                                    <h4 class="text-lg mb-2">Consultas Individuais</h4>
-                                    <div class="grid grid-cols-2 gap-2">
-                                        <div class="text-sm">7+ dias antes:</div>
-                                        <div class="text-sm font-medium">100% reembolso</div>
-                                        <div class="text-sm">48h a 7 dias antes:</div>
-                                        <div class="text-sm font-medium">50% reembolso</div>
-                                        <div class="text-sm">Menos de 48h:</div>
-                                        <div class="text-sm font-medium">Sem reembolso</div>
-                                    </div>
-                                </div>
-                                
-                                <div class="feature-card">
-                                    <h4 class="text-lg mb-2">Pacote de Psicoterapia</h4>
-                                    <div class="grid grid-cols-2 gap-2">
-                                        <div class="text-sm">6+ sessões restantes:</div>
-                                        <div class="text-sm font-medium">50% reembolso do restante</div>
-                                        <div class="text-sm">3-5 sessões restantes:</div>
-                                        <div class="text-sm font-medium">25% reembolso do restante</div>
-                                        <div class="text-sm">1-2 sessões restantes:</div>
-                                        <div class="text-sm font-medium">Sem reembolso</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="modal-section">
-                            <h3 class="modal-section-title">Formas de Pagamento</h3>
-                            <ul>
-                                <li>✓ Cartão de crédito (parcelamento conforme modalidade)</li>
-                                <li>✓ PIX</li>
-                                <li>✓ Nota fiscal para reembolso junto ao plano de saúde</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="modal-actions">
-                            <a href="https://wa.me/11965461146" class="btn btn-primary w-full">
-                                WhatsApp (11) 96546-1146
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Enhanced JavaScript for Advanced Effects -->
+    <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize navigation and UI components with fallbacks
-            initializeBaseUI();
+            // Inicializar efeito de diagonal com mesh gradient
+            initDiagonalEffects();
             
-            // Try to init advanced features if GSAP loaded
-            waitForGSAP();
+            // Inicializar navegação e UI components com fallbacks
+            initializeBaseUI();
         });
+        
+        // Efeito Diagonal com Mesh Gradient
+        function initDiagonalEffects() {
+            const diagonalMesh = document.getElementById('diagonalMesh');
+            if (!diagonalMesh) return;
+            
+            // Configuração da animação da diagonal
+            let startTime = null;
+            const duration = 10000; // 10 segundos para um ciclo completo
+            const minClip = 85;
+            const maxClip = 115;
+            
+            // Função que executa a animação suave
+            function animate(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const elapsed = (timestamp - startTime) % duration;
+                const progress = elapsed / duration;
+                
+                // Movimento de ida e volta suave (como uma cortina)
+                // Usando a função seno para criar um movimento fluido
+                const wave = Math.sin(progress * Math.PI * 2);
+                const clipX = minClip + ((maxClip - minClip) * (wave * 0.5 + 0.5));
+                
+                // Aplicar o valor à variável CSS
+                document.documentElement.style.setProperty('--clip-current', `${clipX}%`);
+                
+                // Continuar a animação
+                requestAnimationFrame(animate);
+            }
+            
+            // Iniciar a animação
+            requestAnimationFrame(animate);
+            
+            // Adicionar eventos de interação para aumentar o engajamento
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.addEventListener('mousemove', (e) => {
+                    // Calcular a posição do mouse relativa à largura da seção
+                    const mouseX = e.clientX / window.innerWidth;
+                    const clipAdjustment = 5 * (mouseX - 0.5); // -2.5 a 2.5
+                    
+                    // Ajustar levemente a posição da diagonal baseado no mouse
+                    document.documentElement.style.setProperty('--clip-adjustment', clipAdjustment + 'vw');
+                });
+            }
+        }
         
         // Base UI functions that work without GSAP
         function initializeBaseUI() {
@@ -4870,36 +4198,6 @@
                 }
             }
             
-            // Initialize countdown timer
-            const countdownElement = document.querySelector('.countdown');
-            if (countdownElement) {
-                // Set random end time between 24-48 hours from now
-                const hoursToAdd = Math.floor(Math.random() * 24) + 24;
-                const endTime = new Date();
-                endTime.setHours(endTime.getHours() + hoursToAdd);
-                
-                function updateCountdown() {
-                    const now = new Date();
-                    const timeRemaining = endTime - now;
-                    
-                    if (timeRemaining <= 0) {
-                        countdownElement.textContent = 'Últimas vagas disponíveis!';
-                        return;
-                    }
-                    
-                    const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
-                    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-                    
-                    countdownElement.textContent = `${hours}h ${minutes}m restantes`;
-                    
-                    // Update every minute
-                    setTimeout(updateCountdown, 60000);
-                }
-                
-                // Start countdown
-                updateCountdown();
-            }
-            
             // Smooth scrolling
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
@@ -4922,367 +4220,31 @@
                     }
                 });
             });
-        }
-        
-        // Wait for GSAP to be loaded then initialize advanced effects
-        function waitForGSAP(attempts = 0) {
-            if (typeof gsap !== 'undefined') {
-                // GSAP is loaded, initialize advanced effects
-                initAdvancedEffects();
-            } else if (attempts < 5) {
-                // Try again after a delay (up to 5 attempts)
-                setTimeout(() => waitForGSAP(attempts + 1), 500);
-            }
-        }
-        
-        // Advanced effects that require GSAP
-        function initAdvancedEffects() {
-            // Register GSAP plugins
-            if (typeof ScrollTrigger !== 'undefined') gsap.registerPlugin(ScrollTrigger);
-            if (typeof ScrollToPlugin !== 'undefined') gsap.registerPlugin(ScrollToPlugin);
-            if (typeof TextPlugin !== 'undefined') gsap.registerPlugin(TextPlugin);
             
-            // Initialize diagonal effects
-            initDiagonalEffects();
-            
-            // Initialize particle systems
-            initParticles();
-            
-            // Initialize method section connector animation
-            initMethodConnector();
-            
-            // Animate hero section
-            animateHero();
-            
-            // Scroll animations
-            initScrollAnimations();
-        }
-        
-        // Diagonal hero section animation
-        function initDiagonalEffects() {
-            const diagonalShape = document.querySelector('.diagonal-shape');
-            
-            if (diagonalShape && gsap) {
-                // Create timeline for diagonal expansion/contraction
-                const diagonalTimeline = gsap.timeline({
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "power1.inOut"
-                });
+            // Inicializar steps connector animation
+            const stepsConnector = document.getElementById('stepsConnector');
+            if (stepsConnector) {
+                const stepsGrid = stepsConnector.parentElement;
                 
-                diagonalTimeline
-                    .to(diagonalShape, {
-                        duration: 8,
-                        clipPath: "polygon(0 0, 100% 0, 65% 100%, 0% 100%)",
-                        ease: "sine.inOut"
-                    })
-                    .to(diagonalShape, {
-                        duration: 8,
-                        clipPath: "polygon(0 0, 100% 0, 45% 100%, 0% 100%)",
-                        ease: "sine.inOut"
-                    });
-            }
-            
-            // Animate mesh gradients
-            const meshGradients = document.querySelectorAll('.mesh-gradient');
-            
-            meshGradients.forEach(gradient => {
-                if (gsap) {
-                    gsap.to(gradient, {
-                        duration: 15,
-                        backgroundPosition: "100% 100%",
-                        repeat: -1,
-                        yoyo: true,
-                        ease: "sine.inOut"
-                    });
-                }
-            });
-        }
-        
-        // Particle effects system
-        function initParticles() {
-            const particleContainers = document.querySelectorAll('.particles-container');
-            
-            particleContainers.forEach(container => {
-                const containerWidth = container.offsetWidth;
-                const containerHeight = container.offsetHeight;
-                
-                // Create a random number of particles (15-30)
-                const particleCount = Math.floor(Math.random() * 15) + 15;
-                
-                // Create and append particles
-                for (let i = 0; i < particleCount; i++) {
-                    createParticle(container, containerWidth, containerHeight);
-                }
-            });
-        }
-        
-        function createParticle(container, containerWidth, containerHeight) {
-            // Create a particle element
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            
-            // Random properties
-            const size = Math.random() * 10 + 5; // 5-15px
-            const posX = Math.random() * containerWidth;
-            const posY = Math.random() * containerHeight;
-            const opacity = Math.random() * 0.5 + 0.1; // 0.1-0.6
-            
-            // Random color
-            const colors = [
-                'rgba(59, 130, 246, 0.8)', // Blue
-                'rgba(6, 182, 212, 0.8)',  // Cyan
-                'rgba(16, 185, 129, 0.8)', // Green
-                'rgba(236, 72, 153, 0.8)'  // Pink
-            ];
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            
-            // Set styles
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.left = `${posX}px`;
-            particle.style.top = `${posY}px`;
-            particle.style.opacity = `${opacity}`;
-            particle.style.backgroundColor = color;
-            
-            // Add floating animation
-            const animationDuration = Math.random() * 10 + 10; // 10-20s
-            const delay = Math.random() * 5; // 0-5s
-            
-            if (gsap) {
-                gsap.to(particle, {
-                    y: -50 + Math.random() * 100,
-                    x: -50 + Math.random() * 100,
-                    duration: animationDuration,
-                    repeat: -1,
-                    yoyo: true,
-                    delay: delay,
-                    ease: "sine.inOut"
-                });
-            } else {
-                // Fallback to basic CSS animation
-                particle.style.animation = `float ${animationDuration}s ease-in-out ${delay}s infinite`;
-            }
-            
-            // Add to container
-            container.appendChild(particle);
-        }
-        
-        // Method section connector animation
-        function initMethodConnector() {
-            const connector = document.getElementById('stepsConnector');
-            
-            if (connector && typeof ScrollTrigger !== 'undefined') {
-                ScrollTrigger.create({
-                    trigger: '.steps-grid',
-                    start: 'top 70%',
-                    onEnter: () => {
-                        connector.classList.add('animated');
-                    },
-                    once: true
-                });
-            } else if (connector) {
-                // Fallback if ScrollTrigger not available
-                window.addEventListener('scroll', function checkScroll() {
-                    const rect = connector.getBoundingClientRect();
-                    if (rect.top < window.innerHeight * 0.8) {
-                        connector.classList.add('animated');
-                        window.removeEventListener('scroll', checkScroll);
-                    }
-                });
-            }
-        }
-        
-        // Hero section animation
-        function animateHero() {
-            if (!gsap) return;
-            
-            const heroTimeline = gsap.timeline({
-                defaults: { 
-                    ease: "power3.out",
-                    duration: 1
-                }
-            });
-            
-            heroTimeline
-                .fromTo('.header', 
-                    { y: -100, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 1 },
-                    0)
-                .fromTo('#heroTitle', 
-                    { y: 30, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 1 },
-                    0.3)
-                .fromTo('#heroSubtitle', 
-                    { y: 20, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 0.8 },
-                    0.5)
-                .fromTo('.hero-cta .btn', 
-                    { y: 20, opacity: 0, scale: 0.9 },
-                    { y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.1 },
-                    0.8)
-                .fromTo('.hero-image', 
-                    { y: 30, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 1.2 },
-                    0.4)
-                .fromTo('.promo-banner', 
-                    { y: 30, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 1 },
-                    1);
-                
-            // Try to use SplitType for text animation if available
-            if (typeof SplitType !== 'undefined') {
-                try {
-                    // Split hero title into characters for staggered animation
-                    const titleText = new SplitType('#heroTitle', { types: 'chars' });
-                    
-                    gsap.from(titleText.chars, {
-                        opacity: 0,
-                        y: 20,
-                        rotateX: -90,
-                        stagger: 0.02,
-                        duration: 1,
-                        ease: "back.out(1.7)",
-                        delay: 0.3
-                    });
-                } catch (e) {
-                    console.log("SplitType animation fallback");
-                }
-            }
-            
-            // Animate floating elements
-            gsap.to('.floating-element', {
-                y: -20,
-                duration: 3,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut",
-                stagger: 0.5
-            });
-        }
-        
-        // Scroll animations
-        function initScrollAnimations() {
-            if (!gsap || typeof ScrollTrigger === 'undefined') return;
-            
-            // Animate sections on scroll
-            gsap.utils.toArray('.section').forEach(section => {
-                // Section title animation
-                const sectionLabel = section.querySelector('.section-label');
-                const sectionTitle = section.querySelector('.section-title');
-                const sectionSubtitle = section.querySelector('.section-subtitle');
-                
-                if (sectionLabel && sectionTitle) {
-                    const titleTl = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: section,
-                            start: "top 75%",
-                            toggleActions: "play none none none"
-                        }
-                    });
-                    
-                    titleTl
-                        .fromTo(sectionLabel, 
-                            { x: -20, opacity: 0 },
-                            { x: 0, opacity: 1, duration: 0.8 })
-                        .fromTo(sectionTitle, 
-                            { y: 30, opacity: 0 },
-                            { y: 0, opacity: 1, duration: 0.8 },
-                            "-=0.6");
-                        
-                    if (sectionSubtitle) {
-                        titleTl.fromTo(sectionSubtitle,
-                            { y: 20, opacity: 0 },
-                            { y: 0, opacity: 1, duration: 0.8 },
-                            "-=0.6");
-                    }
-                }
-                
-                // Card animations
-                const cards = section.querySelectorAll('.feature-card, .step-card, .testimonial-card, .article-card');
-                
-                if (cards.length) {
-                    gsap.fromTo(cards,
-                        { y: 50, opacity: 0 },
-                        { 
-                            y: 0, 
-                            opacity: 1, 
-                            duration: 0.6,
-                            stagger: 0.1,
-                            ease: "power2.out",
-                            scrollTrigger: {
-                                trigger: cards[0].parentNode,
-                                start: "top 80%"
-                            }
-                        }
+                // Função simples para checar se um elemento está visível na viewport
+                function isElementInViewport(el) {
+                    const rect = el.getBoundingClientRect();
+                    return (
+                        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.75
                     );
                 }
-            });
-            
-            // Map container reveal
-            const mapContainer = document.querySelector('.map-container');
-            if (mapContainer) {
-                gsap.fromTo(mapContainer,
-                    { y: 50, opacity: 0 },
-                    { 
-                        y: 0, 
-                        opacity: 1, 
-                        duration: 1,
-                        scrollTrigger: {
-                            trigger: mapContainer,
-                            start: "top 80%"
-                        }
-                    }
-                );
-            }
-            
-            // Contact form reveal
-            const formContainer = document.querySelector('.form-container');
-            if (formContainer) {
-                gsap.fromTo(formContainer,
-                    { y: 50, opacity: 0 },
-                    { 
-                        y: 0, 
-                        opacity: 1, 
-                        duration: 1,
-                        scrollTrigger: {
-                            trigger: formContainer,
-                            start: "top 80%"
-                        }
-                    }
-                );
-            }
-            
-            // Final CTA banner
-            const ctaBanner = document.querySelector('.cta-banner');
-            if (ctaBanner) {
-                const ctaTl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: ctaBanner,
-                        start: "top 80%"
-                    }
-                });
                 
-                ctaTl
-                    .fromTo(ctaBanner,
-                        { y: 50, opacity: 0 },
-                        { y: 0, opacity: 1, duration: 1 }
-                    )
-                    .fromTo(ctaBanner.querySelector('.cta-title'),
-                        { y: 20, opacity: 0 },
-                        { y: 0, opacity: 1, duration: 0.8 },
-                        "-=0.7"
-                    )
-                    .fromTo(ctaBanner.querySelector('.cta-subtitle'),
-                        { y: 20, opacity: 0 },
-                        { y: 0, opacity: 1, duration: 0.8 },
-                        "-=0.6"
-                    )
-                    .fromTo(ctaBanner.querySelector('.cta-buttons'),
-                        { y: 20, opacity: 0 },
-                        { y: 0, opacity: 1, duration: 0.8 },
-                        "-=0.5"
-                    );
+                // Verificar visibilidade no scroll
+                function checkVisibility() {
+                    if (isElementInViewport(stepsGrid)) {
+                        stepsConnector.classList.add('animated');
+                        window.removeEventListener('scroll', checkVisibility);
+                    }
+                }
+                
+                // Inicializar verificação
+                window.addEventListener('scroll', checkVisibility);
+                checkVisibility(); // Checar imediatamente
             }
         }
     </script>
